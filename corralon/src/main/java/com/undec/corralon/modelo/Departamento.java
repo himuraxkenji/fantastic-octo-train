@@ -1,12 +1,12 @@
 package com.undec.corralon.modelo;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Departamento {
     private Integer id;
     private String nombre;
@@ -18,6 +18,7 @@ public class Departamento {
 
     @Id
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -117,3 +118,5 @@ public class Departamento {
         return result;
     }
 }
+
+
