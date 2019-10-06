@@ -3,7 +3,7 @@ package com.undec.corralon.modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -12,9 +12,9 @@ public class Distrito {
     private String nombre;
     private String abreviatura;
     private Integer habilitado;
-    private Date fechaalta;
-    private Date fechaactualizacion;
-    private Date fechabaja;
+    private LocalDate fechaalta;
+    private LocalDate fechaactualizacion;
+    private LocalDate fechabaja;
     private Departamento departamentoByFkdepartamentoid;
 
     @Id
@@ -60,31 +60,31 @@ public class Distrito {
 
     @Basic
     @Column(name = "fechaalta", nullable = false)
-    public Date getFechaalta() {
+    public LocalDate getFechaalta() {
         return fechaalta;
     }
 
-    public void setFechaalta(Date fechaalta) {
+    public void setFechaalta(LocalDate fechaalta) {
         this.fechaalta = fechaalta;
     }
 
     @Basic
     @Column(name = "fechaactualizacion", nullable = false)
-    public Date getFechaactualizacion() {
+    public LocalDate getFechaactualizacion() {
         return fechaactualizacion;
     }
 
-    public void setFechaactualizacion(Date fechaactualizacion) {
+    public void setFechaactualizacion(LocalDate fechaactualizacion) {
         this.fechaactualizacion = fechaactualizacion;
     }
 
     @Basic
     @Column(name = "fechabaja", nullable = true)
-    public Date getFechabaja() {
+    public LocalDate getFechabaja() {
         return fechabaja;
     }
 
-    public void setFechabaja(Date fechabaja) {
+    public void setFechabaja(LocalDate fechabaja) {
         this.fechabaja = fechabaja;
     }
 

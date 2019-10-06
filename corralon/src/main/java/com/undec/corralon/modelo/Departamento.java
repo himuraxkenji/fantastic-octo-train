@@ -3,7 +3,7 @@ package com.undec.corralon.modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -12,9 +12,9 @@ public class Departamento {
     private String nombre;
     private String abreviatura;
     private Integer habilitado;
-    private Date fechaalta;
-    private Date fechaactualizacion;
-    private Date fecha;
+    private LocalDate fechaalta;
+    private LocalDate fechaactualizacion;
+    private LocalDate fechabaja;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -59,32 +59,32 @@ public class Departamento {
 
     @Basic
     @Column(name = "fechaalta", nullable = false)
-    public Date getFechaalta() {
+    public LocalDate getFechaalta() {
         return fechaalta;
     }
 
-    public void setFechaalta(Date fechaalta) {
+    public void setFechaalta(LocalDate fechaalta) {
         this.fechaalta = fechaalta;
     }
 
     @Basic
     @Column(name = "fechaactualizacion", nullable = false)
-    public Date getFechaactualizacion() {
+    public LocalDate getFechaactualizacion() {
         return fechaactualizacion;
     }
 
-    public void setFechaactualizacion(Date fechaactualizacion) {
+    public void setFechaactualizacion(LocalDate fechaactualizacion) {
         this.fechaactualizacion = fechaactualizacion;
     }
 
     @Basic
     @Column(name = "fecha", nullable = true)
-    public Date getFecha() {
-        return fecha;
+    public LocalDate getFechabaja() {
+        return fechabaja;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setFechabaja(LocalDate fecha) {
+        this.fechabaja = fecha;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Departamento {
         if (fechaalta != null ? !fechaalta.equals(that.fechaalta) : that.fechaalta != null) return false;
         if (fechaactualizacion != null ? !fechaactualizacion.equals(that.fechaactualizacion) : that.fechaactualizacion != null)
             return false;
-        if (fecha != null ? !fecha.equals(that.fecha) : that.fecha != null) return false;
+        if (fechabaja != null ? !fechabaja.equals(that.fechabaja) : that.fechabaja != null) return false;
 
         return true;
     }
@@ -114,7 +114,7 @@ public class Departamento {
         result = 31 * result + (habilitado != null ? habilitado.hashCode() : 0);
         result = 31 * result + (fechaalta != null ? fechaalta.hashCode() : 0);
         result = 31 * result + (fechaactualizacion != null ? fechaactualizacion.hashCode() : 0);
-        result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
+        result = 31 * result + (fechabaja != null ? fechabaja.hashCode() : 0);
         return result;
     }
 }
