@@ -78,7 +78,7 @@ public class Departamento {
     }
 
     @Basic
-    @Column(name = "fecha", nullable = true)
+    @Column(name = "fechabaja", nullable = true)
     public LocalDate getFechabaja() {
         return fechabaja;
     }
