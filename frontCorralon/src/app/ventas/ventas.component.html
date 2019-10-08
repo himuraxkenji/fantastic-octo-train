@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-danger bg-danger">
+    <div class="ventas collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" [routerLink]="{{$route}}" (click)="clientes() ">CLIENTES</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" (click)="clientes() ">CLIENTES</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" (click)="departamentos()">DEPARTAMENTOS</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" (click)="distritos()">DISTRITOS</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" (click)="direcciones()">DIRECCIONES</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+<router-outlet name='sub'></router-outlet>
