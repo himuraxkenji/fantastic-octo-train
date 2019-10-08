@@ -1,17 +1,17 @@
-import { AppRoutingModule } from './../app-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { VentasRoutingModule } from './ventas-routing.module';
 import { SubMenuComponent } from './sub-menu/sub-menu.component';
+import { VentasComponent } from './ventas.component';
+import { VentasRoutingModule } from './ventas-routing.module';
 
 
 
 @NgModule({
-  declarations: [SubMenuComponent],
+  declarations: [SubMenuComponent,VentasComponent],
   imports: [
     CommonModule,
-    VentasModule
+    VentasRoutingModule
   ]
 })
 export class VentasModule { }
