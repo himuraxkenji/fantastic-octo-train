@@ -9,6 +9,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   templateUrl: './listar-clientes.component.html',
   styleUrls: ['./listar-clientes.component.css']
 })
+
 export class ListarClientesComponent implements OnInit {
 
   // clientes: Cliente[] = null;
@@ -17,7 +18,7 @@ export class ListarClientesComponent implements OnInit {
   // busqueda: string = null;
   // busquedaNumeros: string = null;
 
-  // constructor(private service: ServiceService, private router: Router) { }
+  constructor(/*private service: ServiceService, private router: Router*/) { }
 
   // nuevoCliente() {
   //   this.router.navigate(['agregar-cliente']);
