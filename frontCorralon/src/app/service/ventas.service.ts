@@ -8,33 +8,33 @@ import { Response } from '../modelo/Response';
 })
 export class VentasService {
 
-  Url = "localhost:8081/";
+  Url = '//localhost:8081';
 
   constructor(private http:HttpClient) { }
 
   // Departamentos
   listarDepartamentosTodos(){
-      return this.http.get<Response>(this.Url+'departamentos');
+      return this.http.get<Response>(this.Url + '/departamentos');
   }
 
   listarDepartamentosHabilitados(){
-    return this.http.get<Response>(this.Url+'departamentos/habilitados');
+    return this.http.get<Response>(this.Url + '/departamentos/habilitados');
   }
 
   listarDepartamentoId(id:number){
-      return this.http.get<Response>(this.Url+'departamentos/'+id);
+      return this.http.get<Response>(this.Url + '/departamentos/' + id);
   }
 
   guardarDepartamento(departamento:Departamento){
-    return this.http.post<Departamento>(this.Url+'departamentos/', departamento);
+    return this.http.post<Departamento>(this.Url + '/departamentos/', departamento);
   }
 
   actualizarDepartamento(departamento:Departamento){
-    return this.http.put<Departamento>(this.Url+'departamentos/', departamento);
+    return this.http.put<Departamento>(this.Url + '/departamentos/', departamento);
   }
 
   deshabilitarDepartamento(id : number){
-    return this.http.delete<Departamento>(this.Url+'departamentos/'+id);
+    return this.http.delete<Departamento>(this.Url + '/departamentos/' + id);
   }
 
   // Distrito
