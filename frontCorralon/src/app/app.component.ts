@@ -1,15 +1,12 @@
+import { Router } from '@angular/router';
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   title = 'CORRALON';
   constructor(private router: Router) {}
 
@@ -30,17 +27,4 @@ export class AppComponent {
     this.router.navigate(['navbar-reportes']);
   }
 
-
-=======
-  title = 'frontCorralon';
->>>>>>> parent of 4af4976... Back y front
-=======
-  title = 'frontCorralon';
->>>>>>> parent of 4af4976... Back y front
-=======
-  title = 'frontCorralon';
->>>>>>> parent of 4af4976... Back y front
-=======
-  title = 'frontCorralon';
->>>>>>> parent of 4af4976... Back y front
 }
