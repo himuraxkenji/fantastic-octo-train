@@ -12,8 +12,8 @@ export class SubMenuComponent implements OnInit {
 
   ngOnInit() {
   }
-  departamentos(){
-    this.router.navigate(['ventas/listar-departamentos']);
-  }
+  // departamentos(){
+  //   this.router.navigate(['ventas/listar-departamentos']);
+  // }
 
 }

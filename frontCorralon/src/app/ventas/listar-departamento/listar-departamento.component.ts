@@ -11,14 +11,14 @@ export class ListarDepartamentoComponent implements OnInit {
   departamentos:Departamento[] = [
     {
       id:1,
-      nombre:"chilecito",
-      abreviatura:"ch",
+      nombre:"CHILECITO",
+      abreviatura:"CHI",
       habilitado:1
     },
     {
       id:2,
-      nombre:"sañogasta",
-      abreviatura:"sg",
+      nombre:"FAMATINA",
+      abreviatura:"FMT",
       habilitado:1
     }
   ];
