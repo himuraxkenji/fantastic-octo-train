@@ -1,5 +1,5 @@
 import { Distrito } from './../../modelo/Distrito';
-import { DistritoDTO } from './../../modeloDTO/DistritoDTO';
+import { DistritoDTO } from '../../modelo/Distrito';
 import { Departamento } from './../../modelo/Departamento';
 import { Router } from '@angular/router';
 import { ServiceService } from './../../service/service.service';
