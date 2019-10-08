@@ -1,14 +1,15 @@
 <!-- NAVBAR-->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark pmenu">
-    <a class="navbar-brand" href="#">Corralon</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Casa</a>
 
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+
             <li class="nav-item active">
-                <a class="nav-link" (click)="ventas()">VENTAS</a>
+                <a class="nav-link" [routerLink]="ventas()">VENTAS</a>
             </li>
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" (click)="compras()">COMPRAS</a>
             </li>
             <li class="nav-item active">
@@ -19,7 +20,7 @@
             </li>
             <li class="nav-item active" (click)="logistica()">
                 <a class="nav-link">LOGISTICA</a>
-            </li>
+            </li> -->
 
         </ul>
     </div>
