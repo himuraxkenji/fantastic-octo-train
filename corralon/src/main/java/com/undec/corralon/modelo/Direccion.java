@@ -1,10 +1,13 @@
 package com.undec.corralon.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Direccion {
     private Integer id;
     private String calle;
@@ -13,16 +16,17 @@ public class Direccion {
     private String entrecalles;
     private String descripcion;
     private String ubicacion;
-    private Byte habilitado;
-    private Date fechaalta;
-    private Date fechaactualizacion;
-    private Date fechabaja;
+    private Integer habilitado;
+    private LocalDate fechaalta;
+    private LocalDate fechaactualizacion;
+    private LocalDate fechabaja;
     private Cliente clienteByFkclientesid;
     private Distrito distritoByFkdistritosid;
     private Tipodireccion tipodireccionByFktipodireccionesid;
 
     @Id
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -93,41 +97,41 @@ public class Direccion {
 
     @Basic
     @Column(name = "habilitado")
-    public Byte getHabilitado() {
+    public Integer getHabilitado() {
         return habilitado;
     }
 
-    public void setHabilitado(Byte habilitado) {
+    public void setHabilitado(Integer habilitado) {
         this.habilitado = habilitado;
     }
 
     @Basic
     @Column(name = "fechaalta")
-    public Date getFechaalta() {
+    public LocalDate getFechaalta() {
         return fechaalta;
     }
 
-    public void setFechaalta(Date fechaalta) {
+    public void setFechaalta(LocalDate fechaalta) {
         this.fechaalta = fechaalta;
     }
 
     @Basic
     @Column(name = "fechaactualizacion")
-    public Date getFechaactualizacion() {
+    public LocalDate getFechaactualizacion() {
         return fechaactualizacion;
     }
 
-    public void setFechaactualizacion(Date fechaactualizacion) {
+    public void setFechaactualizacion(LocalDate fechaactualizacion) {
         this.fechaactualizacion = fechaactualizacion;
     }
 
     @Basic
     @Column(name = "fechabaja")
-    public Date getFechabaja() {
+    public LocalDate getFechabaja() {
         return fechabaja;
     }
 
-    public void setFechabaja(Date fechabaja) {
+    public void setFechabaja(LocalDate fechabaja) {
         this.fechabaja = fechabaja;
     }
 
