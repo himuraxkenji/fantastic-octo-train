@@ -1,8 +1,9 @@
+import { VentasModule } from './ventas/ventas.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-
+  {path: 'ventas', loadChildren: './ventas/ventas.module#VentasModule'}
 ];
 
 

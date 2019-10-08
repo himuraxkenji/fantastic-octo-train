@@ -1,3 +1,4 @@
+import { VentasService } from './service/ventas.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +8,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { VentasModule } from './ventas/ventas.module';
 import { ComprasModule } from './compras/compras.module';
 import { MenuComponent } from './menu/menu.component';
+import { VentasComponent } from './ventas/ventas.component';
 
 // import { ClienteModule } from './cliente/cliente.module';
 // import { DireccionModule } from './direccion/direccion.module';
@@ -23,11 +25,11 @@ import { MenuComponent } from './menu/menu.component';
     AppRoutingModule,
     ComprasModule,
     FormsModule,
-    HttpClientModule,
-    VentasModule
+    HttpClientModule
+
 
   ],
-  providers: [],
+  providers: [VentasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

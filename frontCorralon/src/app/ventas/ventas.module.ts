@@ -3,14 +3,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VentasRoutingModule } from './ventas-routing.module';
+import { SubMenuComponent } from './sub-menu/sub-menu.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [SubMenuComponent],
   imports: [
     CommonModule,
-    AppRoutingModule
+    VentasModule
   ]
 })
 export class VentasModule { }

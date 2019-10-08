@@ -1,4 +1,3 @@
-import { VentasRoutingModule } from './ventas-routing.module';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,7 +11,6 @@ export class VentasComponent {
 
   constructor(private router: Router) {}
 
-  private route = VentasRoutingModule;
 
   clientes() {
     this.router.navigate(['listar-cliente']);

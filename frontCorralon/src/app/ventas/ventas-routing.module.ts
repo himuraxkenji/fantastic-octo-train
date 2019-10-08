@@ -8,13 +8,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-    {path: 'ventas', component: VentasComponent,
-      children: [
-      {path: 'listar-cliente', component: ListarClientesComponent},
-      {path: 'listar-departamento', component: ListarDepartamentoComponent}
-      // {path: 'listar-distrito', component: ListarDistritoComponent},
-      // {path: 'listar-direccion', component: ListarDireccionComponent}
-    ]}
+    // {path: 'ventas', component: VentasComponent,
+    {path: '', component: VentasComponent}
+    //   children: [
+    //   {path: 'listar-cliente', component: ListarClientesComponent},
+    //   {path: 'listar-departamento', component: ListarDepartamentoComponent}
+    //   // {path: 'listar-distrito', component: ListarDistritoComponent},
+    //   // {path: 'listar-direccion', component: ListarDireccionComponent}
+    // ]}
   ];
 
 @NgModule({
