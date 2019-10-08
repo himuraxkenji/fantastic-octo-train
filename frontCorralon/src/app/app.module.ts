@@ -10,14 +10,14 @@ import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
-    AppComponent, MenuComponent
+    AppComponent, 
+    MenuComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule
-
 
   ],
   providers: [VentasService],
