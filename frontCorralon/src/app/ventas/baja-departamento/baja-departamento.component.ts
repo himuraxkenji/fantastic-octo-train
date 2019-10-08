@@ -11,20 +11,14 @@ export class BajaDepartamentoComponent implements OnInit {
   departamento:Departamento;
 
   constructor(
-    private _route: ActivatedRoute) {
-
-    this._route.params.subscribe(params =>{
-      this.departamento = params['record'];
-      console.log(params);
-      console.log("Helloo");
-      
-      
-    })
-    console.log(this.departamento);
-    
-   }
+    private _route: ActivatedRoute) {}
+  
 
   ngOnInit() {
+    this._route.params.subscribe(params =>{
+      this.departamento = params as Departamento;      
+    })
+    console.log(this.departamento);
   }
 
 }
