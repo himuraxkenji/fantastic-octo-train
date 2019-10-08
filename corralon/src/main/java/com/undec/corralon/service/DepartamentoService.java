@@ -65,7 +65,7 @@ public class DepartamentoService {
         Response response = new Response();
         departamento.setFechaalta(LocalDate.now());
         departamento.setFechaactualizacion(LocalDate.now());
-        departamento.setHabilitado(1);
+//        departamento.setHabilitado((byte) 1);
         Departamento guardado = departamentoRepository.save(departamento);
 
         if(guardado == null)
@@ -105,7 +105,7 @@ public class DepartamentoService {
         if(darBaja == null)
             throw new DepartamentoErrorToUpdateException();
 
-        darBaja.setHabilitado(0);
+        darBaja.setHabilitado( 0);
         darBaja.setFechabaja(LocalDate.now());
 
         response.setCode(200);

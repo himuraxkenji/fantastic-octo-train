@@ -72,7 +72,7 @@ public class DistritoService {
 
         distrito.setFechaalta(LocalDate.now());
         distrito.setFechaactualizacion(LocalDate.now());
-        distrito.setHabilitado(1);
+        distrito.setHabilitado( 1);
         Distrito guardado = distritoRepository.save(distrito);
 
         if(guardado == null)
@@ -102,7 +102,7 @@ public class DistritoService {
         actualizar.setAbreviatura(distritoDTO.getAbreviatura());
         actualizar.setNombre(distritoDTO.getNombre());
         actualizar.setFechaactualizacion(LocalDate.now());
-        actualizar.setDepartamentoByFkdepartamentoid(departamentoRepository.findById(distritoDTO.getIdDepartamento()).get());
+        actualizar.setDepartamentoByFkdepartamentosid(departamentoRepository.findById(distritoDTO.getIdDepartamento()).get());
 
         response.setCode(200);
         response.setMsg("actualizado");
@@ -135,7 +135,7 @@ public class DistritoService {
         distrito.setAbreviatura(distritoDTO.getAbreviatura());
         distrito.setFechaactualizacion(LocalDate.now());
         distrito.setFechaalta(LocalDate.now());
-        distrito.setDepartamentoByFkdepartamentoid(departamentoRepository.findById(distritoDTO.getIdDepartamento()).get());
+        distrito.setDepartamentoByFkdepartamentosid(departamentoRepository.findById(distritoDTO.getIdDepartamento()).get());
 
         return distrito;
     }
