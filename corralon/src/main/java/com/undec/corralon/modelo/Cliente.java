@@ -1,25 +1,24 @@
 package com.undec.corralon.modelo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.sql.Date;
+import java.util.Collection;
+import java.util.Objects;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente {
     private Integer id;
     private String nombre;
     private String apellido;
     private String dni;
-    private Integer habilitacion;
-    private LocalDate fechaalta;
-    private LocalDate fechaactualizacion;
-    private LocalDate fechabaja;
+    private Byte habilitacion;
+    private Date fechaalta;
+    private Date fechaactualizacion;
+    private Date fechabaja;
+    private Collection<Direccion> direccionsById;
 
     @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public Integer getId() {
         return id;
     }
@@ -29,7 +28,7 @@ public class Cliente {
     }
 
     @Basic
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre")
     public String getNombre() {
         return nombre;
     }
@@ -39,7 +38,7 @@ public class Cliente {
     }
 
     @Basic
-    @Column(name = "apellido", nullable = false, length = 100)
+    @Column(name = "apellido")
     public String getApellido() {
         return apellido;
     }
@@ -49,7 +48,7 @@ public class Cliente {
     }
 
     @Basic
-    @Column(name = "dni", nullable = false, length = 100)
+    @Column(name = "dni")
     public String getDni() {
         return dni;
     }
@@ -59,42 +58,42 @@ public class Cliente {
     }
 
     @Basic
-    @Column(name = "habilitacion", nullable = false)
-    public Integer getHabilitacion() {
+    @Column(name = "habilitacion")
+    public Byte getHabilitacion() {
         return habilitacion;
     }
 
-    public void setHabilitacion(Integer habilitacion) {
+    public void setHabilitacion(Byte habilitacion) {
         this.habilitacion = habilitacion;
     }
 
     @Basic
-    @Column(name = "fechaalta", nullable = false)
-    public LocalDate getFechaalta() {
+    @Column(name = "fechaalta")
+    public Date getFechaalta() {
         return fechaalta;
     }
 
-    public void setFechaalta(LocalDate fechaalta) {
+    public void setFechaalta(Date fechaalta) {
         this.fechaalta = fechaalta;
     }
 
     @Basic
-    @Column(name = "fechaactualizacion", nullable = false)
-    public LocalDate getFechaactualizacion() {
+    @Column(name = "fechaactualizacion")
+    public Date getFechaactualizacion() {
         return fechaactualizacion;
     }
 
-    public void setFechaactualizacion(LocalDate fechaactualizacion) {
+    public void setFechaactualizacion(Date fechaactualizacion) {
         this.fechaactualizacion = fechaactualizacion;
     }
 
     @Basic
-    @Column(name = "fechabaja", nullable = true)
-    public LocalDate getFechabaja() {
+    @Column(name = "fechabaja")
+    public Date getFechabaja() {
         return fechabaja;
     }
 
-    public void setFechabaja(LocalDate fechabaja) {
+    public void setFechabaja(Date fechabaja) {
         this.fechabaja = fechabaja;
     }
 
@@ -102,33 +101,28 @@ public class Cliente {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Cliente cliente = (Cliente) o;
-
-        if (id != null ? !id.equals(cliente.id) : cliente.id != null) return false;
-        if (nombre != null ? !nombre.equals(cliente.nombre) : cliente.nombre != null) return false;
-        if (apellido != null ? !apellido.equals(cliente.apellido) : cliente.apellido != null) return false;
-        if (dni != null ? !dni.equals(cliente.dni) : cliente.dni != null) return false;
-        if (habilitacion != null ? !habilitacion.equals(cliente.habilitacion) : cliente.habilitacion != null)
-            return false;
-        if (fechaalta != null ? !fechaalta.equals(cliente.fechaalta) : cliente.fechaalta != null) return false;
-        if (fechaactualizacion != null ? !fechaactualizacion.equals(cliente.fechaactualizacion) : cliente.fechaactualizacion != null)
-            return false;
-        if (fechabaja != null ? !fechabaja.equals(cliente.fechabaja) : cliente.fechabaja != null) return false;
-
-        return true;
+        return Objects.equals(id, cliente.id) &&
+                Objects.equals(nombre, cliente.nombre) &&
+                Objects.equals(apellido, cliente.apellido) &&
+                Objects.equals(dni, cliente.dni) &&
+                Objects.equals(habilitacion, cliente.habilitacion) &&
+                Objects.equals(fechaalta, cliente.fechaalta) &&
+                Objects.equals(fechaactualizacion, cliente.fechaactualizacion) &&
+                Objects.equals(fechabaja, cliente.fechabaja);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
-        result = 31 * result + (apellido != null ? apellido.hashCode() : 0);
-        result = 31 * result + (dni != null ? dni.hashCode() : 0);
-        result = 31 * result + (habilitacion != null ? habilitacion.hashCode() : 0);
-        result = 31 * result + (fechaalta != null ? fechaalta.hashCode() : 0);
-        result = 31 * result + (fechaactualizacion != null ? fechaactualizacion.hashCode() : 0);
-        result = 31 * result + (fechabaja != null ? fechabaja.hashCode() : 0);
-        return result;
+        return Objects.hash(id, nombre, apellido, dni, habilitacion, fechaalta, fechaactualizacion, fechabaja);
+    }
+
+    @OneToMany(mappedBy = "clienteByFkclientesid")
+    public Collection<Direccion> getDireccionsById() {
+        return direccionsById;
+    }
+
+    public void setDireccionsById(Collection<Direccion> direccionsById) {
+        this.direccionsById = direccionsById;
     }
 }

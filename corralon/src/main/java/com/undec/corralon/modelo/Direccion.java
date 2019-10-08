@@ -1,12 +1,10 @@
 package com.undec.corralon.modelo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.sql.Date;
+import java.util.Objects;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Direccion {
     private Integer id;
     private String calle;
@@ -15,15 +13,16 @@ public class Direccion {
     private String entrecalles;
     private String descripcion;
     private String ubicacion;
-    private Integer habilitado;
-    private LocalDate fechaalta;
-    private LocalDate fechaactualizacion;
-    private LocalDate fechabaja;
-    private Cliente clienteByFkclienteid;
+    private Byte habilitado;
+    private Date fechaalta;
+    private Date fechaactualizacion;
+    private Date fechabaja;
+    private Cliente clienteByFkclientesid;
+    private Distrito distritoByFkdistritosid;
+    private Tipodireccion tipodireccionByFktipodireccionesid;
 
     @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     public Integer getId() {
         return id;
     }
@@ -33,7 +32,7 @@ public class Direccion {
     }
 
     @Basic
-    @Column(name = "calle", nullable = false, length = 100)
+    @Column(name = "calle")
     public String getCalle() {
         return calle;
     }
@@ -43,7 +42,7 @@ public class Direccion {
     }
 
     @Basic
-    @Column(name = "numerocalle", nullable = false, length = 100)
+    @Column(name = "numerocalle")
     public String getNumerocalle() {
         return numerocalle;
     }
@@ -53,7 +52,7 @@ public class Direccion {
     }
 
     @Basic
-    @Column(name = "barrio", nullable = false, length = 100)
+    @Column(name = "barrio")
     public String getBarrio() {
         return barrio;
     }
@@ -63,7 +62,7 @@ public class Direccion {
     }
 
     @Basic
-    @Column(name = "entrecalles", nullable = false, length = 100)
+    @Column(name = "entrecalles")
     public String getEntrecalles() {
         return entrecalles;
     }
@@ -73,7 +72,7 @@ public class Direccion {
     }
 
     @Basic
-    @Column(name = "descripcion", nullable = true, length = 100)
+    @Column(name = "descripcion")
     public String getDescripcion() {
         return descripcion;
     }
@@ -83,7 +82,7 @@ public class Direccion {
     }
 
     @Basic
-    @Column(name = "ubicacion", nullable = false, length = 100)
+    @Column(name = "ubicacion")
     public String getUbicacion() {
         return ubicacion;
     }
@@ -93,42 +92,42 @@ public class Direccion {
     }
 
     @Basic
-    @Column(name = "habilitado", nullable = false)
-    public Integer getHabilitado() {
+    @Column(name = "habilitado")
+    public Byte getHabilitado() {
         return habilitado;
     }
 
-    public void setHabilitado(Integer habilitado) {
+    public void setHabilitado(Byte habilitado) {
         this.habilitado = habilitado;
     }
 
     @Basic
-    @Column(name = "fechaalta", nullable = false)
-    public LocalDate getFechaalta() {
+    @Column(name = "fechaalta")
+    public Date getFechaalta() {
         return fechaalta;
     }
 
-    public void setFechaalta(LocalDate fechaalta) {
+    public void setFechaalta(Date fechaalta) {
         this.fechaalta = fechaalta;
     }
 
     @Basic
-    @Column(name = "fechaactualizacion", nullable = false)
-    public LocalDate getFechaactualizacion() {
+    @Column(name = "fechaactualizacion")
+    public Date getFechaactualizacion() {
         return fechaactualizacion;
     }
 
-    public void setFechaactualizacion(LocalDate fechaactualizacion) {
+    public void setFechaactualizacion(Date fechaactualizacion) {
         this.fechaactualizacion = fechaactualizacion;
     }
 
     @Basic
-    @Column(name = "fechabaja", nullable = true)
-    public LocalDate getFechabaja() {
+    @Column(name = "fechabaja")
+    public Date getFechabaja() {
         return fechabaja;
     }
 
-    public void setFechabaja(LocalDate fechabaja) {
+    public void setFechabaja(Date fechabaja) {
         this.fechabaja = fechabaja;
     }
 
@@ -136,51 +135,52 @@ public class Direccion {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Direccion direccion = (Direccion) o;
-
-        if (id != null ? !id.equals(direccion.id) : direccion.id != null) return false;
-        if (calle != null ? !calle.equals(direccion.calle) : direccion.calle != null) return false;
-        if (numerocalle != null ? !numerocalle.equals(direccion.numerocalle) : direccion.numerocalle != null)
-            return false;
-        if (barrio != null ? !barrio.equals(direccion.barrio) : direccion.barrio != null) return false;
-        if (entrecalles != null ? !entrecalles.equals(direccion.entrecalles) : direccion.entrecalles != null)
-            return false;
-        if (descripcion != null ? !descripcion.equals(direccion.descripcion) : direccion.descripcion != null)
-            return false;
-        if (ubicacion != null ? !ubicacion.equals(direccion.ubicacion) : direccion.ubicacion != null) return false;
-        if (habilitado != null ? !habilitado.equals(direccion.habilitado) : direccion.habilitado != null) return false;
-        if (fechaalta != null ? !fechaalta.equals(direccion.fechaalta) : direccion.fechaalta != null) return false;
-        if (fechaactualizacion != null ? !fechaactualizacion.equals(direccion.fechaactualizacion) : direccion.fechaactualizacion != null)
-            return false;
-        if (fechabaja != null ? !fechabaja.equals(direccion.fechabaja) : direccion.fechabaja != null) return false;
-
-        return true;
+        return Objects.equals(id, direccion.id) &&
+                Objects.equals(calle, direccion.calle) &&
+                Objects.equals(numerocalle, direccion.numerocalle) &&
+                Objects.equals(barrio, direccion.barrio) &&
+                Objects.equals(entrecalles, direccion.entrecalles) &&
+                Objects.equals(descripcion, direccion.descripcion) &&
+                Objects.equals(ubicacion, direccion.ubicacion) &&
+                Objects.equals(habilitado, direccion.habilitado) &&
+                Objects.equals(fechaalta, direccion.fechaalta) &&
+                Objects.equals(fechaactualizacion, direccion.fechaactualizacion) &&
+                Objects.equals(fechabaja, direccion.fechabaja);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (calle != null ? calle.hashCode() : 0);
-        result = 31 * result + (numerocalle != null ? numerocalle.hashCode() : 0);
-        result = 31 * result + (barrio != null ? barrio.hashCode() : 0);
-        result = 31 * result + (entrecalles != null ? entrecalles.hashCode() : 0);
-        result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
-        result = 31 * result + (ubicacion != null ? ubicacion.hashCode() : 0);
-        result = 31 * result + (habilitado != null ? habilitado.hashCode() : 0);
-        result = 31 * result + (fechaalta != null ? fechaalta.hashCode() : 0);
-        result = 31 * result + (fechaactualizacion != null ? fechaactualizacion.hashCode() : 0);
-        result = 31 * result + (fechabaja != null ? fechabaja.hashCode() : 0);
-        return result;
+        return Objects.hash(id, calle, numerocalle, barrio, entrecalles, descripcion, ubicacion, habilitado, fechaalta, fechaactualizacion, fechabaja);
     }
 
     @ManyToOne
-    @JoinColumn(name = "fkclienteid", referencedColumnName = "id", nullable = false)
-    public Cliente getClienteByFkclienteid() {
-        return clienteByFkclienteid;
+    @JoinColumn(name = "fkclientesid", referencedColumnName = "id")
+    public Cliente getClienteByFkclientesid() {
+        return clienteByFkclientesid;
     }
 
-    public void setClienteByFkclienteid(Cliente clienteByFkclienteid) {
-        this.clienteByFkclienteid = clienteByFkclienteid;
+    public void setClienteByFkclientesid(Cliente clienteByFkclientesid) {
+        this.clienteByFkclientesid = clienteByFkclientesid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "fkdistritosid", referencedColumnName = "id")
+    public Distrito getDistritoByFkdistritosid() {
+        return distritoByFkdistritosid;
+    }
+
+    public void setDistritoByFkdistritosid(Distrito distritoByFkdistritosid) {
+        this.distritoByFkdistritosid = distritoByFkdistritosid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "fktipodireccionesid", referencedColumnName = "id")
+    public Tipodireccion getTipodireccionByFktipodireccionesid() {
+        return tipodireccionByFktipodireccionesid;
+    }
+
+    public void setTipodireccionByFktipodireccionesid(Tipodireccion tipodireccionByFktipodireccionesid) {
+        this.tipodireccionByFktipodireccionesid = tipodireccionByFktipodireccionesid;
     }
 }
