@@ -1,5 +1,5 @@
 import { VentasService } from './../../service/ventas.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Departamento } from '../../modelo/Departamento';
 import {Router} from '@angular/router';
 import { from } from 'rxjs';
@@ -53,8 +53,9 @@ export class ListarDepartamentoComponent implements OnInit {
           this.departamentosFilter = this.departamentos;
         }
       }
-      modificarDepartamento(departamento: Departamento){
-        localStorage.setItem('departamento', JSON.stringify(departamento));
+      @Input() modificarDepartamento(departamento: Departamento){
+
+        localStorage.setItem('departamentos', JSON.stringify(departamento));
         this.router.navigate(['/ventas/modificar-departamento']);
 
       }

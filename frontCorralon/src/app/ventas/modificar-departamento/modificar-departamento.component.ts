@@ -8,7 +8,7 @@ import { VentasService } from 'src/app/service/ventas.service';
   styleUrls: ['./modificar-departamento.component.css']
 })
 export class ModificarDepartamentoComponent implements OnInit {
-  departamento: Departamento;
+  departamento: Departamento=null;
 
   constructor(private service: VentasService) { }
 
@@ -16,17 +16,19 @@ export class ModificarDepartamentoComponent implements OnInit {
   }
 
   actualizarDepartamento(departamento: Departamento){
-    console.log('ENTRO');
+    var guardado = localStorage.getItem('departamento');
 
-    console.log(localStorage.getItem("departamento"));
+    console.log('objetoObtenido: ', JSON.parse(guardado));
+
+    // console.log(localStorage.getItem('guardado'));
 // departamento=JSON.parse(departamento);
 
-    this.service.actualizarDepartamento(departamento)
-    .subscribe(data => {
-      this.departamento = data;
-      alert('se actualizo con EXITO');
-      window.history.back();
-    });
+    // this.service.actualizarDepartamento(departamento)
+    // .subscribe(data => {
+    //   this.departamento = data;
+    //   alert('se actualizo con EXITO');
+    //   window.history.back();
+    // });
   }
   cancelar(){
     window.history.back();
