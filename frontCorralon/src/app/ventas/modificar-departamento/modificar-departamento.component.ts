@@ -1,4 +1,6 @@
+import { Departamento } from './../../modelo/Departamento';
 import { Component, OnInit } from '@angular/core';
+import { VentasService } from 'src/app/service/ventas.service';
 
 @Component({
   selector: 'app-modificar-departamento',
@@ -6,10 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./modificar-departamento.component.css']
 })
 export class ModificarDepartamentoComponent implements OnInit {
+  departamento: Departamento;
 
-  constructor() { }
+  constructor(private service: VentasService) { }
 
   ngOnInit() {
   }
+
+  actualizarDepartamento(departamento: Departamento){
+    console.log('ENTRO');
+
+    console.log(localStorage.getItem("departamento"));
+// departamento=JSON.parse(departamento);
+
+    this.service.actualizarDepartamento(departamento)
+    .subscribe(data => {
+      this.departamento = data;
+      alert('se actualizo con EXITO');
+      window.history.back();
+    });
+  }
+  cancelar(){
+    window.history.back();
+  }
+
 
 }

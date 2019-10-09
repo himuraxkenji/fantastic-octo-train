@@ -25,23 +25,13 @@ export class AgregarDepartamentoComponent implements OnInit {
 guardarDepartamento(departamento: Departamento){
   console.log(departamento);
   this.departamento.habilitado = 1;
-  this.departamento.id=null;
+  this.departamento.id = null;
   this.ventasService.guardarDepartamento(this.departamento)
    .subscribe(data => {
-        this.departamento = data;
-      alert('se guardo un nuevo departamento');
-      window.history.back();
+        this.departamento = data; alert( 'se guardo un nuevo departamento' ); window.history.back();
      } );
-
-      // this.service.updatePersona(this.persona)
-      // .subscribe(data => {
-      //   this.persona = data;
-      //   alert('se actualizo con EXITO');
-      //   this.router.navigate(['listar']);
-      // });
-
   }
-cancelar(){
+cancelar() {
   window.history.back();
 }
 
