@@ -35,14 +35,14 @@ ngOnInit() {}
 //   volverAtras() {
 //     window.history.back();
 //   }
-//   nuevoDistrito(distrito: DistritoDTO){
-//     this.distrito.idDepartamento=1;
+  // nuevoDistrito(distrito: DistritoDTO){
+  //   this.distrito.idDepartamento=1;
 
-//     this.departamentos.forEach(departamento => {
-//       if(departamento.nombre == this.nombreDepto){
-//           this.distrito.idDepartamento = departamento.id;
-//         }
-//     });
+  //   this.departamentos.forEach(departamento => {
+  //     if(departamento.nombre == this.nombreDepto){
+  //         this.distrito.idDepartamento = departamento.id;
+  //       }
+  //   });
 
 //     // for(var i = 0; i <  this.departamentos.length; i++){
 //     //     if(this.departamentos[i].nombre == this.nombreDepto){

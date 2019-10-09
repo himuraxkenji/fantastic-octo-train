@@ -1,3 +1,4 @@
+import { Response } from './../../modelo/Response';
 import { Component, OnInit } from '@angular/core';
 import { Departamento } from '../../modelo/Departamento';
 import { VentasService } from '../../service/ventas.service';
@@ -12,26 +13,32 @@ import { NgForm } from '@angular/forms';
 })
 export class AgregarDepartamentoComponent implements OnInit {
 
-  departamento:Departamento = null;
+  departamento: Departamento = new Departamento();
+  response: Response;
 
-  constructor(private ventasService:VentasService) {
+  constructor(private ventasService: VentasService) {
 
    }
 
   ngOnInit() {
      }
+guardarDepartamento(departamento: Departamento){
+  console.log(departamento);
+  this.departamento.habilitado = 1;
+  this.departamento.id=null;
+  this.ventasService.guardarDepartamento(this.departamento)
+   .subscribe(data => {
+        this.departamento = data;
+      alert('se guardo un nuevo departamento');
+      window.history.back();
+     } );
 
-  onSubmit(departamento:NgForm){
-    this.ventasService.guardarDepartamento(this.departamento).subscribe(
-      data=> {
-        console.log("Departamento");
-      console.log(departamento);
-
-        alert('se guardo un nuevo distrto');
-        window.history.back();
-       } );
-  }
-  guardarDepartamento(){
+      // this.service.updatePersona(this.persona)
+      // .subscribe(data => {
+      //   this.persona = data;
+      //   alert('se actualizo con EXITO');
+      //   this.router.navigate(['listar']);
+      // });
 
   }
 cancelar(){

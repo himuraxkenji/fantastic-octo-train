@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     SubMenuComponent,
-    VentasComponent, 
+    VentasComponent,
     ListarDepartamentoComponent,
     AgregarDepartamentoComponent,
     ModificarDepartamentoComponent,
