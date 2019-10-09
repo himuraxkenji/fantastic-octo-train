@@ -8,6 +8,7 @@ import { ListarDepartamentoComponent } from './listar-departamento/listar-depart
 import { AgregarDepartamentoComponent } from './agregar-departamento/agregar-departamento.component';
 import { ModificarDepartamentoComponent } from './modificar-departamento/modificar-departamento.component';
 import { BajaDepartamentoComponent } from './baja-departamento/baja-departamento.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,11 +18,13 @@ import { BajaDepartamentoComponent } from './baja-departamento/baja-departamento
     VentasComponent, 
     ListarDepartamentoComponent,
     AgregarDepartamentoComponent,
-  ModificarDepartamentoComponent,
-BajaDepartamentoComponent],
+    ModificarDepartamentoComponent,
+    BajaDepartamentoComponent
+  ],
   imports: [
     CommonModule,
-    VentasRoutingModule
+    VentasRoutingModule,
+    FormsModule
   ]
 })
 export class VentasModule { }

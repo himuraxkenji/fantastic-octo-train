@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { VentasService } from '../../service/ventas.service';
+import { Departamento } from '../../modelo/Departamento';
 
 @Component({
   selector: 'app-agregar-clientes',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AgregarClientesComponent implements OnInit {
 
-  constructor() { }
+  departamento:Departamento;
+
+  constructor(private service:VentasService) { 
+
+  }
 
   ngOnInit() {
   }
+
+
 
 }

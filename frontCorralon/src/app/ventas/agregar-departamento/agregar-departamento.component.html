@@ -1,1 +1,28 @@
-<p>agregar-departamento works!</p>
+<div class="container" ng-controller="departamento">
+    <form class="mt-4" #departamento="ngForm" (ngSubmit)="onSubmit(departamento)">
+        <div class="form-group row justify-content-center">
+            <h1>Nuevo Departamento</h1>
+        </div>
+        <hr>
+
+        <div class="form-group row">
+            <label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese nombre" [(ngModel)]="departamento.nombre">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="abreviatura" class="col-sm-2 col-form-label">Abreviatura</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="abreviatura" placeholder="Ingrese abreviatura" [(ngModel)]="departamento.abreviatura">
+            </div>
+        </div>
+        <hr>
+        <div class="form-group row justify-content-center">
+            <button type="submit" class="btn btn-primary">
+                Guardar
+           </button>
+        </div>
+    </form>
+
+</div>
