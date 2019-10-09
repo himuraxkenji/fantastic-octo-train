@@ -10,13 +10,16 @@
                                 <button class="btn btn-default">FILTRO </button>
                             </td>
                             <td>
-                                <input type="text" class="form-control" placeholder="ingrese nombre">
+                                <!-- <input type="text" class="form-control" placeholder="ingrese nombre"> -->
+                                <input type="text" [(ngModel)]="busquedaNombre" class="form-control" placeholder="ingrese nombre" (keyup)="filtrarDepartamentoNombre(event)">
                             </td>
                             <td>
                                 <button class="btn btn-default">ABREVIATURA </button>
                             </td>
                             <td>
-                                <input type="text" class="form-control" placeholder="ingrese abreviatura">
+                                <!-- <input type="text" class="form-control" placeholder="ingrese abreviatura"> -->
+                                <input type="text" [(ngModel)]="busqueda" class="form-control" placeholder="ingrese abreviatura" (keyup)="filtrarDepartamentoAbreviatura(event)">
+
                             </td>
                             <td>
                                 <button class="btn btn-success" [routerLink]="['/ventas/agregar-departamento']" routerLinkActive="router-link-active" style="margin-left: 50px;">
@@ -40,7 +43,7 @@
                     </tr>
                 </thead>
                 <tbody *ngIf="departamentos != null ">
-                    <tr *ngFor="let departamento of departamentos " class="text-center ">
+                    <tr *ngFor="let departamento of departamentosFilter " class="text-center ">
                         <td>{{departamento.nombre}}</td>
                         <td>{{departamento.abreviatura}}</td>
 

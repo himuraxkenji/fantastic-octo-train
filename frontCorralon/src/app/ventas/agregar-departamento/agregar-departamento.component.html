@@ -1,7 +1,7 @@
 <div class="container" ng-controller="departamento">
     <form class="mt-4" #departamento="ngForm" (ngSubmit)="onSubmit(departamento)">
         <div class="form-group row justify-content-center">
-            <h1>Nuevo Departamento</h1>
+            <h1>NUEVO DEPARTAMENTO</h1>
         </div>
         <hr>
 
@@ -19,9 +19,13 @@
         </div>
         <hr>
         <div class="form-group row justify-content-center">
-            <button type="submit" class="btn btn-primary">
-                Guardar
+            <button (click)="guardarDepartamento()" type="submit" class="btn btn-success">
+                GUARDAR
            </button>
+
+            <button (click)="cancelar()" style="margin-left: 15px;" type="submit" class="btn btn-danger">
+              CANCELAR
+         </button>
         </div>
     </form>
 

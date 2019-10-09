@@ -11,11 +11,11 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./agregar-departamento.component.css']
 })
 export class AgregarDepartamentoComponent implements OnInit {
-    
+
   departamento:Departamento = null;
 
   constructor(private ventasService:VentasService) {
-    
+
    }
 
   ngOnInit() {
@@ -23,14 +23,19 @@ export class AgregarDepartamentoComponent implements OnInit {
 
   onSubmit(departamento:NgForm){
     this.ventasService.guardarDepartamento(this.departamento).subscribe(
-      data=>{
+      data=> {
         console.log("Departamento");
       console.log(departamento);
-              
+
         alert('se guardo un nuevo distrto');
         window.history.back();
        } );
   }
+  guardarDepartamento(){
 
+  }
+cancelar(){
+  window.history.back();
+}
 
 }

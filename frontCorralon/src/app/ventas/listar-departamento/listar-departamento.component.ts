@@ -14,6 +14,8 @@ export class ListarDepartamentoComponent implements OnInit {
   departamento: Departamento = null;
   departamentos: Departamento[] =  null;
   departamentosFilter: Departamento[] = null;
+  busquedaNombre: string = null;
+  busqueda:string=null;
 
   constructor(private service: VentasService, private router: Router) { }
 
@@ -25,4 +27,32 @@ export class ListarDepartamentoComponent implements OnInit {
          });
     }
 
+    filtrarDepartamentoAbreviatura(event: any) {
+      console.log('filtra nombre');
+
+      if (this.busqueda !== null) {
+        this.departamentosFilter = this.departamentos.filter(item => {
+          if ((item.abreviatura.toUpperCase()).includes(this.busqueda.toUpperCase())) {
+            return item;
+            console.log('filtra nombre');
+          }
+        });
+      } else {
+        this.departamentosFilter = this.departamentos;
+      }
+    }
+    filtrarDepartamentoNombre(event: any) {
+        console.log('filtra nombre');
+
+        if (this.busquedaNombre !== null) {
+          this.departamentosFilter = this.departamentos.filter(item => {
+            if ((item.nombre.toUpperCase()).includes(this.busquedaNombre.toUpperCase())) {
+              return item;
+              console.log('filtra nombre');
+            }
+          });
+        } else {
+          this.departamentosFilter = this.departamentos;
+        }
+      }
 }
