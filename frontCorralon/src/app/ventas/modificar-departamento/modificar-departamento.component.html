@@ -12,7 +12,9 @@
                         </td>
                         <td>
                             <!-- <input [(ngModel)]="departamento.nombre" type="text" class="form-control "> -->
-                            <input [(ngModel)]=" departamento.nombre" type="text " class="form-control ">
+                            <!-- <input [(ngModel)]=" departamento.nombre" type="text " class="form-control "> -->
+                            <!-- <label for="apellido">Apellido:</label> -->
+                            <input #nombre type="text" class="form-control" placeholder="{{departamento.nombre}}">
                         </td>
                     </tr>
                     <!-- <tr>

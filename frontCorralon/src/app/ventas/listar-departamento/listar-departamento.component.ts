@@ -55,7 +55,7 @@ export class ListarDepartamentoComponent implements OnInit {
       }
       modificarDepartamento(departamento: Departamento){
 
-        localStorage.setItem('departamentos', JSON.stringify(departamento));
+        localStorage.setItem('departamentos', JSON.stringify(this.departamento));
         this.router.navigate(['/ventas/modificar-departamento']);
 
       }

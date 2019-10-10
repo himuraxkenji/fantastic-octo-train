@@ -10,25 +10,26 @@ import { VentasService } from 'src/app/service/ventas.service';
 export class ModificarDepartamentoComponent implements OnInit {
   departamento: Departamento=null;
 
-  constructor(private service: VentasService) { }
+  constructor(private service: VentasService) {
+
+   }
 
   ngOnInit() {
+    let departamento:Departamento = JSON.parse(localStorage.getItem('departamento'));
+    this.departamento = departamento;
   }
 
   actualizarDepartamento(departamento: Departamento){
-    var guardado = localStorage.getItem('departamento');
-
-    console.log('objetoObtenido: ', JSON.parse(guardado));
 
     // console.log(localStorage.getItem('guardado'));
 // departamento=JSON.parse(departamento);
 
-    // this.service.actualizarDepartamento(departamento)
-    // .subscribe(data => {
-    //   this.departamento = data;
-    //   alert('se actualizo con EXITO');
-    //   window.history.back();
-    // });
+    this.service.actualizarDepartamento(departamento)
+    .subscribe(data => {
+      this.departamento = data;
+      alert('se actualizo con EXITO');
+      window.history.back();
+    });
   }
   cancelar(){
     window.history.back();
