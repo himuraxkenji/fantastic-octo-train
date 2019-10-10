@@ -54,8 +54,15 @@ export class ListarDepartamentoComponent implements OnInit {
         }
       }
       modificarDepartamento(departamento: Departamento) {
-        //localStorage.setItem('departamentos', JSON.stringify(this.departamento));
         this.router.navigate(['/ventas/modificar-departamento/' + departamento.id]);
 
+      }
+      deshabilitarDepartamento(departamento: Departamento) {
+        console.log('muestra departamento ' + departamento.id);
+        this.service.deshabilitarDepartamento(departamento.id);
+        console.log(departamento);
+
+        alert("dar de baja al departamento");
+        // this.router.navigate(['/ventas/listar-departamentos']);
       }
 }

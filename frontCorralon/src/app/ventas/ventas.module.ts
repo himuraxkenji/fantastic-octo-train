@@ -7,7 +7,6 @@ import { VentasRoutingModule } from './ventas-routing.module';
 import { ListarDepartamentoComponent } from './listar-departamento/listar-departamento.component';
 import { AgregarDepartamentoComponent } from './agregar-departamento/agregar-departamento.component';
 import { ModificarDepartamentoComponent } from './modificar-departamento/modificar-departamento.component';
-import { BajaDepartamentoComponent } from './baja-departamento/baja-departamento.component';
 import { FormsModule } from '@angular/forms';
 
 
@@ -18,8 +17,7 @@ import { FormsModule } from '@angular/forms';
     VentasComponent,
     ListarDepartamentoComponent,
     AgregarDepartamentoComponent,
-    ModificarDepartamentoComponent,
-    BajaDepartamentoComponent
+    ModificarDepartamentoComponent
   ],
   imports: [
     CommonModule,

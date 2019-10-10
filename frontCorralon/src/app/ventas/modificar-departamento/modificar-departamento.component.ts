@@ -20,10 +20,9 @@ export class ModificarDepartamentoComponent implements OnInit {
   ngOnInit() {
     let id: number;
     this.id.params.subscribe(data => id = data['id']);
-  console.log('se muestra -->' + id);
-  this.service.listarDepartamentoId(id).subscribe(data =>{
+    console.log('se muestra -->' + id);
+    this.service.listarDepartamentoId(id).subscribe(data =>{
           this.departamento = data.data;
-
   });
   }
 

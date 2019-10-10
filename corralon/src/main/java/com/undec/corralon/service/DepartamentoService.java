@@ -105,12 +105,16 @@ public class DepartamentoService {
         if(darBaja == null)
             throw new DepartamentoErrorToUpdateException();
 
-        darBaja.setHabilitado( 0);
+        darBaja.setHabilitado(0);
         darBaja.setFechabaja(LocalDate.now());
+        darBaja = departamentoRepository.save(darBaja);
 
         response.setCode(200);
         response.setMsg("Dado de baja");
-        response.setData(departamentoRepository.save(darBaja));
+        response.setData(darBaja);
+
+        System.out.println("entro");
+        System.out.println(darBaja.getHabilitado());
 
         return response;
     }
