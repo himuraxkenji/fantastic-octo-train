@@ -1,6 +1,8 @@
 import { Departamento } from './../../modelo/Departamento';
 import { Component, OnInit } from '@angular/core';
 import { VentasService } from 'src/app/service/ventas.service';
+import { ActivatedRoute } from '@angular/router';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-modificar-departamento',
@@ -8,22 +10,25 @@ import { VentasService } from 'src/app/service/ventas.service';
   styleUrls: ['./modificar-departamento.component.css']
 })
 export class ModificarDepartamentoComponent implements OnInit {
-  departamento: Departamento=null;
 
-  constructor(private service: VentasService) {
+  departamento: Departamento = new Departamento();
 
-   }
+  constructor(private service: VentasService, private id:ActivatedRoute) {}
+
+
 
   ngOnInit() {
-    let departamento:Departamento = JSON.parse(localStorage.getItem('departamento'));
-    this.departamento = departamento;
+    let id: number;
+    this.id.params.subscribe(data => id = data['id']);
+  console.log('se muestra -->' + id);
+  this.service.listarDepartamentoId(id).subscribe(data =>{
+          this.departamento = data.data;
+
+  });
   }
 
+
   actualizarDepartamento(departamento: Departamento){
-
-    // console.log(localStorage.getItem('guardado'));
-// departamento=JSON.parse(departamento);
-
     this.service.actualizarDepartamento(departamento)
     .subscribe(data => {
       this.departamento = data;
