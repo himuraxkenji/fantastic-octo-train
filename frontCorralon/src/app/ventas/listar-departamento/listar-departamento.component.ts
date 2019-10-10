@@ -53,10 +53,10 @@ export class ListarDepartamentoComponent implements OnInit {
           this.departamentosFilter = this.departamentos;
         }
       }
-      modificarDepartamento(departamento: Departamento){
+      modificarDepartamento(departamento: Departamento) {
 
         localStorage.setItem('departamentos', JSON.stringify(this.departamento));
-        this.router.navigate(['/ventas/modificar-departamento']);
+        this.router.navigate(['/ventas/modificar-departamento/' + departamento.id]);
 
       }
 }

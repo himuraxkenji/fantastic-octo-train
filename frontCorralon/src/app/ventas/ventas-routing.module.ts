@@ -7,11 +7,11 @@ import { ModificarDepartamentoComponent } from './modificar-departamento/modific
 import { BajaDepartamentoComponent } from './baja-departamento/baja-departamento.component';
 
 const routes: Routes = [
-    {path: '', component: VentasComponent, 
+    {path: '', component: VentasComponent,
     children:[
       {path: 'listar-departamentos', component: ListarDepartamentoComponent},
       {path: 'agregar-departamento', component: AgregarDepartamentoComponent},
-      {path: 'modificar-departamento', component: ModificarDepartamentoComponent},
+      {path: 'modificar-departamento/:id', component: ModificarDepartamentoComponent},
       {path: 'baja-departamento', component: BajaDepartamentoComponent}
 
     ]}
