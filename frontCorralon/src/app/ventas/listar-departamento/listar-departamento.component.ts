@@ -1,68 +1,75 @@
-import { VentasService } from './../../service/ventas.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { Departamento } from '../../modelo/Departamento';
-import {Router} from '@angular/router';
-import { from } from 'rxjs';
+import { VentasService } from "./../../service/ventas.service";
+import { Component, OnInit, Input } from "@angular/core";
+import { Departamento } from "../../modelo/Departamento";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-listar-departamento',
-  templateUrl: './listar-departamento.component.html',
-  styleUrls: ['./listar-departamento.component.css']
+  selector: "app-listar-departamento",
+  templateUrl: "./listar-departamento.component.html",
+  styleUrls: ["./listar-departamento.component.css"]
 })
 export class ListarDepartamentoComponent implements OnInit {
-
   departamento: Departamento = null;
-  departamentos: Departamento[] =  null;
+  departamentos: Departamento[] = null;
   departamentosFilter: Departamento[] = null;
   busquedaNombre: string = null;
   busqueda: string = null;
 
-  constructor(private service: VentasService, private router: Router) { }
+  constructor(private service: VentasService, private router: Router) {}
 
-  ngOnInit() {  this.service.listarDepartamentosTodos().subscribe(data => {
-          this.departamentos =  Object.keys(data.data).map(function(key) {
-            return data.data[key];
-          });
-          this.departamentosFilter = this.departamentos;
-         });
-    }
+  ngOnInit() {
+    this.service.listarDepartamentosHabilitados().subscribe(data => {
+      this.departamentos = Object.keys(data.data).map(function(key) {
+        return data.data[key];
+      });
+      this.departamentosFilter = this.departamentos;
+    });
+  }
 
-    filtrarDepartamentoAbreviatura(event: any) {
-      console.log('filtra nombre');
+  filtrarDepartamentoAbreviatura(event: any) {
+    console.log("filtra nombre");
 
-      if (this.busqueda !== null) {
-        this.departamentosFilter = this.departamentos.filter(item => {
-          if ((item.abreviatura.toUpperCase()).includes(this.busqueda.toUpperCase())) {
-            return item;
-          }
-        });
-      } else {
-        this.departamentosFilter = this.departamentos;
-      }
-    }
-    filtrarDepartamentoNombre(event: any) {
-        console.log('filtra nombre');
-
-        if (this.busquedaNombre !== null) {
-          this.departamentosFilter = this.departamentos.filter(item => {
-            if ((item.nombre.toUpperCase()).includes(this.busquedaNombre.toUpperCase())) {
-              return item;
-              }
-          });
-        } else {
-          this.departamentosFilter = this.departamentos;
+    if (this.busqueda !== null) {
+      this.departamentosFilter = this.departamentos.filter(item => {
+        if (
+          item.abreviatura.toUpperCase().includes(this.busqueda.toUpperCase())
+        ) {
+          return item;
         }
-      }
-      modificarDepartamento(departamento: Departamento) {
-        this.router.navigate(['/ventas/modificar-departamento/' + departamento.id]);
+      });
+    } else {
+      this.departamentosFilter = this.departamentos;
+    }
+  }
+  filtrarDepartamentoNombre(event: any) {
+    console.log("filtra nombre");
 
-      }
-      deshabilitarDepartamento(departamento: Departamento) {
-        console.log('muestra departamento ' + departamento.id);
-        this.service.deshabilitarDepartamento(departamento.id);
-        console.log(departamento);
+    if (this.busquedaNombre !== null) {
+      this.departamentosFilter = this.departamentos.filter(item => {
+        if (
+          item.nombre.toUpperCase().includes(this.busquedaNombre.toUpperCase())
+        ) {
+          return item;
+        }
+      });
+    } else {
+      this.departamentosFilter = this.departamentos;
+    }
+  }
+  modificarDepartamento(departamento: Departamento) {
+    this.router.navigate(["/ventas/modificar-departamento/" + departamento.id]);
+  }
 
-        alert("dar de baja al departamento");
-        // this.router.navigate(['/ventas/listar-departamentos']);
-      }
+  inhabilitarDepartamento(departamento: Departamento) {
+    let resultado: boolean;
+    resultado = confirm("¿DECEA ELIMINAR DEPARTAMENTO?");
+    if (resultado === true) {
+      this.service.deshabilitarDepartamento(departamento.id);
+      // this.service.deshabilitarDepartamento(departamento.id);
+      console.log(departamento);
+      alert("CONFIRMAR");
+    } else {
+      alert("CANCELAR");
+    }
+    }
 }
