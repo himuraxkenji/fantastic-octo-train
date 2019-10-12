@@ -50,7 +50,6 @@ public class DepartamentoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Response> eliminar(@PathVariable("id") Integer id) throws Exception {
-        System.out.println("====================ENTRO===================");
         Response response = departamentoService.darDeBaja(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

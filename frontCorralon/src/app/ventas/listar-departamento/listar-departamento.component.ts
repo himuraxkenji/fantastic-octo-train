@@ -62,14 +62,13 @@ export class ListarDepartamentoComponent implements OnInit {
 
   inhabilitarDepartamento(departamento: Departamento) {
     let resultado: boolean;
-    resultado = confirm("¿DECEA ELIMINAR DEPARTAMENTO?");
+    resultado = confirm("¿DESEA ELIMINAR DEPARTAMENTO?");
     if (resultado === true) {
-      this.service.deshabilitarDepartamento(departamento.id);
-      // this.service.deshabilitarDepartamento(departamento.id);
-      console.log(departamento);
-      alert("CONFIRMAR");
-    } else {
-      alert("CANCELAR");
+      this.service.deshabilitarDepartamento(departamento.id)
+    .subscribe(data => {
+      alert('se elimino con EXITO');
+      window.location.reload();
+    });
     }
-    }
+  }
 }

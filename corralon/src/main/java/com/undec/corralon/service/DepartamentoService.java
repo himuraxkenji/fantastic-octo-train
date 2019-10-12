@@ -36,7 +36,6 @@ public class DepartamentoService {
     public Response listarTodosHabilitados() throws Exception{
         Response response = new Response();
         List<Departamento> departamentos = departamentoRepository.findAllByHabilitadoEquals(1);
-        System.out.println("************************************************");
         if(departamentos == null)
             throw new DepartamentoListNotFoundException();
 
@@ -65,7 +64,6 @@ public class DepartamentoService {
         Response response = new Response();
         departamento.setFechaalta(LocalDate.now());
         departamento.setFechaactualizacion(LocalDate.now());
-//        departamento.setHabilitado((byte) 1);
         Departamento guardado = departamentoRepository.save(departamento);
 
         if(guardado == null)
@@ -99,11 +97,8 @@ public class DepartamentoService {
     }
 
     public Response darDeBaja(Integer id) throws Exception{
-        System.out.println("*************************ELIMINAR***********************");
         Response response = new Response();
         Departamento darBaja = departamentoRepository.findById(id).get();
-        System.out.println("*************************************************************************************");
-        System.out.println("ENTRA DESPUES DE LA CARGA");
 
         if(darBaja == null)
             throw new DepartamentoErrorToUpdateException();
@@ -116,8 +111,6 @@ public class DepartamentoService {
         response.setMsg("Dado de baja");
         response.setData(darBaja);
 
-        System.out.println("entro");
-        System.out.println(darBaja.getHabilitado());
 
         return response;
     }

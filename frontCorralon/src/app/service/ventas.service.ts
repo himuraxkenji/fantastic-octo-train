@@ -39,13 +39,7 @@ export class VentasService {
   }
 
   deshabilitarDepartamento(id: number) {
-    // console.log("desde el service:   " + id);
-    console.log(this.Url + "/departamentos/" + id);
-    return this.http.delete(this.Url + "/departamentos/" + id);
-  }
-  // deletePersona(persona: Persona) {
-  //   return this.http.delete(this.Url + "/" + persona.id);
-  // }
 
-  // // Distrito
+    return this.http.delete(this.Url + "/departamentos/" + id );
+  }
 }
