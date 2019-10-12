@@ -66,7 +66,6 @@ export class ListarDepartamentoComponent implements OnInit {
     if (resultado === true) {
       this.service.deshabilitarDepartamento(departamento.id)
     .subscribe(data => {
-      alert('se elimino con EXITO');
       window.location.reload();
     });
     }
