@@ -32,7 +32,6 @@ export class VentasService {
   }
 
   actualizarDepartamento(departamento: Departamento) {
-    
     return this.http.put<Departamento>(
       this.Url + "/departamentos/",
       departamento
@@ -40,7 +39,11 @@ export class VentasService {
   }
 
   deshabilitarDepartamento(id: number) {
+    return this.http.delete(this.Url + "/departamentos/" + id);
+  }
 
-    return this.http.delete(this.Url + "/departamentos/" + id );
+  // ********************SERVICE DISTRITOS***********************
+  listarDistritosHabilitados() {
+    return this.http.get<Response>(this.Url + "/distritos/habilitado");
   }
 }

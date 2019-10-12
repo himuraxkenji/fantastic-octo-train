@@ -8,6 +8,8 @@ import { ListarDepartamentoComponent } from './listar-departamento/listar-depart
 import { AgregarDepartamentoComponent } from './agregar-departamento/agregar-departamento.component';
 import { ModificarDepartamentoComponent } from './modificar-departamento/modificar-departamento.component';
 import { FormsModule } from '@angular/forms';
+import { ListarDistritosComponent } from './listar-distritos/listar-distritos.component';
+import { AgregarDistritoComponent } from './agregar-distrito/agregar-distrito.component';
 
 
 
@@ -17,7 +19,9 @@ import { FormsModule } from '@angular/forms';
     VentasComponent,
     ListarDepartamentoComponent,
     AgregarDepartamentoComponent,
-    ModificarDepartamentoComponent
+    ModificarDepartamentoComponent,
+    ListarDistritosComponent,
+    AgregarDistritoComponent
   ],
   imports: [
     CommonModule,

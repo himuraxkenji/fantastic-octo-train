@@ -1,0 +1,69 @@
+<div class="container" ng-controller="clientes">
+    <div class="card">
+        <h1 class="text-center"> LISTA DE DISTRITOS </h1>
+        <div class="card-body">
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <td>
+                                <button class="btn btn-default">FILTRO </button>
+                            </td>
+                            <td>
+                                <!-- <input type="text" class="form-control" placeholder="ingrese nombre"> -->
+                                <input type="text" [(ngModel)]="busquedaNombre" class="form-control" placeholder="ingrese nombre" (keyup)="filtrarDistritoNombre(event)">
+                            </td>
+                            <td>
+                                <button class="btn btn-default">ABREVIATURA </button>
+                            </td>
+                            <td>
+                                <!-- <input type="text" class="form-control" placeholder="ingrese abreviatura"> -->
+                                <input type="text" [(ngModel)]="busqueda" class="form-control" placeholder="ingrese abreviatura" (keyup)="filtrarDistritoAbreviatura(event)">
+
+                            </td>
+                            <td>
+                                <button class="btn btn-success" [routerLink]="['/ventas/agregar-distrito']" routerLinkActive="router-link-active" style="margin-left: 50px;">
+                            DISTRITO
+                            </button>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <div class=" card-body ">
+            <table class="table ">
+                <thead class="thead-dark ">
+
+                    <tr class="text-center ">
+                        <th scope="col ">NOMBRE</th>
+                        <th scope="col ">ABREVIATURA</th>
+                        <th scope="col*2 ">OPCIONES</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="distritos != null ">
+                    <tr *ngFor="let distrito of distritosFilter " class="text-center ">
+                        <td>{{distrito.nombre}}</td>
+                        <td>{{distrito.abreviatura}}</td>
+
+                        <td>
+                            <!-- <button class="btn btn-default " title="Modificar " [routerLink]="['/ventas/modificar-distrito']"> -->
+                            <button class="btn btn-default " title="Modificar " (click)="modificarDistrito(distrito)">
+                                <svg xmlns="http://www.w3.org/2000/svg " width="14 " height="16 " viewBox="0 0 14 16 "><path fill-rule="evenodd " d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39
+                                1.02 0 1.41z "/></svg>
+                             </button>
+
+
+                            <button class="btn btn-default " title="Eliminar " style="margin-left: 10px; " (click)="inhabilitarDistrito(distrito)">
+                            <svg xmlns="http://www.w3.org/2000/svg " width="12 " height="16 " viewBox="0 0 12 16 "><path fill-rule="evenodd " d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48
+                            1.48L7.48 8z "/></svg>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
