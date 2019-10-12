@@ -28,10 +28,15 @@ export class ModificarDepartamentoComponent implements OnInit {
 
 
   actualizarDepartamento(departamento: Departamento){
+    
+    
     this.service.actualizarDepartamento(departamento)
     .subscribe(data => {
+      
+      
       this.departamento = data;
       alert('se actualizo con EXITO');
+      
       window.history.back();
     });
   }

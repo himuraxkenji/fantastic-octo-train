@@ -32,6 +32,7 @@ export class VentasService {
   }
 
   actualizarDepartamento(departamento: Departamento) {
+    
     return this.http.put<Departamento>(
       this.Url + "/departamentos/",
       departamento
