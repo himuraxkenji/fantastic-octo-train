@@ -7,28 +7,16 @@
                 <thead class="thead-dark ">
                     <tr>
                         <td>
-                            <!-- <button class="btn btn-default ">NOMBRE</button> -->
                             <label class="btn btn-default " for="nombre "> NOMBRE</label>
                         </td>
                         <td>
-                            <!-- <input [(ngModel)]="departamento.nombre" type="text" class="form-control "> -->
-                            <!-- <input [(ngModel)]=" departamento.nombre" type="text " class="form-control "> -->
-                            <!-- <label for="apellido">Apellido:</label> -->
                             <input #nombre [(ngModel)]="departamento.nombre" type="text" class="form-control" placeholder="{{departamento.nombre}}">
                         </td>
                     </tr>
-                    <!-- <tr>
-                        <td>
 
-                            <label for="abreviatura"> ABREVIATURA</label>
-                        </td>
-                        <td>
-                            <input [(ngModel)]="departamento.abreviatura" name="abreviatura" type="text " class="form-control ">
-                        </td>
-                    </tr> -->
                     <tr>
                         <td>
-                            <button (click)="actualizarDepartamento(departamento)" class="btn btn-success ">ACEPTAR</button>
+                            <button (click)=" actualizarDepartamento(departamento) " class="btn btn-success ">ACEPTAR</button>
                             <button (click)="cancelar() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
                         </td>
                     </tr>

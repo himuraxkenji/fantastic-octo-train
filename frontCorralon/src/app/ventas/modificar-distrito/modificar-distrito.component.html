@@ -1,31 +1,33 @@
-<div class="container" ng-controller="departamentos">
+<div class="container" ng-controller="distritos">
     <div class="card">
-
+        <h1 class="text-center">EDITAR DISTRITOS</h1>
         <div class="card-body">
+            <!-- <div class="row"> -->
             <table class="table col-md-6">
                 <thead class="thead-dark ">
                     <tr>
                         <td>
-                            <label class="btn btn-default " for="nombre"> NOMBRE</label>
+                            <label class="btn btn-default " for="nombre "> NOMBRE</label>
                         </td>
                         <td>
-                            <input [(ngModel)]="distrito.nombre" type="text " class="form-control" placeholder="ingrese nombre">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="abreviatura"> ABREVIATURA</label>
-                        </td>
-                        <td>
-                            <input [(ngModel)]="distrito.abreviatura" type="text " class="form-control " placeholder="ingrese abreviatura ">
+                            <input #nombre [(ngModel)]="distrito.nombre" type="text" class="form-control" placeholder="{{distrito.nombre}}">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="departamento"> DEPARTAMENTO</label>
+                            <label class="btn btn-default " for="abreviatura "> ABREVIATURA</label>
+                            <!-- <label class="btn btn-default" for="abreviatura"> ABREVIATURA</label> -->
                         </td>
                         <td>
-
+                            <input #nombre [(ngModel)]="distrito.abreviatura" type="text" class="form-control" placeholder="{{distrito.abreviatura}}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-default " for="idDepartamento "> DEPARTAMENTO</label>
+                            <!-- <label class="btn btn-default" for="abreviatura"> ABREVIATURA</label> -->
+                        </td>
+                        <td>
                             <select (change)='listarDepartamentos($event.target.value)' [(ngModel)]="nombreDepto" class="form-control scrollable-menu">
                             <option *ngFor=" let departamento of departamentos " >
                               {{departamento.nombre}}
@@ -33,12 +35,10 @@
                           </select>
                         </td>
                     </tr>
-
-
                     <tr>
                         <td>
-                            <button (click)="nuevoDistrito(distrito)" class="btn btn-success ">ACEPTAR</button>
-                            <button (click)="volverAtras() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
+                            <button (click)=" actualizarDistrito(distrito) " class="btn btn-success ">ACEPTAR</button>
+                            <button (click)="cancelar() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
                         </td>
                     </tr>
                 </thead>

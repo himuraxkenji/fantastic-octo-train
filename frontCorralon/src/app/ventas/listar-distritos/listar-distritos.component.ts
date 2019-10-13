@@ -56,6 +56,9 @@ export class ListarDistritosComponent implements OnInit {
       this.distritosFilter = this.distritos;
     }
   }
-  modificarDistrito() {}
+  modificarDistrito(distrito: Distrito) {
+    this.router.navigate(["/ventas/modificar-distrito/" + distrito.id]);
+  }
+
   inhabilitarDistrito() {}
 }

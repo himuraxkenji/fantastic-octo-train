@@ -12,7 +12,7 @@ export class VentasService {
 
   constructor(private http: HttpClient) {}
 
-  // Departamentos
+  // SERVICE DEPARTAMENTOS
   listarDepartamentosTodos() {
     return this.http.get<Response>(this.Url + "/departamentos");
   }
@@ -50,4 +50,12 @@ export class VentasService {
   guardarDistrito(distrito: Distrito) {
     return this.http.post<Distrito>(this.Url + "/distritos/", distrito);
   }
+  actualizarDistrito(distrito: Distrito) {
+    console.log('*******'+distrito+'********');
+    return this.http.put<Distrito>(this.Url + "/distritos/", distrito);
+  }
+  listarDistritoId(id: number) {
+    return this.http.get<Response>(this.Url + "/distritos/" + id);
+  }
+
 }
