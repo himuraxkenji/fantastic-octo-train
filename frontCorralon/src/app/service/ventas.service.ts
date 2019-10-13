@@ -1,3 +1,4 @@
+import { Distrito } from "./../modelo/Distrito";
 import { Departamento } from "./../modelo/Departamento";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
@@ -45,5 +46,8 @@ export class VentasService {
   // ********************SERVICE DISTRITOS***********************
   listarDistritosHabilitados() {
     return this.http.get<Response>(this.Url + "/distritos/habilitado");
+  }
+  guardarDistrito(distrito: Distrito) {
+    return this.http.post<Distrito>(this.Url + "/distritos/", distrito);
   }
 }
