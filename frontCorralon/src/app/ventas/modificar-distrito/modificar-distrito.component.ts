@@ -18,18 +18,19 @@ export class ModificarDistritoComponent implements OnInit {
   constructor(private service: VentasService, private id: ActivatedRoute) {}
 
   ngOnInit() {
-    let id: number;
-    this.id.params.subscribe(data => (id = data["id"]));
-    console.log("se muestra -->" + id);
-    this.service.listarDistritoId(id).subscribe(data => {
-      this.distrito = data.data;
-    });
     this.service.listarDepartamentosHabilitados().subscribe(data => {
       this.departamentos = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
       this.departamentosFilter = this.departamentos;
     });
+    let id: number;
+    this.id.params.subscribe(data => (id = data["id"]));
+    console.log("se muestra -->" + id);
+    this.service.listarDistritoId(id).subscribe(data => {
+      this.distrito = data.data;
+    });
+
   }
 
   actualizarDistrito(distrito: Distrito) {

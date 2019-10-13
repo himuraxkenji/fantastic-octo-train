@@ -19,18 +19,20 @@
                             <!-- <label class="btn btn-default" for="abreviatura"> ABREVIATURA</label> -->
                         </td>
                         <td>
-                            <input #nombre [(ngModel)]="distrito.abreviatura" type="text" class="form-control" placeholder="{{distrito.abreviatura}}">
+                            <input #abreviatura [(ngModel)]="distrito.abreviatura" type="text" class="form-control" placeholder="{{distrito.abreviatura}}">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label class="btn btn-default " for="idDepartamento "> DEPARTAMENTO</label>
+                            <label class="btn btn-default " for="nombreDepto "> DEPARTAMENTO</label>
                             <!-- <label class="btn btn-default" for="abreviatura"> ABREVIATURA</label> -->
                         </td>
                         <td>
+                            <!-- <input #nombreDpto [(ngModel)]="nombreDepto" type="text" class="form-control" placeholder="{{distrito.abreviatura}}> -->
                             <select (change)='listarDepartamentos($event.target.value)' [(ngModel)]="nombreDepto" class="form-control scrollable-menu">
-                            <option *ngFor=" let departamento of departamentos " >
+                                    <option *ngFor=" let departamento of departamentos " >
                               {{departamento.nombre}}
+
                             </option>
                           </select>
                         </td>

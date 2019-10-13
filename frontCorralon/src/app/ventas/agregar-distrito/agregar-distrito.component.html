@@ -1,6 +1,6 @@
 <div class="container" ng-controller="departamentos">
     <div class="card">
-
+        <h1 class="text-center">CARGA DE DISTRITOS</h1>
         <div class="card-body">
             <table class="table col-md-6">
                 <thead class="thead-dark ">
@@ -25,7 +25,6 @@
                             <label for="departamento"> DEPARTAMENTO</label>
                         </td>
                         <td>
-
                             <select (change)='listarDepartamentos($event.target.value)' [(ngModel)]="nombreDepto" class="form-control scrollable-menu">
                             <option *ngFor=" let departamento of departamentos " >
                               {{departamento.nombre}}

@@ -51,7 +51,11 @@ export class VentasService {
     return this.http.post<Distrito>(this.Url + "/distritos/", distrito);
   }
   actualizarDistrito(distrito: Distrito) {
-    console.log('*******'+distrito+'********');
+    // console.log('*******'+distrito+'********');
+    console.log(this.Url + "/distritos/", distrito);
+    console.log('nro departamanto'+distrito.idDepartamento);
+
+
     return this.http.put<Distrito>(this.Url + "/distritos/", distrito);
   }
   listarDistritoId(id: number) {
