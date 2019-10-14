@@ -25,16 +25,14 @@
                             <label for="departamento"> DEPARTAMENTO</label>
                         </td>
                         <td>
-                            <!-- <select (change)='listarDepartamentos($event.target.value)' [(ngModel)]="nombreDepto" class="form-control scrollable-menu"> -->
                             <select (change)="listarDepartamentos($event.target.value)" [(ngModel)]="nombreDepto" class="form-control">
-                            <option *ngFor=" let departamento of departamentos " >
+                                <!-- "size="3" -->
+                              <option *ngFor=" let departamento of departamentos">
                               {{departamento.nombre}}
                             </option>
                           </select>
                         </td>
                     </tr>
-
-
                     <tr>
                         <td>
                             <button (click)="nuevoDistrito(distrito)" class="btn btn-success ">ACEPTAR</button>
