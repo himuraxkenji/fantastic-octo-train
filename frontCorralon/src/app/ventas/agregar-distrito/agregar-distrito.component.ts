@@ -30,9 +30,6 @@ export class AgregarDistritoComponent implements OnInit {
     window.history.back();
   }
   nuevoDistrito(distrito: Distrito) {
-    console.log("entrando a la carga ");
-    console.log(distrito);
-
     this.distrito.idDepartamento = 1;
 
     this.departamentos.forEach(departamento => {

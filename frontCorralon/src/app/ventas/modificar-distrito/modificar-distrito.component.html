@@ -26,16 +26,18 @@
                         <td>
                             <!-- <label class="btn btn-default " for="nombreDepto "> DEPARTAMENTO</label> -->
                             <label class="btn btn-default " for="nombreDepto "> DEPARTAMENTO</label>
+
                         </td>
-                        <!--FUNCIONA
-                          <td>
-                            <input #nombreDepto [(ngModel)]="distrito.idDepartamento" type="number" class="form-control" placeholder="{{distrito.idDepartamento}}">
+                        <!-- FUNCIONA -->
+                        <!-- <td>
+                            <input #nombreDepto [(ngModel)]="distrito.idDepartamento " type="number " class="form-control " placeholder="{{distrito.idDepartamento}} ">
                         </td> -->
                         <td>
-                            <select (change)="listarDepartamentos($event.target.value)" [(ngModel)]="distrito.idDepartamento" [(ngModel)]="nombreDepto" class="form-control">
-                                    <option *ngFor=" let departamento of departamentos ">
+                            <select (change)="listarDepartamentos($event.target.value) " [(ngModel)]="nombreDepto " class="form-control ">
+                                <option *ngFor=" let departamento of departamentos " >
+                                  <!-- <option value="distrito.idDepartamento"> -->
                                       {{departamento.nombre}}
-                                    </option>
+                                </option>
                           </select>
                         </td>
                     </tr>

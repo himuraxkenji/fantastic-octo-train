@@ -1,5 +1,5 @@
 export class Distrito {
-  id: string;
+  id: number;
   nombre: string;
   abreviatura: string;
   habilitado: number;

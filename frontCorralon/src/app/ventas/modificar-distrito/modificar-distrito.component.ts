@@ -14,7 +14,8 @@ export class ModificarDistritoComponent implements OnInit {
   departamentosFilter: Departamento[] = null;
   departamentos: Departamento[] = null;
   nombreDepto: string = null;
-  departamento: Departamento=null;
+  idDepartamento: number = null;
+  departamento: Departamento = null;
 
   constructor(private service: VentasService, private id: ActivatedRoute) {}
 
@@ -23,7 +24,6 @@ export class ModificarDistritoComponent implements OnInit {
       this.departamentos = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
-      this.departamentosFilter = this.departamentos;
     });
     let id: number;
     this.id.params.subscribe(data => (id = data["id"]));
@@ -31,16 +31,20 @@ export class ModificarDistritoComponent implements OnInit {
     this.service.listarDistritoId(id).subscribe(data => {
       this.distrito = data.data;
     });
-
   }
-
   actualizarDistrito(distrito: Distrito) {
-    console.log("distrito --> ");
-
-    console.log(distrito.idDepartamento);
-
-    this.service.listarDepartamentoId(distrito.idDepartamento).subscribe(data =>
-      this.departamento=data.data);
+    this.distrito.idDepartamento = 1;
+    this.distrito.idDepartamento = distrito.idDepartamento;
+    this.departamentos.forEach(departamento => {
+      if (departamento.nombre == this.nombreDepto) {
+        this.distrito.idDepartamento = departamento.id;
+      }
+    });
+    for (var i = distrito.idDepartamento; i < this.departamentos.length; i++) {
+      if (this.departamentos[i].nombre == this.nombreDepto) {
+        this.distrito.idDepartamento = this.departamentos[i].id;
+      }
+    }
 
     this.service.actualizarDistrito(distrito).subscribe(data => {
       this.distrito = data;

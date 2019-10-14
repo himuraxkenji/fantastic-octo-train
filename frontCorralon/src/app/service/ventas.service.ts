@@ -59,5 +59,8 @@ export class VentasService {
   listarDistritoId(id: number) {
     return this.http.get<Response>(this.Url + "/distritos/" + id);
   }
+  desabilitarDistrito(id: number) {
+    return this.http.delete(this.Url + "/distritos/" + id);
+  }
 
 }

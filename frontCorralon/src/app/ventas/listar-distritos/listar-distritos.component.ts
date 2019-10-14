@@ -60,5 +60,13 @@ export class ListarDistritosComponent implements OnInit {
     this.router.navigate(["/ventas/modificar-distrito/" + distrito.id]);
   }
 
-  inhabilitarDistrito() {}
+  inhabilitarDistrito(distrito: Distrito) {
+    let resultado: boolean;
+    resultado = confirm("¿DESEA ELIMINAR DISTRITO?");
+    if (resultado === true) {
+      this.service.desabilitarDistrito(distrito.id).subscribe(data => {
+      window.location.reload();
+    });
+    }
+  }
 }
