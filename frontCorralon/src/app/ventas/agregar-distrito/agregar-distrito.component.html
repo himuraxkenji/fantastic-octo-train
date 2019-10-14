@@ -25,7 +25,8 @@
                             <label for="departamento"> DEPARTAMENTO</label>
                         </td>
                         <td>
-                            <select (change)='listarDepartamentos($event.target.value)' [(ngModel)]="nombreDepto" class="form-control scrollable-menu">
+                            <!-- <select (change)='listarDepartamentos($event.target.value)' [(ngModel)]="nombreDepto" class="form-control scrollable-menu"> -->
+                            <select (change)="listarDepartamentos($event.target.value)" [(ngModel)]="nombreDepto" class="form-control">
                             <option *ngFor=" let departamento of departamentos " >
                               {{departamento.nombre}}
                             </option>

@@ -33,7 +33,7 @@ export class AgregarDistritoComponent implements OnInit {
     console.log("entrando a la carga ");
     console.log(distrito);
 
-    // this.distrito.idDepartamento = 1;
+    this.distrito.idDepartamento = 1;
 
     this.departamentos.forEach(departamento => {
       if (departamento.nombre == this.nombreDepto) {
@@ -47,11 +47,6 @@ export class AgregarDistritoComponent implements OnInit {
       }
     }
     this.distrito.habilitado = 1;
-
-    console.log("entrando " + distrito);
-
-    console.log("entro");
-    console.log(distrito.nombre + " - " + distrito.abreviatura);
     this.service.guardarDistrito(this.distrito).subscribe(data => {
       alert("se guardo un nuevo distrto");
       window.history.back();

@@ -14,6 +14,7 @@ export class ModificarDistritoComponent implements OnInit {
   departamentosFilter: Departamento[] = null;
   departamentos: Departamento[] = null;
   nombreDepto: string = null;
+  departamento: Departamento=null;
 
   constructor(private service: VentasService, private id: ActivatedRoute) {}
 
@@ -36,7 +37,10 @@ export class ModificarDistritoComponent implements OnInit {
   actualizarDistrito(distrito: Distrito) {
     console.log("distrito --> ");
 
-    console.log(distrito);
+    console.log(distrito.idDepartamento);
+
+    this.service.listarDepartamentoId(distrito.idDepartamento).subscribe(data =>
+      this.departamento=data.data);
 
     this.service.actualizarDistrito(distrito).subscribe(data => {
       this.distrito = data;
