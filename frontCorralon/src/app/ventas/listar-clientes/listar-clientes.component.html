@@ -13,19 +13,19 @@
                                 <button class="btn btn-default">FILTRO </button>
                             </td>
                             <td>
-                                <input type="text" [(ngModel)]="busqueda" class="form-control" placeholder="ingrese nombre" (keyup)="filtrarClientes(event)">
+                                <input type="text" [(ngModel)]="busquedaNombre" class="form-control" placeholder="ingrese nombre" (keyup)="filtrarClienteNombre(event)">
                             </td>
                             <td>
                                 <button class="btn btn-default">APELLIDOS </button>
                             </td>
                             <td>
-                                <input type="text" [(ngModel)]="busquedaNumeros" class="form-control" placeholder="ingrese apellido" (keyup)="filtrarClientesNumero(event)">
+                                <input type="text" [(ngModel)]="busquedaApellido" class="form-control" placeholder="ingrese apellido" (keyup)="filtrarClienteApellido(event)">
                             </td>
                             <td>
                                 <button class="btn btn-default">DNI</button>
                             </td>
                             <td>
-                                <input type="text" class="form-control" placeholder="ingrese busquda" (keyup)="filtrarClientes(event)">
+                                <input type="text" [(ngModel)]="busquedaDNI" class="form-control" placeholder="ingrese DNI" (keyup)="filtrarClienteDNI(event)">
                             </td>
                             <td>
                                 <button class="btn btn-success" [routerLink]="['/ventas/agregar-cliente']" routerLinkActive="router-link-active" style="margin-left: 50px;">NUEVO CLIENTE</button>

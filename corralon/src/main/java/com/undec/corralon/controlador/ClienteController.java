@@ -1,14 +1,15 @@
 package com.undec.corralon.controlador;
 
 import com.undec.corralon.DTO.Response;
+import com.undec.corralon.excepciones.cliente.ClienteErrorToSaveException;
+import com.undec.corralon.modelo.Cliente;
 import com.undec.corralon.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 
 @CrossOrigin("*")
@@ -27,5 +28,32 @@ public class ClienteController {
         Response response = clienteService.listarTodos();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+    @GetMapping("habilitados")
+    public ResponseEntity<Response>listarTodosHabilitados() throws Exception {
+        Response response= clienteService.listarTodosHabilitados();
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+    @GetMapping("/{id}")
+    public ResponseEntity<Response> listarPorId(@PathVariable("id") Integer id) throws Exception {
+        Response response = clienteService.listarPorId(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
+    @PostMapping
+    public ResponseEntity<Response> guardar(@Valid @RequestBody Cliente cliente) throws Exception {
+        Response response = clienteService.guardar(cliente);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<Response> actualizar(@Valid @RequestBody Cliente cliente) throws Exception {
+        Response response = clienteService.actualizar(cliente);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> eliminar(@PathVariable("id") Integer id) throws Exception {
+        Response response = clienteService.darDeBaja(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

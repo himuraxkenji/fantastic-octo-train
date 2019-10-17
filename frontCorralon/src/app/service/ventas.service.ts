@@ -51,9 +51,9 @@ export class VentasService {
     return this.http.post<Distrito>(this.Url + "/distritos/", distrito);
   }
   actualizarDistrito(distrito: Distrito) {
-     console.log('*******'+distrito+'********');
+    //  console.log('*******'+distrito+'********');
 
-    console.log('nro departamanto --> ' + distrito.idDepartamento);
+    // console.log('nro departamanto --> ' + distrito.idDepartamento);
     return this.http.put<Distrito>(this.Url + "/distritos/", distrito);
   }
   listarDistritoId(id: number) {
@@ -66,6 +66,8 @@ export class VentasService {
   listarClientesTodos() {
     return this.http.get<Response>(this.Url + "/clientes");
   }
-
+ listarClientesHabilitados() {
+    return this.http.get<Response>(this.Url + "/clientes/habilitados");
+  }
 
 }

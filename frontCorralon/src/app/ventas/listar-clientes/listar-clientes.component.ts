@@ -1,23 +1,23 @@
-import { VentasService } from './../../service/ventas.service';
-import { Router } from '@angular/router';
-import { Cliente } from '../../modelo/Cliente';
-import { Component, OnInit } from '@angular/core';
+import { VentasService } from "./../../service/ventas.service";
+import { Router } from "@angular/router";
+import { Cliente } from "../../modelo/Cliente";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-listar-clientes',
-  templateUrl: './listar-clientes.component.html',
-  styleUrls: ['./listar-clientes.component.css']
+  selector: "app-listar-clientes",
+  templateUrl: "./listar-clientes.component.html",
+  styleUrls: ["./listar-clientes.component.css"]
 })
-
 export class ListarClientesComponent implements OnInit {
-
   clientes: Cliente[] = null;
   cliente: Cliente = null;
   clientesFilter: Cliente[] = null;
-  busqueda: string = null;
-  busquedaNumeros: string = null;
 
-  constructor(private service: VentasService, private router: Router) { }
+  busquedaNombre: string = null;
+  busquedaApellido: string = null;
+  busquedaDNI: string = null;
+
+  constructor(private service: VentasService, private router: Router) {}
 
   // nuevoCliente() {
   //   this.router.navigate(['agregar-cliente']);
@@ -25,10 +25,9 @@ export class ListarClientesComponent implements OnInit {
   // }
 
   ngOnInit() {
-     this.service.listarClientesTodos().subscribe(data => {
+    this.service.listarClientesTodos().subscribe(data => {
       this.clientes = data.data;
       this.clientesFilter = data.data;
-      console.log('Listado');
     });
   }
   editar(Cliente: Cliente): void {
@@ -37,36 +36,37 @@ export class ListarClientesComponent implements OnInit {
   }
   eliminar(Cliente: Cliente) {
     //this.service.deleteClientes(cliente).subscribe(data => {
-      //this.clientes = this.clientes.filter(p => p !== cliente);
-      //alert(' cliente Eliminado');
+    //this.clientes = this.clientes.filter(p => p !== cliente);
+    //alert(' cliente Eliminado');
     //});
   }
-  filtrarClientes(event: any) {
-    console.log('filtrar');
-
-    if (this.busqueda !== null) {
-      console.log('filter despues 1er val');
-
+  filtrarClienteNombre(event: any) {
+    if (this.busquedaNombre !== null) {
       this.clientesFilter = this.clientes.filter(item => {
-        console.log('filter despues 2da val');
-        if (item.apellido.toUpperCase().includes(this.busqueda.toUpperCase())) {
-          console.log('filter despues 3da val');
-          //console.log(item);
+        if (item.nombre.toUpperCase().includes(this.busquedaNombre.toUpperCase())) {
           return item;
         }
       });
     } else {
       this.clientesFilter = this.clientes;
-
+    }
+  }
+  filtrarClienteApellido(event: any) {
+    if (this.busquedaApellido !== null) {
+      this.clientesFilter = this.clientes.filter(item => {
+        if (item.apellido.toUpperCase().includes(this.busquedaApellido.toUpperCase())) {
+          return item;
+        }
+      });
+    } else {
+      this.clientesFilter = this.clientes;
     }
   }
 
-  filtrarClientesNumero(event: any) {
-    console.log('filtra numeros');
-
-    if (this.busquedaNumeros !== null) {
+  filtrarClienteDNI(event: any) {
+    if (this.busquedaDNI !== null) {
       this.clientesFilter = this.clientes.filter(item => {
-        if ((item.dni + '').includes(this.busquedaNumeros)) {
+        if ((item.dni).includes(this.busquedaDNI)) {
           return item;
         }
       });
