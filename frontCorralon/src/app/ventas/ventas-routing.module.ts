@@ -1,3 +1,4 @@
+import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
 import { ModificarDistritoComponent } from './modificar-distrito/modificar-distrito.component';
 import { AgregarDistritoComponent } from './agregar-distrito/agregar-distrito.component';
 import { ListarDistritosComponent } from './listar-distritos/listar-distritos.component';
@@ -16,7 +17,8 @@ const routes: Routes = [
       {path: 'modificar-departamento/:id', component: ModificarDepartamentoComponent},
       {path: 'listar-distritos', component: ListarDistritosComponent},
       {path: 'agregar-distrito', component: AgregarDistritoComponent},
-      {path: 'modificar-distrito/:id', component: ModificarDistritoComponent}
+      {path: 'modificar-distrito/:id', component: ModificarDistritoComponent},
+      {path: 'listar-clientes', component: ListarClientesComponent}
 
     ]}
   ];

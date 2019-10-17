@@ -62,5 +62,10 @@ export class VentasService {
   desabilitarDistrito(id: number) {
     return this.http.delete(this.Url + "/distritos/" + id);
   }
+  // *********************SERVICE CLIENTE********************
+  listarClientesTodos() {
+    return this.http.get<Response>(this.Url + "/clientes");
+  }
+
 
 }

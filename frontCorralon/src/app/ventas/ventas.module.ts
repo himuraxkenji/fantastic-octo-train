@@ -1,3 +1,4 @@
+import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -11,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ListarDistritosComponent } from './listar-distritos/listar-distritos.component';
 import { AgregarDistritoComponent } from './agregar-distrito/agregar-distrito.component';
 import { ModificarDistritoComponent } from './modificar-distrito/modificar-distrito.component';
+import { AgregarClienteComponent } from './agregar-cliente/agregar-cliente.component';
 
 
 
@@ -23,7 +25,9 @@ import { ModificarDistritoComponent } from './modificar-distrito/modificar-distr
     ModificarDepartamentoComponent,
     ListarDistritosComponent,
     AgregarDistritoComponent,
-    ModificarDistritoComponent
+    ModificarDistritoComponent,
+    ListarClientesComponent,
+    AgregarClienteComponent
   ],
   imports: [
     CommonModule,
