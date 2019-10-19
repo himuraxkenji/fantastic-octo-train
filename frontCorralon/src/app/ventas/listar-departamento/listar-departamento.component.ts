@@ -60,7 +60,7 @@ export class ListarDepartamentoComponent implements OnInit {
     this.router.navigate(["/ventas/modificar-departamento/" + departamento.id]);
   }
 
-  inhabilitarDepartamento(departamento: Departamento) {
+  deshabilitarDepartamento(departamento: Departamento) {
     let resultado: boolean;
     resultado = confirm("¿DESEA ELIMINAR DEPARTAMENTO?");
     if (resultado === true) {

@@ -1,3 +1,4 @@
+import { Cliente } from "./../modelo/Cliente";
 import { Distrito } from "./../modelo/Distrito";
 import { Departamento } from "./../modelo/Departamento";
 import { Injectable } from "@angular/core";
@@ -33,10 +34,7 @@ export class VentasService {
   }
 
   actualizarDepartamento(departamento: Departamento) {
-    return this.http.put<Departamento>(
-      this.Url + "/departamentos/",
-      departamento
-    );
+    return this.http.put<Departamento>(this.Url + "/departamentos/",departamento);
   }
 
   deshabilitarDepartamento(id: number) {
@@ -66,8 +64,19 @@ export class VentasService {
   listarClientesTodos() {
     return this.http.get<Response>(this.Url + "/clientes");
   }
- listarClientesHabilitados() {
+  listarClientesHabilitados() {
     return this.http.get<Response>(this.Url + "/clientes/habilitados");
   }
-
+  guardarCliente(cliente: Cliente) {
+    return this.http.post<Cliente>(this.Url + "/clientes/", cliente);
+  }
+  listarClienteId(id: number) {
+    return this.http.get<Response>(this.Url + "/clientes/" + id);
+  }
+  actualizarCliente(cliente: Cliente) {
+    return this.http.put<Cliente>(this.Url + "/clientes/", cliente);
+  }
+  deshabilitarCliente(id: number) {
+    return this.http.delete(this.Url + "/clientes/" + id);
+  }
 }

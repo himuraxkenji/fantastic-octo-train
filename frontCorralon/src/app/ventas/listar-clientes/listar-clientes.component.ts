@@ -18,32 +18,30 @@ export class ListarClientesComponent implements OnInit {
   busquedaDNI: string = null;
 
   constructor(private service: VentasService, private router: Router) {}
-
-  // nuevoCliente() {
-  //   this.router.navigate(['agregar-cliente']);
-
-  // }
-
   ngOnInit() {
     this.service.listarClientesTodos().subscribe(data => {
       this.clientes = data.data;
       this.clientesFilter = data.data;
     });
   }
-  editar(Cliente: Cliente): void {
-    //localStorage.setItem('id', cliente.id.toString());
-    //this.router.navigate(['modificar-cliente']);
+  modificarCliente(cliente: Cliente) {
+    this.router.navigate(["/ventas/modificar-cliente/" + cliente.id]);
   }
-  eliminar(Cliente: Cliente) {
-    //this.service.deleteClientes(cliente).subscribe(data => {
-    //this.clientes = this.clientes.filter(p => p !== cliente);
-    //alert(' cliente Eliminado');
-    //});
+  inhabilitarCliente(cliente: Cliente) {
+    let resultado: boolean;
+    resultado = confirm("¿DESEA ELIMINAR CLIENTE?");
+    if (resultado === true) {
+      this.service.deshabilitarCliente(cliente.id).subscribe(data => {
+        window.location.reload();
+      });
+    }
   }
   filtrarClienteNombre(event: any) {
     if (this.busquedaNombre !== null) {
       this.clientesFilter = this.clientes.filter(item => {
-        if (item.nombre.toUpperCase().includes(this.busquedaNombre.toUpperCase())) {
+        if (
+          item.nombre.toUpperCase().includes(this.busquedaNombre.toUpperCase())
+        ) {
           return item;
         }
       });
@@ -54,7 +52,11 @@ export class ListarClientesComponent implements OnInit {
   filtrarClienteApellido(event: any) {
     if (this.busquedaApellido !== null) {
       this.clientesFilter = this.clientes.filter(item => {
-        if (item.apellido.toUpperCase().includes(this.busquedaApellido.toUpperCase())) {
+        if (
+          item.apellido
+            .toUpperCase()
+            .includes(this.busquedaApellido.toUpperCase())
+        ) {
           return item;
         }
       });
@@ -66,7 +68,7 @@ export class ListarClientesComponent implements OnInit {
   filtrarClienteDNI(event: any) {
     if (this.busquedaDNI !== null) {
       this.clientesFilter = this.clientes.filter(item => {
-        if ((item.dni).includes(this.busquedaDNI)) {
+        if (item.dni.includes(this.busquedaDNI)) {
           return item;
         }
       });
