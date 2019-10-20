@@ -1,3 +1,4 @@
+import { TipoDireccion } from './../modelo/tipoDireccion';
 import { Cliente } from "./../modelo/Cliente";
 import { Distrito } from "./../modelo/Distrito";
 import { Departamento } from "./../modelo/Departamento";
@@ -78,5 +79,24 @@ export class VentasService {
   }
   deshabilitarCliente(id: number) {
     return this.http.delete(this.Url + "/clientes/" + id);
+  }
+  // *********************SERVICE TIPO DIRECCION********************
+  listarTipoDireccionTodos() {
+    return this.http.get<Response>(this.Url + "/tipo-direccion");
+  }
+  listarTipoDireccionHabilitados() {
+    return this.http.get<Response>(this.Url + "/tipo-direccion/habilitados");
+  }
+  listarTipoDireccionId(id: number) {
+    return this.http.get<Response>(this.Url + "/tipo-direccion/" + id);
+  }
+  guardarTipoDireccion(tipoDireccion: TipoDireccion) {
+    return this.http.post<TipoDireccion>(this.Url + "/tipo-direccion/", tipoDireccion);
+  }
+  actualizarTipoDireccion(tipoDireccion: TipoDireccion) {
+    return this.http.put<TipoDireccion>(this.Url + "/tipo-direccion/", tipoDireccion);
+  }
+  deshabilitarTipoDireccion(id: number) {
+    return this.http.delete(this.Url + "/tipo-direccion/" + id);
   }
 }

@@ -1,13 +1,13 @@
 import { VentasService } from 'src/app/service/ventas.service';
-import { TipoDireccion } from './../../modelo/tipoDireccion';
+import { TipoDireccion } from '../../modelo/tipoDireccion';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-agregar-tipo-doreccion',
-  templateUrl: './agregar-tipo-doreccion.component.html',
-  styleUrls: ['./agregar-tipo-doreccion.component.css']
+  selector: 'app-agregar-tipo-direccion',
+  templateUrl: './agregar-tipo-direccion.component.html',
+  styleUrls: ['./agregar-tipo-direccion.component.css']
 })
-export class AgregarTipoDoreccionComponent implements OnInit {
+export class AgregarTipoDireccionComponent implements OnInit {
   tipoDireccion: TipoDireccion= new TipoDireccion();
   response: Response;
 

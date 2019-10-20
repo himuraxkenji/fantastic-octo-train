@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgregarTipoDoreccionComponent } from './agregar-tipo-doreccion.component';
+import { AgregarTipoDoreccionComponent } from './agregar-tipo-direccion.component';
 
 describe('AgregarTipoDoreccionComponent', () => {
   let component: AgregarTipoDoreccionComponent;

@@ -1,5 +1,6 @@
 package com.undec.corralon.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Tipodireccion {
     private LocalDate fechaalta;
     private LocalDate fechaactualizacion;
     private LocalDate fechabaja;
+    @JsonIgnore
     private Collection<Direccion> direccionsById;
 
     @Id

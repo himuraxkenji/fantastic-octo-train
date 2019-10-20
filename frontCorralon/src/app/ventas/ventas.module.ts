@@ -16,8 +16,8 @@ import { ModificarClientesComponent } from './modificar-clientes/modificar-clien
 import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
 import { ListarTipoDireccionComponent } from './listar-tipo-direccion/listar-tipo-direccion.component';
 import { ListarDireccionComponent } from './listar-direccion/listar-direccion.component';
-import { AgregarTipoDoreccionComponent } from './agregar-tipo-doreccion/agregar-tipo-doreccion.component';
-import { ModificarTipoDoreccionComponent } from './modificar-tipo-doreccion/modificar-tipo-doreccion.component';
+import { ModificarTipoDireccionComponent } from './modificar-tipo-direccion/modificar-tipo-direccion.component';
+import { AgregarTipoDireccionComponent } from './agregar-tipo-direccion/agregar-tipo-direccion.component';
 
 
 
@@ -36,8 +36,8 @@ import { ModificarTipoDoreccionComponent } from './modificar-tipo-doreccion/modi
     ModificarClientesComponent,
     ListarTipoDireccionComponent,
     ListarDireccionComponent,
-    AgregarTipoDoreccionComponent,
-    ModificarTipoDoreccionComponent
+    AgregarTipoDireccionComponent,
+    ModificarTipoDireccionComponent
 
   ],
   imports: [

@@ -1,5 +1,5 @@
-import { ModificarTipoDoreccionComponent } from './modificar-tipo-doreccion/modificar-tipo-doreccion.component';
-import { AgregarTipoDoreccionComponent } from './agregar-tipo-doreccion/agregar-tipo-doreccion.component';
+import { ModificarTipoDireccionComponent } from './modificar-tipo-direccion/modificar-tipo-direccion.component';
+import { AgregarTipoDireccionComponent } from './agregar-tipo-direccion/agregar-tipo-direccion.component';
 import { ListarDireccionComponent } from './listar-direccion/listar-direccion.component';
 import { ListarTipoDireccionComponent } from './listar-tipo-direccion/listar-tipo-direccion.component';
 import { ModificarClientesComponent } from './modificar-clientes/modificar-clientes.component';
@@ -29,8 +29,8 @@ const routes: Routes = [
       {path: 'modificar-cliente/:id', component: ModificarClientesComponent},
       {path: 'listar-tipo-direccion', component: ListarTipoDireccionComponent},
       {path: 'listar-direccion', component: ListarDireccionComponent},
-      {path: 'agregar-tipo-direccion', component: AgregarTipoDoreccionComponent},
-      {path: 'modificar-tipo-direccion', component: ModificarTipoDoreccionComponent}
+      {path: 'agregar-tipo-direccion', component: AgregarTipoDireccionComponent},
+      {path: 'modificar-tipo-direccion/:id', component: ModificarTipoDireccionComponent}
     ]}
   ];
 

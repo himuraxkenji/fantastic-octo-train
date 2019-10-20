@@ -17,14 +17,20 @@ export class ListarTipoDireccionComponent implements OnInit {
   constructor(private service: VentasService, private router: Router) { }
 
   ngOnInit() {
+    this.service.listarTipoDireccionTodos().subscribe(data => {
+      this.tipoDirecciones = Object.keys(data.data).map(function(key) {
+        return data.data[key];
+      });
+      this.tipoDireccionFilter = this.tipoDirecciones;
+    });
   }
   modificarTipoDireccion(tipoDireccion: TipoDireccion) {
-    // this.router.navigate(["/ventas/modificar-departamento/" + departamento.id]);
+     this.router.navigate(["/ventas/modificar-tipo-direccion/" + tipoDireccion.id]);
   }
 
   deshabilitarTipoDireccion(tipoDireccion: TipoDireccion) {
     let resultado: boolean;
-    resultado = confirm("¿DESEA ELIMINAR DEPARTAMENTO?");
+    resultado = confirm("¿DESEA ELIMINAR TIPO DIRECCION?");
     if (resultado === true) {
     //   this.service.deshabilitarDepartamento(departamento.id)
     // .subscribe(data => {
