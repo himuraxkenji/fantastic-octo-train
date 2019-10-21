@@ -17,7 +17,7 @@ export class ListarTipoDireccionComponent implements OnInit {
   constructor(private service: VentasService, private router: Router) { }
 
   ngOnInit() {
-    this.service.listarTipoDireccionTodos().subscribe(data => {
+    this.service.listarTipoDireccionHabilitados().subscribe(data => {
       this.tipoDirecciones = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
@@ -32,10 +32,10 @@ export class ListarTipoDireccionComponent implements OnInit {
     let resultado: boolean;
     resultado = confirm("¿DESEA ELIMINAR TIPO DIRECCION?");
     if (resultado === true) {
-    //   this.service.deshabilitarDepartamento(departamento.id)
-    // .subscribe(data => {
-    //   window.location.reload();
-    // });
+      this.service.deshabilitarTipoDireccion(tipoDireccion.id)
+    .subscribe(data => {
+      window.location.reload();
+    });
     }
   }
   filtrarTipoDireccionNombre(event: any) {

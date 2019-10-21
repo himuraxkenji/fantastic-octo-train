@@ -10,21 +10,4 @@ export class AppComponent {
   title = 'CORRALON';
   constructor(private router: Router) {}
 
-  // ventas() {
-  //   this.router.navigate(['ventas']);
-  // }
-
-  // compras() {
-  //   this.router.navigate(['navbar-compras']);
-  // }
-  // seguridad() {
-  //   this.router.navigate(['navbar-seguridad']);
-  // }
-  // logistica() {
-  //   this.router.navigate(['navbar-logistica']);
-  // }
-  // reportes() {
-  //   this.router.navigate(['navbar-reportes']);
-  // }
-
 }
