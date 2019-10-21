@@ -12,20 +12,5 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
   }
 
-  ventas(){
-    this.router.navigate(['/ventas']);
-  }
-  compras(){
-    this.router.navigate(['/ventas']);
-  }
-  seguridad(){
-    this.router.navigate(['/ventas']);
-  }
-  reportes(){
-    this.router.navigate(['/ventas']);
-  }
-  logistica(){
-    this.router.navigate(['/ventas']);
-  }
 
 }

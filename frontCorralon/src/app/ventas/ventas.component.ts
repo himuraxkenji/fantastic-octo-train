@@ -12,19 +12,19 @@ export class VentasComponent {
   constructor(private router: Router) {}
 
 
-  clientes() {
-    this.router.navigate(['listar-cliente']);
-  }
+  // clientes() {
+  //   this.router.navigate(['listar-cliente']);
+  // }
 
-  departamentos() {
-    this.router.navigate(['listar-departamentos']);
-  }
-  distritos() {
-    this.router.navigate(['listar-distritos']);
-  }
-  direcciones() {
-    this.router.navigate(['listar-direccion']);
-  }
+  // departamentos() {
+  //   this.router.navigate(['listar-departamentos']);
+  // }
+  // distritos() {
+  //   this.router.navigate(['listar-distritos']);
+  // }
+  // direcciones() {
+  //   this.router.navigate(['listar-direccion']);
+  // }
 
 
 
