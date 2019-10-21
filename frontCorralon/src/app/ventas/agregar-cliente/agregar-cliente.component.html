@@ -2,14 +2,14 @@
     <div class="card">
         <h1 class="text-center">CARGA DE CLIENTES</h1>
         <div class="card-body">
-            <table class="table col-md-6">
-                <thead class="thead-dark ">
+            <table class="table col-md-6 ">
+                <thead class="thead-dark was-validated">
                     <tr>
                         <td>
                             <label class="btn btn-default " for="nombre"> NOMBRE</label>
                         </td>
                         <td>
-                            <input [(ngModel)]="cliente.nombre" type="text " class="form-control " placeholder="ingrese nombre ">
+                            <input [(ngModel)]="cliente.nombre" type="text " :required class="form-control " placeholder="ingrese nombre " required="true">
                         </td>
                     </tr>
                     <tr>
@@ -17,7 +17,7 @@
                             <label for="abreviatura"> APELLIDO</label>
                         </td>
                         <td>
-                            <input [(ngModel)]="cliente.apellido" type="text " class="form-control " placeholder="ingrese apellido ">
+                            <input [(ngModel)]="cliente.apellido" type="text " class="form-control " placeholder="ingrese apellido " required="true">
                         </td>
                     </tr>
                     <tr>
@@ -25,7 +25,7 @@
                             <label for="abreviatura"> DNI</label>
                         </td>
                         <td>
-                            <input [(ngModel)]="cliente.dni" type="text " class="form-control " placeholder="ingrese documento ">
+                            <input [(ngModel)]="cliente.dni" type="text " class="form-control " placeholder="ingrese documento " required="false">
                         </td>
                     </tr>
 
@@ -35,6 +35,7 @@
                             <button (click)="cancelar() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
                         </td>
                     </tr>
+
                 </thead>
             </table>
         </div>
