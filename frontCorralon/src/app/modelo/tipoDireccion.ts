@@ -1,5 +1,6 @@
 export class TipoDireccion{
-  id :Number;
+  id :number;
   nombre: string;
   abreviatura: string;
+  habilitado: number;
 }
