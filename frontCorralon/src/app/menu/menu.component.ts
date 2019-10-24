@@ -6,11 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  abm : string;
+  tipoABM: string;
+  abms: string[] = null;
 
   constructor(private router:Router) { }
 
   ngOnInit() {
   }
 
+  listarABM(){
 
+
+  }
 }
