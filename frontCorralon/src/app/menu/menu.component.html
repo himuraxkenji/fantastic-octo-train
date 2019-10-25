@@ -29,11 +29,12 @@
                     <select (change)="listarABM($event.target.value)" [(ngModel)]="tipoABM" class="form-control">
                         <!-- "size="3" -->
                       <option *ngFor=" let abm of abms">
-                      {{abm.nombre}}
+                      <!-- {{abm}} -->
+
                     </option>
                   </select>
                 </td>
-                <a class="nav-link" [routerLink]="['logistica']" routerLinkActive="active">CONFIGURACION</a>
+                <!-- <a class="nav-link" [routerLink]="['logistica']" routerLinkActive="active">CONFIGURACION</a> -->
             </li>
 
         </ul>
