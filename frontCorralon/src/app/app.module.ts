@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
+import { ConfiguracionModule } from './configuracion/configuracion.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { MenuComponent } from './menu/menu.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ConfiguracionModule
 
   ],
   providers: [VentasService],
