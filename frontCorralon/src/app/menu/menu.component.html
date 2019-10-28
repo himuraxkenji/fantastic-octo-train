@@ -24,19 +24,33 @@
             <li class="nav-item ">
                 <a class="nav-link" [routerLink]="['logistica']" routerLinkActive="active">LOGISTICA</a>
             </li>
-            <li class="nav-item ">
-                <td>
-                    <select (change)="listarABM($event.target.value)" [(ngModel)]="tipoABM" class="form-control">
-                        <!-- "size="3" -->
-                      <option *ngFor=" let abm of abms">
-                      <!-- {{abm}} -->
-
-                    </option>
-                  </select>
-                </td>
-                <!-- <a class="nav-link" [routerLink]="['logistica']" routerLinkActive="active">CONFIGURACION</a> -->
+            <li>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  CONFIGURACIONES
+                </button>
+                    <div class="dropdown-menu">
+                        <!-- METODO DE NAVEGACION A SUB-MENUS -->
+                        <a class="dropdown-item" [routerLink]="['ventas']" routerLinkActive="active">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 6.75V12h4V8h1v4c0 .55-.45 1-1 1H7v3l-5.45-2.72c-.33-.17-.55-.52-.55-.91V1c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v3h-1V1H3l4 2v2.25L10 3v2h4v2h-4v2L7 6.75z"/></svg>  
+                          ABM VENTAS</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['compras']" routerLinkActive="active">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 6.75V12h4V8h1v4c0 .55-.45 1-1 1H7v3l-5.45-2.72c-.33-.17-.55-.52-.55-.91V1c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v3h-1V1H3l4 2v2.25L10 3v2h4v2h-4v2L7 6.75z"/></svg>  
+                          ABM COMPRAS</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['ventas']" routerLinkActive="active">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M10 1H4L0 5v6l4 4h6l4-4V5l-4-4zm3 9.5L9.5 14h-5L1 10.5v-5L4.5 2h5L13 5.5v5zM6 4h2v5H6V4zm0 6h2v2H6v-2z"/></svg>  
+                          ABM SEGURIDAD</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['compras']" routerLinkActive="active">ABM LOGISTICA</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" [routerLink]="['ventas']" routerLinkActive="active">GENERAL</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">CERRAR</a>
+                    </div>
+                </div>
             </li>
-
         </ul>
     </div>
 </nav>
