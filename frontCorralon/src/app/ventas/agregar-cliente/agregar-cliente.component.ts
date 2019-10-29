@@ -20,7 +20,9 @@ export class AgregarClienteComponent implements OnInit {
     this.cliente.habilitacion = 1;
     this.cliente.id = null;
 
-    // this.cliente.nombre = this.cliente.nombre.toLowerCase();
+    this.cliente.nombre = this.cliente.nombre.toUpperCase();
+    this.cliente.apellido = this.cliente.apellido.toUpperCase();
+
     this.service.guardarCliente(this.cliente)
      .subscribe(data => {
           this.cliente = data; alert( 'se guardo un nuevo cliente' ); window.history.back();

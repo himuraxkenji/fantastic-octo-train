@@ -6,7 +6,7 @@
                 <thead class="thead-dark was-validated">
                     <tr>
                         <td>
-                            <label class="btn btn-default " for="nombre"> NOMBRE</label>
+                            <label for="nombre"> NOMBRE</label>
                         </td>
                         <td>
                             <input [(ngModel)]="cliente.nombre" type="text " :required class="form-control " placeholder="ingrese nombre " required="true">
@@ -25,7 +25,7 @@
                             <label for="abreviatura"> DNI</label>
                         </td>
                         <td>
-                            <input [(ngModel)]="cliente.dni" type="text " class="form-control " placeholder="ingrese documento " required="false">
+                            <input [(ngModel)]="cliente.dni" type="text " class="form-control " placeholder="ingrese documento " required="true">
                         </td>
                     </tr>
 
