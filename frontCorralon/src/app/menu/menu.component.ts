@@ -6,15 +6,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./menu.component.css"]
 })
 export class MenuComponent implements OnInit {
-  abm: string = "ABM VENTAS";
-  tipoABM: string;
-  abms: string[] = ["ABM VENTAS", "ABM COMPRAS", "ABM SEGURIDAD"];
-
-  constructor(private router: Router) {}
+    constructor(private router: Router) {}
 
   ngOnInit() {}
 
-  listarABM() {
-    // this.abms = ["ABM VENTAS", "ABM COMPRAS", "ABM SEGURIDAD"];
-  }
 }
