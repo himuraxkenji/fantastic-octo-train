@@ -17,7 +17,7 @@ import { ModificarDepartamentoComponent } from './modificar-departamento/modific
 
 const routes: Routes = [
     {path: '', component: VentasComponent,
-    children:[
+    children: [
       {path: 'listar-departamentos', component: ListarDepartamentoComponent},
       {path: 'agregar-departamento', component: AgregarDepartamentoComponent},
       {path: 'modificar-departamento/:id', component: ModificarDepartamentoComponent},
