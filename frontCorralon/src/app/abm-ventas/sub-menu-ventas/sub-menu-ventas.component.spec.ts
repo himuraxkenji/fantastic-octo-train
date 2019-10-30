@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListarBancoComponent } from './listar-banco.component';
+import { SubMenuVentasComponent } from './sub-menu-ventas.component';
 
-describe('ListarBancoComponent', () => {
-  let component: ListarBancoComponent;
-  let fixture: ComponentFixture<ListarBancoComponent>;
+describe('SubMenuVentasComponent', () => {
+  let component: SubMenuVentasComponent;
+  let fixture: ComponentFixture<SubMenuVentasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListarBancoComponent ]
+      declarations: [ SubMenuVentasComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListarBancoComponent);
+    fixture = TestBed.createComponent(SubMenuVentasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
