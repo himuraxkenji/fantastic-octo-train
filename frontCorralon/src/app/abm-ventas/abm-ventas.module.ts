@@ -1,3 +1,5 @@
+import { ListarDepartamentoComponent } from './../ventas/listar-departamento/listar-departamento.component';
+import { VentasComponent } from './../ventas/ventas.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

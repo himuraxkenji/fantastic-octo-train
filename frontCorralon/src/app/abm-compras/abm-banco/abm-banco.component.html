@@ -1,0 +1,71 @@
+<div class="container" ng-controller="departamentos">
+    <div class="card">
+        <h1 class="text-center">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 20 20">
+            <title>direction</title>
+            <path d="M18.060 1.941c-0.586-0.586-1.144-0.033-3.041 0.879-5.075 2.439-13.919 7.396-13.919 7.396l7.599 1.084 1.085 7.599c0 0 4.958-8.843 7.396-13.916 0.912-1.898 1.465-2.456 0.88-3.042zM16.236 3.896l-5.519 10.247-0.561-4.655 6.080-5.592z"></path>
+            </svg> LISTA DE BANCOS</h1>
+
+        <div class="card-body">
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <td>
+                                <button class="btn btn-default">NOMBRE </button>
+                            </td>
+                            <td>
+                                <!-- <input type="text" [(ngModel)]="busquedaNombre" class="form-control" placeholder="ingrese nombre" (keyup)="filtrarDepartamentoNombre(event)"> -->
+                            </td>
+                            <td>
+                                <button class="btn btn-default">ABREVIATURA </button>
+                            </td>
+                            <td>
+                                <!-- <input type="text" [(ngModel)]="busqueda" class="form-control" placeholder="ingrese abreviatura" (keyup)="filtrarDepartamentoAbreviatura(event)"> -->
+
+                            </td>
+                            <td>
+                                <!-- <button class="btn btn-success" [routerLink]="['/ventas/agregar-departamento']" routerLinkActive="router-link-active" style="margin-left: 50px;"> -->
+                                <!-- + DEPARTAMENTO -->
+                                <!-- </button> -->
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+        <div class=" card-body p-0" style="width:1100px; height:400px; overflow: auto;">
+            <table class="table table-responsive-sm">
+                <thead class="thead-dark ">
+
+                    <tr class="text-center ">
+                        <th scope="col ">NOMBRE</th>
+                        <th scope="col ">ABREVIATURA</th>
+                        <th scope="col*2 ">OPCIONES</th>
+                    </tr>
+                </thead>
+                <!-- <tbody *ngIf="departamentos != null ">
+                    <tr *ngFor="let departamento of departamentosFilter " class="text-center ">
+                        <td>{{departamento.nombre}}</td>
+                        <td>{{departamento.abreviatura}}</td>
+
+                        <td>
+                <button class="btn btn-default " title="Modificar " (click)="modificarDepartamento(departamento)">
+                                  <svg xmlns="http://www.w3.org/2000/svg " width="14 " height="16 " viewBox="0 0 14 16 "><path fill-rule="evenodd " d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39
+                                  1.02 0 1.41z "/></svg>
+                               </button>
+
+
+                <button class="btn btn-default " title="Eliminar " style="margin-left: 10px; " (click)="deshabilitarDepartamento(departamento)">
+                              <svg xmlns="http://www.w3.org/2000/svg " width="12 " height="16 " viewBox="0 0 12 16 "><path fill-rule="evenodd " d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48
+                              1.48L7.48 8z "/></svg>
+                              </button>
+                </td>
+                </tr>
+                </tbody> -->
+            </table>
+        </div>
+
+    </div>
+</div>
