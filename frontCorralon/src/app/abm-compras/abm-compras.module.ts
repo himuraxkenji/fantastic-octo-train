@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { AbmComprasComponent } from './abm-compras.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { AbmBancoComponent } from './abm-banco/abm-banco.component';
   declarations: [AbmComprasComponent, SubMenuComprasComponent, AbmBancoComponent  ],
   imports: [
     CommonModule,
+    FormsModule,
     AbmComprasRoutingModule
   ]
 })

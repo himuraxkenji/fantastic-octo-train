@@ -7,8 +7,6 @@ import { AbmBancoComponent } from '../abm-compras/abm-banco/abm-banco.component'
 
 const routes: Routes = [
   {path: '', component: AbmVentasComponent},
-  // {path: 'abm-banco', component: AbmBancoComponent}
-  // {path:'/ventas/lista-departamentos', component: ListarDepartamentoComponent}
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
