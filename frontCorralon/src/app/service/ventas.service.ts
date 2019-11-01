@@ -3,7 +3,7 @@ import { Cliente } from "./../modelo/Cliente";
 import { Distrito } from "./../modelo/Distrito";
 import { Departamento } from "./../modelo/Departamento";
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Response } from "../modelo/Response";
 
 @Injectable({
@@ -62,9 +62,18 @@ export class VentasService {
     return this.http.delete(this.Url + "/distritos/" + id);
   }
   // *********************SERVICE CLIENTE********************
+
   listarClientesTodos() {
-    return this.http.get<Response>(this.Url + "/clientes");
+    let nombreUsuario='jorgedat';
+    let password='carlito';
+
+    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(nombreUsuario + ':' + password) });
+    return this.http.get<Response>('http://localhost:8081/clientes',{headers});
   }
+
+  // listarClientesTodos() {
+  //   return this.http.get<Response>(this.Url + "/clientes");
+  // }
   listarClientesHabilitados() {
     return this.http.get<Response>(this.Url + "/clientes/habilitados");
   }

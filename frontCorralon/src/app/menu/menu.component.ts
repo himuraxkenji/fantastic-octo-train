@@ -1,4 +1,4 @@
-import { Router } from "@angular/router";
+import { AutenticacionService } from './../service/autenticacion.service';
 import { Component, OnInit } from "@angular/core";
 @Component({
   selector: "app-menu",
@@ -6,7 +6,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./menu.component.css"]
 })
 export class MenuComponent implements OnInit {
-    constructor(private router: Router) {}
+    constructor(private autenticacion:AutenticacionService) {}
 
   ngOnInit() {}
 

@@ -3,6 +3,7 @@ package com.undec.corralon.controlador;
 import com.undec.corralon.DTO.Response;
 import com.undec.corralon.excepciones.cliente.ClienteErrorToSaveException;
 import com.undec.corralon.modelo.Cliente;
+import com.undec.corralon.modelo.PruebaUser;
 import com.undec.corralon.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +24,7 @@ public class ClienteController {
     @Autowired
     ClienteService clienteService;
 
-    @GetMapping
+    @GetMapping(produces = "application/json")
     public ResponseEntity<Response> listarTodos() throws Exception {
         Response response = clienteService.listarTodos();
         return new ResponseEntity<>(response, HttpStatus.OK);
@@ -55,5 +56,12 @@ public class ClienteController {
     public ResponseEntity<Response> eliminar(@PathVariable("id") Integer id) throws Exception {
         Response response = clienteService.darDeBaja(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    /*Prueba de autenticacion*/
+    @GetMapping(produces = "application/json")
+    @RequestMapping({ "/login" })
+    public PruebaUser validateLogin() {
+        return new PruebaUser("Usuario Validado exitosamente");
     }
 }

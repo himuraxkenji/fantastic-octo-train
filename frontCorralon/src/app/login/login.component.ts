@@ -8,20 +8,26 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-  nombreUsuario = "jorgedat";
-  password = "carlito";
+  nombreUsuario = "";
+  password = "";
   loginInvalido = false;
 
-  constructor(private router:Router, private autenticacion:AutenticacionService) {}
+  constructor(private router:Router, private autenticacion:AutenticacionService) {
+  }
 
   ngOnInit() {}
 
   chequearLogueo(){
-    if(this.autenticacion.autenticacion(this.nombreUsuario, this.password)){
-        this.router.navigate['/ventas'];
-        this.loginInvalido = false;
-    }else{
-      this.loginInvalido = true;
-    }
+
+    (this.autenticacion.autenticacion(this.nombreUsuario, this.password).subscribe(
+      data => {
+        this.router.navigate(['']);
+        this.loginInvalido = false
+      },
+      error => {
+        this.loginInvalido = true
+
+      }
+    ));
   }
 }

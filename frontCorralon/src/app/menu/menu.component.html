@@ -4,7 +4,7 @@
     </a>
 
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div *ngIf="autenticacion.usuarioLogeado()" class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item ">
@@ -51,6 +51,20 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" [routerLink]="['logout']" routerLinkActive="active">Logout</a>
+            </li>
         </ul>
     </div>
+    <div *ngIf="!autenticacion.usuarioLogeado()" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item ">
+                <a class="nav-link" [routerLink]="['login']" routerLinkActive="active">Login</a>
+            </li>
+        </ul>
+    </div>
+
+
+
 </nav>
