@@ -26,6 +26,8 @@ export class AutenticacionService {
      map(
        datoUsuario => {
         sessionStorage.setItem('nombreUsuario',nombreUsuario);
+        let cadenaAutenticacion = 'Basic ' + btoa(nombreUsuario + ':' + password);
+        sessionStorage.setItem('basicauth', cadenaAutenticacion);
         return datoUsuario;
        }
      )

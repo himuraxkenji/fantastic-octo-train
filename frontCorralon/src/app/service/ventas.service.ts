@@ -63,17 +63,17 @@ export class VentasService {
   }
   // *********************SERVICE CLIENTE********************
 
-  listarClientesTodos() {
-    let nombreUsuario='jorgedat';
-    let password='carlito';
-
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(nombreUsuario + ':' + password) });
-    return this.http.get<Response>('http://localhost:8081/clientes',{headers});
-  }
-
   // listarClientesTodos() {
-  //   return this.http.get<Response>(this.Url + "/clientes");
+  //   let nombreUsuario='jorgedat';
+  //   let password='carlito';
+
+  //   const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(nombreUsuario + ':' + password) });
+  //   return this.http.get<Response>('http://localhost:8081/clientes',{headers});
   // }
+
+  listarClientesTodos() {
+    return this.http.get<Response>(this.Url + "/clientes");
+  }
   listarClientesHabilitados() {
     return this.http.get<Response>(this.Url + "/clientes/habilitados");
   }
