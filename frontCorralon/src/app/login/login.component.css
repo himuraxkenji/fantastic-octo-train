@@ -1,12 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Numans');
-html,
-body {
+.fondo {
     background-image: url('../../assets/images/bg-01.jpg');
     background-size: cover;
     background-repeat: no-repeat;
-    height: 100%;
-    width: 100%;
-    font-family: 'Numans', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .container {
@@ -70,7 +71,7 @@ input:focus {
 .login_btn {
     color: black;
     background-color: #FFC312;
-    width: 100px;
+    /* width: 100px; */
 }
 
 .login_btn:hover {
@@ -84,4 +85,8 @@ input:focus {
 
 .links a {
     margin-left: 4px;
+}
+
+.centro {
+    margin-top: 15%;
 }

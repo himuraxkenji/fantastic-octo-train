@@ -47,20 +47,22 @@
                         <a class="dropdown-item" [routerLink]="['ventas']" routerLinkActive="active">GENERAL</a>
 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">CERRAR</a>
+                        <a class="dropdown-item" [routerLink]="['logout']" routerLinkActive="active">CERRAR SESION</a>
+
+                        <!-- <a class="dropdown-item" href="#">CERRAR</a> -->
                     </div>
                 </div>
             </li>
-            <li class="nav-item ">
+            <!-- <li class="nav-item ">
                 <a class="nav-link" [routerLink]="['logout']" routerLinkActive="active">LOGOUT</a>
-            </li>
+            </li> -->
         </ul>
     </div>
     <div *ngIf="!autenticacion.usuarioLogeado()" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item ">
-                <a class="nav-link" [routerLink]="['login']" routerLinkActive="active">LOGIN</a>
+                <a class="nav-link" [routerLink]="['login']" routerLinkActive="active">INICIAR SESION</a>
             </li>
         </ul>
     </div>
