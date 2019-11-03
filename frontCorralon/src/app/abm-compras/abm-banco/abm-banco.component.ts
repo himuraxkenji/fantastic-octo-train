@@ -23,5 +23,10 @@ export class AbmBancoComponent implements OnInit {
       this.bancoFilter = data.data;
     });
   }
+  modificarBanco(banco: Banco){
 
+  }
+  deshabilitarBanco(banco: Banco){
+
+  }
 }
