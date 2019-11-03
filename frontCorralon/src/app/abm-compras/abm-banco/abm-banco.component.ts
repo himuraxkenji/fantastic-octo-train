@@ -1,3 +1,6 @@
+import { Banco } from './../../modelo/Banco';
+import { Router } from '@angular/router';
+import { AbmComprasService } from './../../service/abm-compras.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,14 +9,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./abm-banco.component.css']
 })
 export class AbmBancoComponent implements OnInit {
-  // departamento: Departamento = null;
-  // departamentos: Departamento[] = null;
-  // departamentosFilter: Departamento[] = null;
+  banco: Banco = null;
+  bancos: Banco[] = null;
+  bancoFilter: Banco[] = null;
   busquedaNombre: string = null;
   busqueda: string = null;
-  constructor() { }
+
+  constructor(private service: AbmComprasService, private router: Router) { }
 
   ngOnInit() {
+    this.service.listarBancosTodos().subscribe(data => {
+      this.bancos = data.data;
+      this.bancoFilter = data.data;
+    });
   }
 
 }
