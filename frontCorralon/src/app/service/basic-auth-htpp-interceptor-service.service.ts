@@ -1,4 +1,3 @@
-import { AutenticacionService } from './autenticacion.service';
 import { Injectable } from '@angular/core';
 import {  HttpInterceptor, HttpRequest, HttpHandler } from '@angular/common/http';
 
@@ -11,10 +10,10 @@ export class BasicAuthHtppInterceptorServiceService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-    if (sessionStorage.getItem('nombreUsuario') && sessionStorage.getItem('basicauth')) {
+    if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
       req = req.clone({
         setHeaders: {
-          Authorization: sessionStorage.getItem('basicauth')
+          Authorization: sessionStorage.getItem('token')
         }
       })
     }

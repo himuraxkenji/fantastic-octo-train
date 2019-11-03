@@ -1,34 +1,30 @@
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { HttpClient } from "@angular/common/http";
+import { HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { map } from "rxjs/operators";
 
-export class User{
-  constructor(
-    public status:string,
-     ) {}
-
+export class User {
+  constructor(public status: string) {}
 }
+
+export class JwtResponse {
+  constructor(public jwttoken: string) {}
+}
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class AutenticacionService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient:HttpClient) { }
-
-  autenticacion(nombreUsuario, password) {
-    const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(nombreUsuario + ':' + password) });
-    console.log("aautoro");
-
-    console.log(headers);
-
-    return this.httpClient.get<User>('http://localhost:8081/clientes/login',{headers}).pipe(
+  autenticacion(username, password) {
+    return this.httpClient.post<any>('http://localhost:8081/authenticate',{username,password}).pipe(
      map(
-       datoUsuario => {
-        sessionStorage.setItem('nombreUsuario',nombreUsuario);
-        let cadenaAutenticacion = 'Basic ' + btoa(nombreUsuario + ':' + password);
-        sessionStorage.setItem('basicauth', cadenaAutenticacion);
-        return datoUsuario;
+       userData => {
+        sessionStorage.setItem('username',username);
+        let tokenStr= 'Bearer '+userData.token;
+        sessionStorage.setItem('token', tokenStr);
+        return userData;
        }
      )
 
@@ -36,12 +32,11 @@ export class AutenticacionService {
   }
 
   usuarioLogeado() {
-    let usuario = sessionStorage.getItem('nombreUsuario')
-    console.log(!(usuario === null))
-    return !(usuario === null)
+    let usuario = sessionStorage.getItem("username");
+    return !(usuario === null);
   }
 
   logOut() {
-    sessionStorage.removeItem('nombreUsuario')
+    sessionStorage.removeItem("username");
   }
 }
