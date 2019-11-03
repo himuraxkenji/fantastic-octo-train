@@ -57,7 +57,7 @@ public class ClienteService {
 
         return response;
     }
-    public Response guardar(Cliente cliente) throws ClienteErrorToSaveException {
+    public Response guardar(Cliente cliente) throws Exception {
         Response response = new Response();
         cliente.setFechaalta(LocalDate.now());
         cliente.setFechaactualizacion(LocalDate.now());
@@ -72,7 +72,7 @@ public class ClienteService {
 
         return response;
     }
-    public Response actualizar(Cliente cliente) throws ClienteErrorToUpdateException {
+    public Response actualizar(Cliente cliente) throws Exception {
         Response response = new Response();
         Cliente actualizar = clienteRepository.findById(cliente.getId()).get();
 

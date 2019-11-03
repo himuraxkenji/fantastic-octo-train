@@ -1,3 +1,4 @@
+import { AgregarBancoComponent } from "./agregar-banco/agregar-banco.component";
 import { AbmComprasComponent } from "./abm-compras.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
@@ -7,7 +8,10 @@ const routes: Routes = [
   {
     path: "",
     component: AbmComprasComponent,
-    children: [{ path: "abm-banco", component: AbmBancoComponent }]
+    children: [
+      { path: "abm-banco", component: AbmBancoComponent },
+      { path: "agregar-banco", component: AgregarBancoComponent }
+    ]
   }
 ];
 

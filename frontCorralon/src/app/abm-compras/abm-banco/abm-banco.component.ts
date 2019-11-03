@@ -15,6 +15,7 @@ export class AbmBancoComponent implements OnInit {
   busquedaNombre: string = null;
   busqueda: string = null;
 
+
   constructor(private service: AbmComprasService, private router: Router) { }
 
   ngOnInit() {
@@ -29,4 +30,33 @@ export class AbmBancoComponent implements OnInit {
   deshabilitarBanco(banco: Banco){
 
   }
+  filtrarBancoNombre(event: any) {
+    if (this.busqueda !== null) {
+      this.bancoFilter = this.bancos.filter(item => {
+        if (
+          item.nombre.toUpperCase().includes(this.busqueda.toUpperCase())
+        ) {
+          return item;
+        }
+      });
+    } else {
+      this.bancoFilter = this.bancos;
+    }
+  }
+
+
+  filtrarBancoAbreviatura(event: any){
+    if (this.busquedaNombre !== null) {
+      this.bancoFilter = this.bancos.filter(item => {
+        if (
+          item.abreviatura.toUpperCase().includes(this.busquedaNombre.toUpperCase())
+        ) {
+          return item;
+        }
+      });
+    } else {
+      this.bancoFilter = this.bancos;
+    }
+  }
+
 }

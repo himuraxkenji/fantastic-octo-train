@@ -11,7 +11,11 @@ export class AbmComprasComponent implements OnInit {
 
   constructor(private router: Router) {}
   validMenu() {
-    if (this.router.url.includes("/abm-banco")) return false;
+    if (
+      this.router.url.includes("/abm-banco") ||
+      this.router.url.includes("/agregar-banco")
+    )
+      return false;
     else return true;
   }
 
