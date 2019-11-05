@@ -58,5 +58,7 @@ export class AbmBancoComponent implements OnInit {
       this.bancoFilter = this.bancos;
     }
   }
-
+  backPage(){
+    window.history.back();
+  }
 }
