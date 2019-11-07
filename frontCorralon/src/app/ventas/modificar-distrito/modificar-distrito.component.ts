@@ -1,4 +1,4 @@
-import { AbmVentasService } from './../../service/abm-ventas.service';
+import { AbmVentasService } from "./../../service/abm-ventas.service";
 import { Departamento } from "./../../modelo/Departamento";
 import { ActivatedRoute } from "@angular/router";
 import { VentasService } from "src/app/service/ventas.service";
@@ -14,48 +14,56 @@ export class ModificarDistritoComponent implements OnInit {
   distrito: Distrito = new Distrito();
   departamentosFilter: Departamento[] = null;
   departamentos: Departamento[] = null;
+  departamentoSelected: any;
   nombreDepto: string = null;
   idDepartamento: number = null;
-  departamento: Departamento = null;
+  departamento: Departamento;
 
   constructor(private service: AbmVentasService, private id: ActivatedRoute) {}
 
   ngOnInit() {
+    this.departamentoSelected = {
+      id: 2,
+      nombre: "FAMATINA",
+      abreviatura: "FMT",
+      habilitado: 1,
+      fechaalta: "2019-08-31"
+    };
     this.service.listarDepartamentosHabilitados().subscribe(data => {
       this.departamentos = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
-    });
-    let id: number;
-    this.id.params.subscribe(data => (id = data["id"]));
-    console.log("se muestra -->" + id);
-    this.service.listarDistritoId(id).subscribe(data => {
-      this.distrito = data.data;
-    });
-  }
-  actualizarDistrito(distrito: Distrito) {
-    this.distrito.idDepartamento = 1;
-    this.distrito.idDepartamento = distrito.idDepartamento;
-    this.departamentos.forEach(departamento => {
-      if (departamento.nombre == this.nombreDepto) {
-        this.distrito.idDepartamento = departamento.id;
-      }
-    });
-    for (var i = distrito.idDepartamento; i < this.departamentos.length; i++) {
-      if (this.departamentos[i].nombre == this.nombreDepto) {
-        this.distrito.idDepartamento = this.departamentos[i].id;
-      }
-    }
 
-    this.service.actualizarDistrito(distrito).subscribe(data => {
-      this.distrito = data;
-      alert("se actualizo con EXITO");
-      window.history.back();
+      // this.departamentoSelected = this.departamentos[3];
+
+      console.log("this.departamentos", this.departamentos);
+
+      let id: number;
+      this.id.params.subscribe(data => (id = data["id"]));
+      console.log("se muestra -->" + id);
+      this.service.listarDistritoId(id).subscribe(data => {
+        this.distrito = data.data;
+
+        console.log(
+          "this.departamentoByFkdepartamentosid",
+          this.distrito.departamentoByFkdepartamentosid.id
+        );
+
+        this.service
+          .listarDepartamentoId(
+            this.distrito.departamentoByFkdepartamentosid.id
+          )
+          .subscribe(resp => {
+            this.departamentoSelected = resp.data;
+            console.log("this.departamentoSelected", this.departamentoSelected);
+          });
+      });
     });
   }
-  cancelar() {
+  volverAtras() {
     window.history.back();
   }
+
   listarDepartamentos(filterVal: any) {
     if (filterVal == "0") this.departamentosFilter = this.departamentos;
     else
