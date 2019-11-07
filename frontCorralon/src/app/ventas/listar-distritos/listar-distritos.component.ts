@@ -1,3 +1,4 @@
+import { AbmVentasService } from './../../service/abm-ventas.service';
 import { Distrito } from "./../../modelo/Distrito";
 import { VentasService } from "src/app/service/ventas.service";
 import { Router } from "@angular/router";
@@ -14,7 +15,7 @@ export class ListarDistritosComponent implements OnInit {
   distritos: Distrito[] = null;
   distritosFilter: Distrito[] = null;
 
-  constructor(private router: Router, private service: VentasService) {}
+  constructor(private router: Router, private service: AbmVentasService) {}
 
   ngOnInit() {
     this.service.listarDistritosHabilitados().subscribe(data => {

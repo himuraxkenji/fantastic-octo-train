@@ -1,3 +1,4 @@
+import { AbmVentasService } from './../../service/abm-ventas.service';
 import { Router } from "@angular/router";
 import { VentasService } from "src/app/service/ventas.service";
 import { Departamento } from "./../../modelo/Departamento";
@@ -16,7 +17,7 @@ export class AgregarDistritoComponent implements OnInit {
   idDepto: number = 1;
   nombreDepto: string = null;
 
-  constructor(private service: VentasService, private router: Router) {}
+  constructor(private service: AbmVentasService, private router: Router) {}
 
   ngOnInit() {
     this.service.listarDepartamentosHabilitados().subscribe(data => {

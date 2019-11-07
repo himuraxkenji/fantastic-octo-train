@@ -1,6 +1,6 @@
-import { Departamento } from "./../../modelo/Departamento";
+import { AbmVentasService } from "../../service/abm-ventas.service";
+import { Departamento } from "../../modelo/Departamento";
 import { Component, OnInit } from "@angular/core";
-import { VentasService } from "src/app/service/ventas.service";
 import { ActivatedRoute } from "@angular/router";
 import { __param } from "tslib";
 
@@ -12,7 +12,7 @@ import { __param } from "tslib";
 export class ModificarDepartamentoComponent implements OnInit {
   departamento: Departamento = new Departamento();
 
-  constructor(private service: VentasService, private id: ActivatedRoute) {}
+  constructor(private service: AbmVentasService, private id: ActivatedRoute) {}
 
   ngOnInit() {
     let id: number;

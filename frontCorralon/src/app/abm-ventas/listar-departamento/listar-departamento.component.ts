@@ -1,3 +1,4 @@
+import { AbmVentasService } from './../../service/abm-ventas.service';
 import { VentasService } from "../../service/ventas.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Departamento } from "../../modelo/Departamento";
@@ -15,7 +16,7 @@ export class ListarDepartamentoComponent implements OnInit {
   busquedaNombre: string = null;
   busqueda: string = null;
 
-  constructor(private service: VentasService, private router: Router) {}
+  constructor(private service: AbmVentasService, private router: Router) {}
 
   ngOnInit() {
     this.service.listarDepartamentosHabilitados().subscribe(data => {
@@ -57,7 +58,7 @@ export class ListarDepartamentoComponent implements OnInit {
     }
   }
   modificarDepartamento(departamento: Departamento) {
-    this.router.navigate(["/ventas/modificar-departamento/" + departamento.id]);
+    this.router.navigate(["/abm-ventas/modificar-departamento/" + departamento.id]);
   }
 
   deshabilitarDepartamento(departamento: Departamento) {

@@ -1,3 +1,4 @@
+import { AbmVentasService } from './../../service/abm-ventas.service';
 import { Departamento } from "./../../modelo/Departamento";
 import { ActivatedRoute } from "@angular/router";
 import { VentasService } from "src/app/service/ventas.service";
@@ -17,7 +18,7 @@ export class ModificarDistritoComponent implements OnInit {
   idDepartamento: number = null;
   departamento: Departamento = null;
 
-  constructor(private service: VentasService, private id: ActivatedRoute) {}
+  constructor(private service: AbmVentasService, private id: ActivatedRoute) {}
 
   ngOnInit() {
     this.service.listarDepartamentosHabilitados().subscribe(data => {

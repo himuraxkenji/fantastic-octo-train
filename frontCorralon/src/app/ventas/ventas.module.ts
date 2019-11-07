@@ -6,7 +6,7 @@ import { VentasComponent } from './ventas.component';
 import { VentasRoutingModule } from './ventas-routing.module';
 // import { ListarDepartamentoComponent } from '../abm-ventas/listar-departamento/listar-departamento.component';
 // import { AgregarDepartamentoComponent } from '../abm-ventas/agregar-departamento/agregar-departamento.component';
-import { ModificarDepartamentoComponent } from './modificar-departamento/modificar-departamento.component';
+// import { ModificarDepartamentoComponent } from '../abm-ventas/modificar-departamento/modificar-departamento.component';
 import { FormsModule } from '@angular/forms';
 import { ListarDistritosComponent } from './listar-distritos/listar-distritos.component';
 import { AgregarDistritoComponent } from './agregar-distrito/agregar-distrito.component';
@@ -27,7 +27,7 @@ import { AgregarTipoDireccionComponent } from './agregar-tipo-direccion/agregar-
     VentasComponent,
     // ListarDepartamentoComponent,
     // AgregarDepartamentoComponent,
-    ModificarDepartamentoComponent,
+    // ModificarDepartamentoComponent,
     ListarDistritosComponent,
     AgregarDistritoComponent,
     ModificarDistritoComponent,

@@ -14,53 +14,8 @@ export class VentasService {
 
   constructor(private http: HttpClient) {}
 
-  // SERVICE DEPARTAMENTOS
-  listarDepartamentosTodos() {
-    return this.http.get<Response>(this.Url + "/departamentos");
-  }
 
-  listarDepartamentosHabilitados() {
-    return this.http.get<Response>(this.Url + "/departamentos/habilitados");
-  }
 
-  listarDepartamentoId(id: number) {
-    return this.http.get<Response>(this.Url + "/departamentos/" + id);
-  }
-
-  guardarDepartamento(departamento: Departamento) {
-    return this.http.post<Departamento>(
-      this.Url + "/departamentos/",
-      departamento
-    );
-  }
-
-  actualizarDepartamento(departamento: Departamento) {
-    return this.http.put<Departamento>(this.Url + "/departamentos/",departamento);
-  }
-
-  deshabilitarDepartamento(id: number) {
-    return this.http.delete(this.Url + "/departamentos/" + id);
-  }
-
-  // ********************SERVICE DISTRITOS***********************
-  listarDistritosHabilitados() {
-    return this.http.get<Response>(this.Url + "/distritos/habilitado");
-  }
-  guardarDistrito(distrito: Distrito) {
-    return this.http.post<Distrito>(this.Url + "/distritos/", distrito);
-  }
-  actualizarDistrito(distrito: Distrito) {
-    //  console.log('*******'+distrito+'********');
-
-    // console.log('nro departamanto --> ' + distrito.idDepartamento);
-    return this.http.put<Distrito>(this.Url + "/distritos/", distrito);
-  }
-  listarDistritoId(id: number) {
-    return this.http.get<Response>(this.Url + "/distritos/" + id);
-  }
-  desabilitarDistrito(id: number) {
-    return this.http.delete(this.Url + "/distritos/" + id);
-  }
   // *********************SERVICE CLIENTE********************
 
   // listarClientesTodos() {
