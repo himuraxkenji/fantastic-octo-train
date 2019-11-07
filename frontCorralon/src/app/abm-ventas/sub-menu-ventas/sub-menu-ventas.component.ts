@@ -14,7 +14,7 @@ export class SubMenuVentasComponent implements OnInit {
   }
   abmDepartamento(){
 // this.router.navigate(["ventas/lista-departamentos"]);
-console.log("ir a departamento");
+// console.log("ir a departamento");
 
   }
 }

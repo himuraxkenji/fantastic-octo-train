@@ -12,8 +12,6 @@ export class SubMenuComprasComponent implements OnInit {
 
   ngOnInit() {
   }
-  abmBanco(){
-    this.router.navigate(['/abm-compras/abm-banco']);
-  }
+
 
 }

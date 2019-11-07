@@ -1,4 +1,5 @@
-import { ListarDepartamentoComponent } from './../ventas/listar-departamento/listar-departamento.component';
+import { FormsModule } from '@angular/forms';
+import { ListarDepartamentoComponent } from './listar-departamento/listar-departamento.component';
 import { VentasComponent } from './../ventas/ventas.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,10 +10,11 @@ import { SubMenuVentasComponent } from './sub-menu-ventas/sub-menu-ventas.compon
 
 
 @NgModule({
-  declarations: [AbmVentasComponent, SubMenuVentasComponent],
+  declarations: [AbmVentasComponent, SubMenuVentasComponent, ListarDepartamentoComponent],
   imports: [
     CommonModule,
-    AbmVentasRoutingModule
+    AbmVentasRoutingModule,
+    FormsModule
   ]
 })
 export class AbmVentasModule { }

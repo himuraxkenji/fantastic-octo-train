@@ -1,4 +1,4 @@
-import { Response } from './../../modelo/Response';
+import { Response } from '../../modelo/Response';
 import { Component, OnInit } from '@angular/core';
 import { Departamento } from '../../modelo/Departamento';
 import { VentasService } from '../../service/ventas.service';

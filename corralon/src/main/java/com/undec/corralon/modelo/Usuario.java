@@ -1,13 +1,11 @@
 package com.undec.corralon.modelo;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Usuario {
     private Integer id;
     private String nombre;
@@ -17,10 +15,10 @@ public class Usuario {
     private Timestamp fechaModificacion;
     private String email;
     private String nombreUsuario;
+    private Collection<UsuarioRol> usuarioRolsById;
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -117,5 +115,14 @@ public class Usuario {
     @Override
     public int hashCode() {
         return Objects.hash(id, nombre, password, habilitacion, fechaCreacion, fechaModificacion, email, nombreUsuario);
+    }
+
+    @OneToMany(mappedBy = "usuarioByUsuarioId")
+    public Collection<UsuarioRol> getUsuarioRolsById() {
+        return usuarioRolsById;
+    }
+
+    public void setUsuarioRolsById(Collection<UsuarioRol> usuarioRolsById) {
+        this.usuarioRolsById = usuarioRolsById;
     }
 }

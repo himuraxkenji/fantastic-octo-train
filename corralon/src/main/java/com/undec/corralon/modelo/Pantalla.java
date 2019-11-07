@@ -4,10 +4,8 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "usuario_rol", schema = "santo_domingo_corralon", catalog = "")
-public class UsuarioRol {
+public class Pantalla {
     private Integer id;
-    private Usuario usuarioByUsuarioId;
     private Rol rolByRolId;
 
     @Id
@@ -24,8 +22,8 @@ public class UsuarioRol {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UsuarioRol that = (UsuarioRol) o;
-        return Objects.equals(id, that.id);
+        Pantalla pantalla = (Pantalla) o;
+        return Objects.equals(id, pantalla.id);
     }
 
     @Override
@@ -34,17 +32,7 @@ public class UsuarioRol {
     }
 
     @ManyToOne
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id", nullable = false)
-    public Usuario getUsuarioByUsuarioId() {
-        return usuarioByUsuarioId;
-    }
-
-    public void setUsuarioByUsuarioId(Usuario usuarioByUsuarioId) {
-        this.usuarioByUsuarioId = usuarioByUsuarioId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "rol_id", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "rol_id", referencedColumnName = "id")
     public Rol getRolByRolId() {
         return rolByRolId;
     }

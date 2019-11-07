@@ -1,14 +1,16 @@
-import { Banco } from './../../modelo/Banco';
+import { Banco } from '../../modelo/Banco';
 import { Router } from '@angular/router';
-import { AbmComprasService } from './../../service/abm-compras.service';
+import { AbmComprasService } from '../../service/abm-compras.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-abm-banco',
-  templateUrl: './abm-banco.component.html',
-  styleUrls: ['./abm-banco.component.css']
+  selector: 'app-listar-banco',
+  templateUrl: './listar-banco.component.html',
+  styleUrls: ['./listar-banco.component.css']
 })
-export class AbmBancoComponent implements OnInit {
+
+export class ListarBancoComponent implements OnInit {
+
   banco: Banco = null;
   bancos: Banco[] = null;
   bancoFilter: Banco[] = null;

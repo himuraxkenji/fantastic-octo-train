@@ -14,6 +14,7 @@ import javax.validation.Valid;
 
 @CrossOrigin("*")
 @RestController
+//ROLE permisos a configurar  @PreAuthorizer (seting)
 @RequestMapping("/bancos")
 public class BancoController {
     @Autowired
