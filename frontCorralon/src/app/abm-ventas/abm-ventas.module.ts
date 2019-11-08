@@ -1,3 +1,6 @@
+import { ModificarDistritoComponent } from './../abm-ventas/modificar-distrito/modificar-distrito.component';
+import { AgregarDistritoComponent } from './../abm-ventas/agregar-distrito/agregar-distrito.component';
+import { ListarDistritosComponent } from './../abm-ventas/listar-distritos/listar-distritos.component';
 import { ModificarDepartamentoComponent } from "./modificar-departamento/modificar-departamento.component";
 import { FormsModule } from "@angular/forms";
 import { ListarDepartamentoComponent } from "./listar-departamento/listar-departamento.component";
@@ -15,7 +18,10 @@ import { AgregarDepartamentoComponent } from "./agregar-departamento/agregar-dep
     SubMenuVentasComponent,
     ListarDepartamentoComponent,
     AgregarDepartamentoComponent,
-    ModificarDepartamentoComponent
+    AgregarDistritoComponent,
+    ModificarDepartamentoComponent,
+    ListarDistritosComponent,
+    ModificarDistritoComponent
   ],
   imports: [CommonModule, AbmVentasRoutingModule, FormsModule]
 })

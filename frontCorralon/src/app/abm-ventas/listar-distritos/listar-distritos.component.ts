@@ -1,5 +1,5 @@
-import { AbmVentasService } from './../../service/abm-ventas.service';
-import { Distrito } from "./../../modelo/Distrito";
+import { AbmVentasService } from '../../service/abm-ventas.service';
+import { Distrito } from "../../modelo/Distrito";
 import { VentasService } from "src/app/service/ventas.service";
 import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
@@ -58,7 +58,7 @@ export class ListarDistritosComponent implements OnInit {
     }
   }
   modificarDistrito(distrito: Distrito) {
-    this.router.navigate(["/ventas/modificar-distrito/" + distrito.id]);
+    this.router.navigate(["/abm-ventas/modificar-distrito/" + distrito.id]);
   }
 
   inhabilitarDistrito(distrito: Distrito) {

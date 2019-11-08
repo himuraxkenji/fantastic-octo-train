@@ -10,9 +10,9 @@ export class AbmComprasComponent implements OnInit {
   menuDeplegado = true;
 
   constructor(private router: Router) {}
-  validMenu() {
+  validaMenu() {
     if (
-      this.router.url.includes("/abm-banco") ||
+      this.router.url.includes("/listar-banco") ||
       this.router.url.includes("/agregar-banco")
     )
       return false;
