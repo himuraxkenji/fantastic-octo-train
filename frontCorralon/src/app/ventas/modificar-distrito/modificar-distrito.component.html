@@ -9,7 +9,7 @@
                             <label class="btn btn-default " for="nombre"> NOMBRE</label>
                         </td>
                         <td>
-                            <input [(ngModel)]="distrito.nombre" type="text " class="form-control" placeholder="ingrese nombre" required="true">
+                            <input #nombre [(ngModel)]="distrito.nombre" type="text " class="form-control" placeholder={{distrito.nombre}} required="true">
                         </td>
                     </tr>
                     <tr>
@@ -17,7 +17,7 @@
                             <label for="abreviatura"> ABREVIATURA</label>
                         </td>
                         <td>
-                            <input [(ngModel)]="distrito.abreviatura" type="text " class="form-control " placeholder="ingrese abreviatura " required="true">
+                            <input #abreviatura [(ngModel)]="distrito.abreviatura" type="text " class="form-control " placeholder={{distrito.abreviatura}} required="true">
                         </td>
                     </tr>
                     <tr>
@@ -25,9 +25,11 @@
                             <label for="departamento"> DEPARTAMENTO</label>
                         </td>
                         <td>
-                            <select (change)="listarDepartamentos($event.target.value)" [(ngModel)]="departamento" class="form-control">
+                            <!-- <select (change)="listarDepartamentos($event.target.value)" [(ngModel)]="departamento" class="form-control"> -->
+                            <select [(ngModel)]="nombreDepto" class="form-control">
+
                                 <!-- "size="3" -->
-                              <option *ngFor=" let departamento of departamentos"[selected]="departamento.nombre===departamentoSelected.nombre">
+                              <option *ngFor=" let departamento of departamentos"[selected]="departamento.nombre==departamentoSelected.nombre">
                               {{departamento.nombre}}
                             </option>
                           </select>
@@ -35,7 +37,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <button (click)="nuevoDistrito(distrito)" class="btn btn-success ">ACEPTAR</button>
+                            <button (click)="actualizarDistrito(distrito)" class="btn btn-success ">ACEPTAR</button>
                             <button (click)="volverAtras() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
                         </td>
                     </tr>

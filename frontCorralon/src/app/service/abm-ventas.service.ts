@@ -1,4 +1,4 @@
-import { Distrito } from './../modelo/Distrito';
+import { Distrito } from "./../modelo/Distrito";
 import { Departamento } from "./../modelo/Departamento";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -42,15 +42,14 @@ export class AbmVentasService {
   deshabilitarDepartamento(id: number) {
     return this.http.delete(this.Url + "/departamentos/" + id);
   }
-   // ********************SERVICE DISTRITOS***********************
-   listarDistritosHabilitados() {
+  // ********************SERVICE DISTRITOS***********************
+  listarDistritosHabilitados() {
     return this.http.get<Response>(this.Url + "/distritos/habilitado");
   }
   guardarDistrito(distrito: Distrito) {
     return this.http.post<Distrito>(this.Url + "/distritos/", distrito);
   }
   actualizarDistrito(distrito: Distrito) {
-
     return this.http.put<Distrito>(this.Url + "/distritos/", distrito);
   }
   listarDistritoId(id: number) {
