@@ -1,6 +1,6 @@
-import { TipoDireccion } from './../../modelo/tipoDireccion';
+import { TipoDireccion } from '../../modelo/tipoDireccion';
 import { Router } from '@angular/router';
-import { VentasService } from './../../service/ventas.service';
+import { VentasService } from '../../service/ventas.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -25,7 +25,7 @@ export class ListarTipoDireccionComponent implements OnInit {
     });
   }
   modificarTipoDireccion(tipoDireccion: TipoDireccion) {
-     this.router.navigate(["/ventas/modificar-tipo-direccion/" + tipoDireccion.id]);
+     this.router.navigate(["/abm-ventas/modificar-tipo-direccion/" + tipoDireccion.id]);
   }
 
   deshabilitarTipoDireccion(tipoDireccion: TipoDireccion) {

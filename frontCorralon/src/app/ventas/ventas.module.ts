@@ -14,10 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { AgregarClienteComponent } from './agregar-cliente/agregar-cliente.component';
 import { ModificarClientesComponent } from './modificar-clientes/modificar-clientes.component';
 import { ListarClientesComponent } from './listar-clientes/listar-clientes.component';
-import { ListarTipoDireccionComponent } from './listar-tipo-direccion/listar-tipo-direccion.component';
 import { ListarDireccionComponent } from './listar-direccion/listar-direccion.component';
-import { ModificarTipoDireccionComponent } from './modificar-tipo-direccion/modificar-tipo-direccion.component';
-import { AgregarTipoDireccionComponent } from './agregar-tipo-direccion/agregar-tipo-direccion.component';
 
 
 
@@ -34,11 +31,7 @@ import { AgregarTipoDireccionComponent } from './agregar-tipo-direccion/agregar-
     ListarClientesComponent,
     AgregarClienteComponent,
     ModificarClientesComponent,
-    ListarTipoDireccionComponent,
-    ListarDireccionComponent,
-    AgregarTipoDireccionComponent,
-    ModificarTipoDireccionComponent
-
+    ListarDireccionComponent
   ],
   imports: [
     CommonModule,
