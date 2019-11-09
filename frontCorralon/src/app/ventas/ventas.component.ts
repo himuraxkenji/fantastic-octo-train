@@ -1,31 +1,17 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { Router } from "@angular/router";
 
 @Component({
-  selector: 'app-ventas-component',
-  templateUrl: './ventas.component.html',
-  styleUrls: ['./ventas.component.css']
+  selector: "app-ventas-component",
+  templateUrl: "./ventas.component.html",
+  styleUrls: ["./ventas.component.css"]
 })
-
 export class VentasComponent {
-
   constructor(private router: Router) {}
-
-
-  // clientes() {
-  //   this.router.navigate(['listar-cliente']);
-  // }
-
-  // departamentos() {
-  //   this.router.navigate(['listar-departamentos']);
-  // }
-  // distritos() {
-  //   this.router.navigate(['listar-distritos']);
-  // }
-  // direcciones() {
-  //   this.router.navigate(['listar-direccion']);
-  // }
-
-
-
+  validaMenu() {
+    if (this.router.url.includes("/listar-cliente")||
+    this.router.url.includes("/agregar-cliente")||
+    this.router.url.includes("/modificar-cliente")) return false;
+    else return true;
+  }
 }

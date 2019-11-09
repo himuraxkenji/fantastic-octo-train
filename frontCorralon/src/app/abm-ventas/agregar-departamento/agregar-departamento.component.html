@@ -1,5 +1,5 @@
 <div class="container" ng-controller="clientes">
-    <div class="card">
+    <div class="card m-2">
         <h1 class="text-center">CARGA DE DEPARTAMENTOS</h1>
         <div class="card-body">
             <table class="table col-md-6 ">
@@ -24,7 +24,10 @@
 
                     <tr>
                         <td>
-                            <button (click)="guardarDepartamento(departamento)" class="btn btn-success ">ACEPTAR</button>
+
+                            <button (click)="guardarDepartamento(departamento)" class="btn btn-warning ">ACEPTAR</button>
+                        </td>
+                        <td>
                             <button (click)="cancelar() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
                         </td>
                     </tr>

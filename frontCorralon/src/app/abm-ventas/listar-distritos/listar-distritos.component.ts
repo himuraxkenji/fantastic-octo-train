@@ -70,4 +70,7 @@ export class ListarDistritosComponent implements OnInit {
     });
     }
   }
+  backPage(){
+    window.history.back();
+  }
 }

@@ -1,5 +1,5 @@
 <div class="container" ng-controller="departamentos">
-    <div class="card">
+    <div class="card m-2">
         <h1 class="text-center">CARGA DE DISTRITOS</h1>
         <div class="card-body">
             <table class="table col-md-6">
@@ -26,7 +26,6 @@
                         </td>
                         <td>
                             <select (change)="listarDepartamentos($event.target.value)" [(ngModel)]="nombreDepto" class="form-control">
-                                <!-- "size="3" -->
                               <option *ngFor=" let departamento of departamentos">
                               {{departamento.nombre}}
                             </option>
@@ -35,7 +34,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <button (click)="nuevoDistrito(distrito)" class="btn btn-success ">ACEPTAR</button>
+                            <button (click)="nuevoDistrito(distrito)" class="btn btn-warning">ACEPTAR</button>
+                        </td>
+                        <td>
                             <button (click)="volverAtras() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
                         </td>
                     </tr>

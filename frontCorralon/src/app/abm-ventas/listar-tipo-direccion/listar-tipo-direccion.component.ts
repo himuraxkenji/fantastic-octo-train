@@ -53,4 +53,7 @@ export class ListarTipoDireccionComponent implements OnInit {
       this.tipoDireccionFilter = this.tipoDirecciones;
     }
   }
+  backPage(){
+    window.history.back();
+  }
 }

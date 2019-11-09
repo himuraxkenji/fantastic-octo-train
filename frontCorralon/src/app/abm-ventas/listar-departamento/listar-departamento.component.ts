@@ -71,4 +71,7 @@ export class ListarDepartamentoComponent implements OnInit {
     });
     }
   }
+  backPage(){
+    window.history.back();
+  }
 }

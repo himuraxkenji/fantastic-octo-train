@@ -1,5 +1,5 @@
 <div class="container" ng-controller="tipo-direcciones">
-    <div class="card">
+    <div class="card m-2">
         <h1 class="text-center">CARGA DE TIPO-DIRECCION</h1>
         <div class="card-body">
             <table class="table col-md-6">
@@ -23,7 +23,9 @@
                     </tr>
                     <tr>
                         <td>
-                            <button (click)="guardarTipoDireccion(tipoDireccion)" class="btn btn-success ">ACEPTAR</button>
+                            <button (click)="guardarTipoDireccion(tipoDireccion)" class="btn btn-warning ">ACEPTAR</button>
+                        </td>
+                        <td>
                             <button (click)="cancelar() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
                         </td>
                     </tr>

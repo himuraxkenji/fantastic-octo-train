@@ -76,4 +76,7 @@ export class ListarClientesComponent implements OnInit {
       this.clientesFilter = this.clientes;
     }
   }
+  backPage(){
+    window.history.back();
+  }
 }
