@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComprasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+  validaMenu() {
+    if (
+      this.router.url.includes("/listar-proveedor") ||
+      this.router.url.includes("/agregar-banco")
+    )
+      return false;
+    else return true;
   }
 
 }

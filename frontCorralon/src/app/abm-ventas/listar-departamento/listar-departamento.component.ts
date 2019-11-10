@@ -1,5 +1,5 @@
 import { AbmVentasService } from './../../service/abm-ventas.service';
-import { VentasService } from "../../service/ventas.service";
+// import { VentasService } from "../../service/ventas.service";
 import { Component, OnInit, Input } from "@angular/core";
 import { Departamento } from "../../modelo/Departamento";
 import { Router } from "@angular/router";

@@ -59,9 +59,9 @@ public class ClienteController {
     }
 
     /*Prueba de autenticacion*/
-    @GetMapping(produces = "application/json")
-    @RequestMapping({ "/login" })
-    public PruebaUser validateLogin() {
-        return new PruebaUser("Usuario Validado exitosamente");
-    }
+//    @GetMapping(produces = "application/json")
+//    @RequestMapping({ "/login" })
+//    public PruebaUser validateLogin() {
+//        return new PruebaUser("Usuario Validado exitosamente");
+//    }
 }
