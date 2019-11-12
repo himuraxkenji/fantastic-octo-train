@@ -1,7 +1,5 @@
 import { TipoDireccion } from './../modelo/tipoDireccion';
 import { Cliente } from "./../modelo/Cliente";
-import { Distrito } from "./../modelo/Distrito";
-import { Departamento } from "./../modelo/Departamento";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Response } from "../modelo/Response";

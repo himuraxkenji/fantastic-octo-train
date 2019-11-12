@@ -1,3 +1,4 @@
+import { Proveedor } from './../modelo/Proveedor';
 import { Response } from './../modelo/Response';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
@@ -16,4 +17,8 @@ export class ComprasService {
   listarProveedoresHabilitados() {
     return this.http.get<Response>(this.Url + "/proveedores/habilitados");
   }
+  guardarProveedor(proveedor: Proveedor) {
+    return this.http.post<Proveedor>(this.Url + "/proveedores/", proveedor);
+  }
+
 }

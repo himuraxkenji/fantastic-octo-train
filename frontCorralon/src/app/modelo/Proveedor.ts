@@ -5,4 +5,5 @@ export class Proveedor {
   mail: string;
   celular: string;
   telefono: string;
+  habilitado: Number;
 }

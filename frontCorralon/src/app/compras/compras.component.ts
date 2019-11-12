@@ -15,7 +15,7 @@ export class ComprasComponent implements OnInit {
   validaMenu() {
     if (
       this.router.url.includes("/listar-proveedor") ||
-      this.router.url.includes("/agregar-banco")
+      this.router.url.includes("/agregar-proveedor")
     )
       return false;
     else return true;

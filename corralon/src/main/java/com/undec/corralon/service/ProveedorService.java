@@ -59,6 +59,7 @@ public class ProveedorService {
         Proveedor proveedorSave = proveedorRepository.save(proveedor);
 //        cliente.setFechaalta(LocalDate.now());
 //        cliente.setFechaactualizacion(LocalDate.now());
+//        proveedorSave.setHabilitado((byte) 1);
 //        Cliente guardado = clienteRepository.save(cliente);
 
         if(proveedorSave == null)
@@ -77,13 +78,13 @@ public class ProveedorService {
         if(proveedorUpdate == null)
             throw new ProveedorErrorToUpdateException();
 
-        proveedorUpdate.setId(proveedor.getId());
+//        proveedorUpdate.setId(proveedor.getId());
         proveedorUpdate.setRazonSocial(proveedor.getRazonSocial());
-        proveedorUpdate.setHabilitado(proveedor.getHabilitado());
-        proveedorUpdate.setMail(proveedor.getMail());
         proveedorUpdate.setDomicilio(proveedor.getDomicilio());
+        proveedorUpdate.setMail(proveedor.getMail());
         proveedorUpdate.setCelular(proveedor.getCelular());
         proveedorUpdate.setTelefono(proveedor.getTelefono());
+        proveedorUpdate.setHabilitado(proveedor.getHabilitado());
 
         response.setCode(200);
         response.setMsg("aproveedor ctualizado");

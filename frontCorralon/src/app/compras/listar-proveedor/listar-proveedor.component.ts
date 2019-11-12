@@ -12,21 +12,16 @@ export class ListarProveedorComponent implements OnInit {
   proveedor: Proveedor = null;
   proveedores: Proveedor[] = null;
   proveedoresFilter: Proveedor[] = null;
-  busquedaNombre: string = null;
+  busquedaTelefono: string = null;
   busqueda: string = null;
+  busquedaMail: string = null;
 
   constructor(private router: Router, private serviceCompras: ComprasService) {}
 
   ngOnInit() {
-    // this.service.listarBancosTodos().subscribe(data => {
-    //   this.bancos = data.data;
-    //   this.bancoFilter = data.data;
-    // });
-    this.serviceCompras.listarProveedoresTodos().subscribe(data => {
-      this.proveedores = Object.keys(data.data).map(function(key) {
-        return data.data[key];
-      });
-      this.proveedoresFilter = this.proveedores;
+    this.serviceCompras.listarProveedoresTodos().subscribe(prov => {
+      this.proveedores = prov.data;
+      this.proveedoresFilter = prov.data;
     });
   }
   filtrarProveedorRazonSocial(event: any) {
@@ -42,23 +37,32 @@ export class ListarProveedorComponent implements OnInit {
       this.proveedoresFilter = this.proveedores;
     }
   }
-  // filtrarDepartamentoNombre(event: any) {
-  //   console.log("filtra nombre");
-
-  //   if (this.busquedaNombre !== null) {
-  //     this.proveedoresFilter = this.proveedores.filter(item => {
-  //       if (
-  //         item.razonSocial
-  //           .toUpperCase()
-  //           .includes(this.busquedaNombre.toUpperCase())
-  //       ) {
-  //         return item;
-  //       }
-  //     });
-  //   } else {
-  //     this.proveedoresFilter = this.proveedores;
-  //   }
-  // }
+  filtrarProveedorTelefono(event: any) {
+    if (this.busquedaTelefono !== null) {
+      this.proveedoresFilter = this.proveedores.filter(item => {
+        if (
+          item.telefono
+            .toUpperCase()
+            .includes(this.busquedaTelefono.toUpperCase())
+        ) {
+          return item;
+        }
+      });
+    } else {
+      this.proveedoresFilter = this.proveedores;
+    }
+  }
+  filtrarProveedorMail(event: any) {
+    if (this.busquedaMail !== null) {
+      this.proveedoresFilter = this.proveedores.filter(item => {
+        if (item.mail.toUpperCase().includes(this.busquedaMail.toUpperCase())) {
+          return item;
+        }
+      });
+    } else {
+      this.proveedoresFilter = this.proveedores;
+    }
+  }
   modificarProveedor() {}
   deshabilitarProveedor() {}
   backPage() {

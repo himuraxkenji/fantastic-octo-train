@@ -20,8 +20,8 @@ export class AgregarBancoComponent implements OnInit {
 
     this.banco.habilitado = null;
     this.banco.id = null;
-    this.banco.nombre= this.banco.nombre.toUpperCase();
-    this.banco.abreviatura= this.banco.abreviatura.toUpperCase();
+    this.banco.nombre = this.banco.nombre.toUpperCase();
+    this.banco.abreviatura = this.banco.abreviatura.toUpperCase();
 
     this.service.guardarBanco(this.banco).subscribe(data => {
       this.banco = data;
