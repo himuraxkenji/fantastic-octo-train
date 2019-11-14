@@ -1,24 +1,21 @@
-import { Banco } from '../../modelo/Banco';
-import { Router } from '@angular/router';
-import { AbmComprasService } from '../../service/abm-compras.service';
-import { Component, OnInit } from '@angular/core';
+import { Banco } from "../../modelo/Banco";
+import { Router } from "@angular/router";
+import { AbmComprasService } from "../../service/abm-compras.service";
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-listar-banco',
-  templateUrl: './listar-banco.component.html',
-  styleUrls: ['./listar-banco.component.css']
+  selector: "app-listar-banco",
+  templateUrl: "./listar-banco.component.html",
+  styleUrls: ["./listar-banco.component.css"]
 })
-
 export class ListarBancoComponent implements OnInit {
-
   banco: Banco = null;
   bancos: Banco[] = null;
   bancoFilter: Banco[] = null;
   busquedaNombre: string = null;
   busqueda: string = null;
 
-
-  constructor(private service: AbmComprasService, private router: Router) { }
+  constructor(private service: AbmComprasService, private router: Router) {}
 
   ngOnInit() {
     this.service.listarBancosTodos().subscribe(data => {
@@ -26,18 +23,14 @@ export class ListarBancoComponent implements OnInit {
       this.bancoFilter = data.data;
     });
   }
-  modificarBanco(banco: Banco){
-
+  modificarBanco(banco: Banco) {
+    this.router.navigate(["abm-compras/modificar-banco/" + banco.id]);
   }
-  deshabilitarBanco(banco: Banco){
-
-  }
+  deshabilitarBanco(banco: Banco) {}
   filtrarBancoNombre(event: any) {
     if (this.busqueda !== null) {
       this.bancoFilter = this.bancos.filter(item => {
-        if (
-          item.nombre.toUpperCase().includes(this.busqueda.toUpperCase())
-        ) {
+        if (item.nombre.toUpperCase().includes(this.busqueda.toUpperCase())) {
           return item;
         }
       });
@@ -46,12 +39,13 @@ export class ListarBancoComponent implements OnInit {
     }
   }
 
-
-  filtrarBancoAbreviatura(event: any){
+  filtrarBancoAbreviatura(event: any) {
     if (this.busquedaNombre !== null) {
       this.bancoFilter = this.bancos.filter(item => {
         if (
-          item.abreviatura.toUpperCase().includes(this.busquedaNombre.toUpperCase())
+          item.abreviatura
+            .toUpperCase()
+            .includes(this.busquedaNombre.toUpperCase())
         ) {
           return item;
         }
@@ -60,7 +54,7 @@ export class ListarBancoComponent implements OnInit {
       this.bancoFilter = this.bancos;
     }
   }
-  backPage(){
+  backPage() {
     window.history.back();
   }
 }

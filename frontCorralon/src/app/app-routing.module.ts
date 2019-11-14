@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: "compras", loadChildren: "./compras/compras.module#ComprasModule", canActivate:[AuthGaurdService] },
   { path: "abm-ventas", loadChildren: "./abm-ventas/abm-ventas.module#AbmVentasModule", canActivate:[AuthGaurdService]},
   { path: "abm-compras", loadChildren: "./abm-compras/abm-compras.module#AbmComprasModule",  canActivate:[AuthGaurdService]},
+  {path: "seguridad", loadChildren:"./seguridad/seguridad.module#SeguridadModule",canActivate:[AuthGaurdService]},
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent, canActivate:[AuthGaurdService]}
 

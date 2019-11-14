@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark  ">
     <a class="navbar-brand" href="#">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16" class="svg-color"><path fill-rule="evenodd" d="M16 9l-3-3V2h-2v2L8 1 0 9h2l1 5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1l1-5h2zm-4 5H9v-4H7v4H4L2.81 7.69 8 2.5l5.19 5.19L12 14z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 16 16" class="svg-color">
+          <path fill-rule="evenodd" d="M16 9l-3-3V2h-2v2L8 1 0 9h2l1 5c0 .55.45 1 1 1h8c.55 0 1-.45 1-1l1-5h2zm-4 5H9v-4H7v4H4L2.81 7.69 8 2.5l5.19 5.19L12 14z"/>
+        </svg>
     </a>
 
 
@@ -47,14 +49,12 @@
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" [routerLink]="['ventas']" routerLinkActive="active">GENERAL</a>
 
-                        <!-- <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" [routerLink]="['logout']" routerLinkActive="active">CERRAR SESION</a> -->
-
-                        <!-- <a class="dropdown-item" href="#">CERRAR</a> -->
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li>
                 <a class="nav-link" [routerLink]="['logout']" routerLinkActive="active">CERRAR SESION</a>
             </li>
         </ul>
@@ -67,7 +67,4 @@
             </li>
         </ul>
     </div>
-
-
-
 </nav>

@@ -13,7 +13,9 @@ export class AbmComprasComponent implements OnInit {
   validaMenu() {
     if (
       this.router.url.includes("/listar-banco") ||
-      this.router.url.includes("/agregar-banco")
+      this.router.url.includes("/listar-marca") ||
+      this.router.url.includes("/agregar-banco")||
+      this.router.url.includes("modificar-banco")
     )
       return false;
     else return true;

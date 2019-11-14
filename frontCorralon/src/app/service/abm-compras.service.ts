@@ -18,4 +18,13 @@ export class AbmComprasService {
   guardarBanco(banco: Banco) {
     return this.http.post<Banco>(this.Url + "/bancos/", banco);
   }
+  actualizarBanco(banco: Banco) {
+    return this.http.put<Banco>(this.Url + "/bancos/", banco);
+  }
+  listarBancoId(id: number) {
+    return this.http.get<Response>(this.Url + "/bancos/" + id);
+  }
+  desabilitarBanco(id: number) {
+    return this.http.delete(this.Url + "/bancos/" + id);
+  }
 }

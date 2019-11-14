@@ -2,7 +2,10 @@
     fill: white;
 }
 
-.ubicacion {
-    float: right;
-    right: 100%;
+.lugar {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: 0 auto;
 }

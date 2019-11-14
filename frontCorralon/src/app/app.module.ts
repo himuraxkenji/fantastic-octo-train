@@ -22,7 +22,7 @@ import { LogoutComponent } from './logout/logout.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [VentasService,
     {provide:HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorServiceService, multi:true }
