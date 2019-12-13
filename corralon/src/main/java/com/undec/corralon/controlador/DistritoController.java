@@ -43,6 +43,7 @@ public class DistritoController {
 
     @PutMapping
     public ResponseEntity<Response> actualizar(@Valid @RequestBody DistritoDTO  distritoDTO) throws Exception {
+        System.out.println(distritoDTO.getId() + " - " + distritoDTO.getNombre() + " - " + distritoDTO.getAbreviatura());
         Response response = distritoService.actualizar( distritoDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

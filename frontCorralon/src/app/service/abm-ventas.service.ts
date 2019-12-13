@@ -50,7 +50,11 @@ export class AbmVentasService {
     return this.http.post<Distrito>(this.Url + "/distritos/", distrito);
   }
   actualizarDistrito(distrito: Distrito) {
-    return this.http.put<Distrito>(this.Url + "/distritos/", distrito);
+    console.log('Actualizar');
+
+    console.log(distrito);
+
+    return this.http.put<Distrito>(this.Url + "/distritos", distrito);
   }
   listarDistritoId(id: number) {
     return this.http.get<Response>(this.Url + "/distritos/" + id);

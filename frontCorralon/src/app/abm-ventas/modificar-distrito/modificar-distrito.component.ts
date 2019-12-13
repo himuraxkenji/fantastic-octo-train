@@ -57,20 +57,9 @@ export class ModificarDistritoComponent implements OnInit {
   }
   // -----------------
   actualizarDistrito(distrito: Distrito) {
-    // this.distrito.idDepartamento = 1;
-    //
-    this.departamentos.forEach(departamento => {
-      if (departamento.nombre === this.nombreDepto) {
-        this.distrito.idDepartamento = departamento.id;
-      }
-});
 
-    for (var i = distrito.idDepartamento; i < this.departamentos.length; i++) {
-      if (this.departamentos[i] === this.departamentoSelected) {
-        this.distrito.idDepartamento = this.departamentos[i].id;
-      }
-    }
-    this.service.actualizarDistrito(this.distrito).subscribe(data => {
+    distrito.idDepartamento = distrito.departamentoByFkdepartamentosid.id;
+    this.service.actualizarDistrito(distrito).subscribe(data => {
       this.distrito = data;
       alert("se actualizo el distrto " + distrito.nombre);
       window.history.back();

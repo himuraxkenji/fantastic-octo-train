@@ -44,7 +44,7 @@ export class AgregarDistritoComponent implements OnInit {
         this.distrito.idDepartamento = this.departamentos[i].id;
       }
     }
-    this.distrito.habilitado = 1;
+    this.distrito.habilitacion = 1;
     this.service.guardarDistrito(this.distrito).subscribe(data => {
       alert("se guardo un nuevo distrto");
       window.history.back();

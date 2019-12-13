@@ -98,15 +98,16 @@ public class DistritoService {
         if(actualizar == null)
             throw new DistritoErrorToUpdateException();
 
+        actualizar.setId(distritoDTO.getId());
         actualizar.setNombre(distritoDTO.getNombre());
         actualizar.setAbreviatura(distritoDTO.getAbreviatura());
         actualizar.setNombre(distritoDTO.getNombre());
         actualizar.setFechaactualizacion(LocalDate.now());
         actualizar.setDepartamentoByFkdepartamentosid(departamentoRepository.findById(distritoDTO.getIdDepartamento()).get());
-
+        distritoRepository.save(actualizar);
         response.setCode(200);
         response.setMsg("actualizado");
-        response.setData(distritoRepository.save(actualizar));
+        response.setData(actualizar);
 
         return response;
     }

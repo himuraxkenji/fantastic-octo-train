@@ -1,5 +1,7 @@
 package com.undec.corralon.DTO;
 
+import com.undec.corralon.modelo.Departamento;
+
 public class DistritoDTO {
 
     private Integer id;
@@ -7,6 +9,7 @@ public class DistritoDTO {
     private String abreviatura;
     private Integer habilitacion;
     private Integer idDepartamento;
+    private Departamento departamentoByFkdepartamentosid;
 
     public DistritoDTO() {
     }
