@@ -1,3 +1,4 @@
+import { Marca } from './../modelo/Marca';
 import { Banco } from "./../modelo/Banco";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -7,7 +8,9 @@ import { Response } from "../modelo/Response";
   providedIn: "root"
 })
 export class AbmComprasService {
-  Url = "//localhost:8081";
+// DE MANERA LOCAL
+  // Url = "//localhost:8081";
+  Url ="http://192.168.1.11:8081";
 
   constructor(private http: HttpClient) {}
 
@@ -27,4 +30,21 @@ export class AbmComprasService {
   desabilitarBanco(id: number) {
     return this.http.delete(this.Url + "/bancos/" + id);
   }
+
+  //SERVICE DE MARCAS
+  listarMarcaTodos() {
+    return this.http.get<Response>(this.Url+ "/marcas");
+    // return this.http.get<Response>('../../assets/mocks/marca.json');
+  }
+  guardarMarca(marca: Marca) {
+    return this.http.post<Marca>(this.Url + "/marcas/", marca);
+    // return this.http.post<Response>('../../assets/mocks/marca.json', marca.);
+  }
+  actualizarMarca(marca: Marca) {
+    return this.http.put<Marca>(this.Url + "/marcas/", marca);
+  }
+  listarMarcaId(id: number) {
+    return this.http.get<Response>(this.Url + "/marcas/" + id);
+  }
+
 }

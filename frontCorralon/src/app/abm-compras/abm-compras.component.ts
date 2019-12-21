@@ -14,8 +14,10 @@ export class AbmComprasComponent implements OnInit {
     if (
       this.router.url.includes("/listar-banco") ||
       this.router.url.includes("/listar-marca") ||
-      this.router.url.includes("/agregar-banco")||
-      this.router.url.includes("modificar-banco")
+      this.router.url.includes("/agregar-banco") ||
+      this.router.url.includes("/agregar-marca") ||
+      this.router.url.includes("/modificar-marca") ||
+      this.router.url.includes("/modificar-banco")
     )
       return false;
     else return true;

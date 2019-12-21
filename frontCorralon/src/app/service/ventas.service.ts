@@ -8,7 +8,8 @@ import { Response } from "../modelo/Response";
   providedIn: "root"
 })
 export class VentasService {
-  Url = "//localhost:8081";
+  // Url = "//localhost:8081";
+  Url ="http://192.168.1.11:8081";
 
   constructor(private http: HttpClient) {}
 

@@ -9,9 +9,12 @@ import { Router } from "@angular/router";
 export class VentasComponent {
   constructor(private router: Router) {}
   validaMenu() {
-    if (this.router.url.includes("/listar-cliente")||
-    this.router.url.includes("/agregar-cliente")||
-    this.router.url.includes("/modificar-cliente")) return false;
+    if (
+      this.router.url.includes("/listar-cliente") ||
+      this.router.url.includes("/agregar-cliente") ||
+      this.router.url.includes("/modificar-cliente")
+    )
+      return false;
     else return true;
   }
 }
