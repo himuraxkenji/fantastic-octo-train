@@ -1,3 +1,4 @@
+import { FormaPago } from './../modelo/FormaPago';
 import { Marca } from './../modelo/Marca';
 import { Banco } from "./../modelo/Banco";
 import { HttpClient } from "@angular/common/http";
@@ -10,7 +11,7 @@ import { Response } from "../modelo/Response";
 export class AbmComprasService {
 // DE MANERA LOCAL
   // Url = "//localhost:8081";
-  Url ="http://192.168.1.11:8081";
+  Url ="http://192.168.1.14:8081";
 
   constructor(private http: HttpClient) {}
 
@@ -46,5 +47,19 @@ export class AbmComprasService {
   listarMarcaId(id: number) {
     return this.http.get<Response>(this.Url + "/marcas/" + id);
   }
+
+ //SERVICE DE FORMA DE PAGO
+ listarFormaPagoTodos() {
+  return this.http.get<Response>(this.Url+ "/forma-pago");
+}
+guardarFormaPago(formaPago: FormaPago) {
+  return this.http.post<FormaPago>(this.Url + "/forma-pago/", formaPago);
+}
+actualizarFormaPago(formaPago: FormaPago) {
+  return this.http.put<FormaPago>(this.Url + "/forma-pago/", formaPago);
+}
+listarformaPagoId(id: number) {
+  return this.http.get<Response>(this.Url + "/forma-pago/" + id);
+}
 
 }
