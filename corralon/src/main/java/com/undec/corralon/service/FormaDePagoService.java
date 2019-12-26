@@ -1,17 +1,14 @@
 package com.undec.corralon.service;
 
 import com.undec.corralon.DTO.Response;
-import com.undec.corralon.excepciones.distrito.DistritoErrorToUpdateException;
-import com.undec.corralon.excepciones.distrito.DistritoListNotFoundException;
 import com.undec.corralon.excepciones.formaDePago.FormaDePagoErrorToSaveException;
 import com.undec.corralon.excepciones.formaDePago.FormaDePagoErrorToUpdateException;
-import com.undec.corralon.modelo.Distrito;
 import com.undec.corralon.modelo.FormaPago;
 import com.undec.corralon.repository.FormaDePagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,9 +17,9 @@ public class FormaDePagoService {
     @Autowired
     FormaDePagoRepository formaDePagoRepository;
 
-    public Response obtenerFormasDePago(){
+    public Response obtenerTodasLasFormasDePago(){
         Response response = new Response();
-        List<FormaPago> formasDePago = this.formaDePagoRepository.findByHabilitacionEquals(1);
+        List<FormaPago> formasDePago = this.formaDePagoRepository.findAll();
 
         response.setCode(200);
         response.setMsg("Formas de pago");
@@ -45,6 +42,7 @@ public class FormaDePagoService {
     public Response agregarFormaDePago(FormaPago formaPago) throws Exception{
 
         Response response = new Response();
+        formaPago.setFechaCreacion(new Date());
         formaPago.setHabilitacion(1);
 
         formaPago = this.formaDePagoRepository.save(formaPago);
@@ -63,9 +61,7 @@ public class FormaDePagoService {
     public Response actualizarFormaDePago(FormaPago formaPago) throws Exception {
 
         Response response = new Response();
-
         FormaPago formaPagoToUpdate = this.formaDePagoRepository.findById(formaPago.getId()).get();
-
         if(formaPago == null){
             throw new FormaDePagoErrorToUpdateException();
         }
@@ -75,8 +71,9 @@ public class FormaDePagoService {
         formaPagoToUpdate.setDescripcion(formaPago.getDescripcion());
         formaPagoToUpdate.setAumento(formaPago.getAumento());
         formaPagoToUpdate.setHabilitacion(formaPago.getHabilitacion());
+        formaPagoToUpdate.setFechaModificacion(new Date());
 
-        formaPagoToUpdate = this.formaDePagoRepository.save(formaPago);
+        formaPagoToUpdate = this.formaDePagoRepository.save(formaPagoToUpdate);
 
         response.setMsg("Guardado");
         response.setCode(200);
@@ -93,7 +90,7 @@ public class FormaDePagoService {
             throw new FormaDePagoErrorToUpdateException();
 
         formaPago.setHabilitacion(0);
-
+        formaPago.setFechaBaja(new Date());
         response.setCode(200);
         response.setMsg("Dado de baja");
         response.setData(formaDePagoRepository.save(formaPago));

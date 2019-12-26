@@ -21,7 +21,7 @@ public class MarcaController {
 
     @GetMapping
     public ResponseEntity<Response> obtenerMarcas() throws MarcaNotFoundException {
-        Response response = this.marcaService.obtenerMarcas();
+        Response response = this.marcaService.obtenerTodasLasMarcas();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -39,7 +39,13 @@ public class MarcaController {
 
     @PutMapping
     public ResponseEntity<Response> actualizarMarca(@Valid @RequestBody Marca marca) throws MarcaNotFoundException {
-        Response response = this.marcaService.guardarMarca(marca);
+        Response response = this.marcaService.actualizarMarca(marca);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> darBajaMarca(@PathVariable("id") Integer id) throws MarcaNotFoundException {
+        Response response = this.marcaService.eliminarMarca(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

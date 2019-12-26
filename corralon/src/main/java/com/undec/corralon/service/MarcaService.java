@@ -7,6 +7,7 @@ import com.undec.corralon.repository.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,7 +25,7 @@ public class MarcaService {
         return response;
     }
 
-    public Response obtenerMarcas() throws MarcaNotFoundException {
+    public Response obtenerTodasLasMarcas() throws MarcaNotFoundException {
         Response response = new Response();
         List<Marca> marcas = this.marcaRepository.findAll();
         response.setCode(200);
@@ -35,6 +36,8 @@ public class MarcaService {
 
     public Response guardarMarca(Marca marca) throws MarcaNotFoundException {
         Response response = new Response();
+        marca.setFechaCreacion(new Date());
+        marca.setHabilitacion(1);
         marca = this.marcaRepository.save(marca);
 
         if(marca == null)
@@ -47,19 +50,34 @@ public class MarcaService {
         return response;
     }
 
-    public Response actualizarBanco(Marca marca) throws MarcaNotFoundException {
+    public Response actualizarMarca(Marca marca) throws MarcaNotFoundException {
         Response response = new Response();
         Marca marcaToUpdate = marcaRepository.findById(marca.getId()).get();
 
         marcaToUpdate.setNombre(marca.getNombre());
         marcaToUpdate.setAbreviatura(marca.getAbreviatura());
-
+        marcaToUpdate.setFechaModificacion(new Date());
         if (marcaToUpdate == null){
             throw new MarcaNotFoundException();
         }
         response.setCode(200);
         response.setMsg("Marca actualizada");
         response.setData(marcaRepository.save(marcaToUpdate));
+        return response;
+    }
+
+    public Response eliminarMarca(Integer id) throws MarcaNotFoundException {
+        Response response = new Response();
+        Marca marcaToDelete = marcaRepository.findById(id).get();
+
+        marcaToDelete.setHabilitacion(0);
+        marcaToDelete.setFechaBaja(new Date());
+        if (marcaToDelete == null){
+            throw new MarcaNotFoundException();
+        }
+        response.setCode(200);
+        response.setMsg("Baja de Marca");
+        response.setData(marcaRepository.save(marcaToDelete));
         return response;
     }
 

@@ -18,7 +18,7 @@ public class FormaDePagoController {
 
     @GetMapping
     public ResponseEntity<Response> obtenerFormasDePago(){
-        Response response = formaDePagoService.obtenerFormasDePago();
+        Response response = formaDePagoService.obtenerTodasLasFormasDePago();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
