@@ -46,22 +46,22 @@
                 </table>
             </div>
         </div>
-
         <div class=" card-body p-0 " style="width:1100px; height:400px; overflow: auto; ">
             <table class="table table-responsive-sm ">
                 <thead class="thead-dark ">
+
                     <tr class="text-center ">
-                        <th scope="col ">ID</th>
                         <th scope="col ">NOMBRE</th>
                         <th scope="col ">ABREVIATURA</th>
+                        <th scope="col ">HABILITACION</th>
                         <th scope="col*2 ">OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody *ngIf="marcas !=null ">
                     <tr *ngFor="let marca of marcaFilter " class="text-center ">
-                        <td>{{marca.id}}</td>
                         <td>{{marca.nombre}}</td>
                         <td>{{marca.abreviatura}}</td>
+                        <td>{{marca.habilitacion}}</td>
 
                         <td>
                             <button class="btn btn-default " title="Modificar " (click)="modificarMarca(marca) ">
@@ -70,7 +70,7 @@
                              </button>
 
 
-                            <button class="btn btn-default " title="Eliminar " style="margin-left: 10px; " (click)="deshabilitarBanco(banco) ">
+                            <button class="btn btn-default " title="Eliminar " style="margin-left: 10px; " (click)="deshabilitarMarca(marca) ">
                             <svg xmlns="http://www.w3.org/2000/svg " width="12 " height="16 " viewBox="0 0 12 16 "><path fill-rule="evenodd " d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48
           1.48L7.48 8z "/></svg>
                             </button>

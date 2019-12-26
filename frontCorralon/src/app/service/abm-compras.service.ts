@@ -1,3 +1,4 @@
+import { UnidadMedida } from './../modelo/UnidadMedida';
 import { FormaPago } from './../modelo/FormaPago';
 import { Marca } from './../modelo/Marca';
 import { Banco } from "./../modelo/Banco";
@@ -11,7 +12,7 @@ import { Response } from "../modelo/Response";
 export class AbmComprasService {
 // DE MANERA LOCAL
   // Url = "//localhost:8081";
-  Url ="http://192.168.1.14:8081";
+  Url ="http://192.168.1.15:8081";
 
   constructor(private http: HttpClient) {}
 
@@ -47,6 +48,9 @@ export class AbmComprasService {
   listarMarcaId(id: number) {
     return this.http.get<Response>(this.Url + "/marcas/" + id);
   }
+  desabilitarMarca(id: number) {
+    return this.http.delete(this.Url + "/marcas/" + id);
+  }
 
  //SERVICE DE FORMA DE PAGO
  listarFormaPagoTodos() {
@@ -60,6 +64,25 @@ actualizarFormaPago(formaPago: FormaPago) {
 }
 listarformaPagoId(id: number) {
   return this.http.get<Response>(this.Url + "/forma-pago/" + id);
+}
+desabilitarFormaPago(id: number) {
+  return this.http.delete(this.Url + "/forma-pago/" + id);
+}
+//SERVICE DE UNIDAD DE MEDIDA
+listarUnidadMedidaTodos() {
+  return this.http.get<Response>(this.Url+ "/unidad-medida");
+}
+guardarUnidadMedida(unidadMedida: UnidadMedida) {
+  return this.http.post<UnidadMedida>(this.Url + "/unidad-medida/", unidadMedida);
+}
+actualizarUnidadMedida(unidadMedida: UnidadMedida) {
+  return this.http.put<UnidadMedida>(this.Url + "/unidad-medida/", unidadMedida);
+}
+listarUnidadMedidaId(id: number) {
+  return this.http.get<Response>(this.Url + "/unidad-medida/" + id);
+}
+desabilitarUnidadMedida(id: number) {
+  return this.http.delete(this.Url + "/unidad-medida/" + id);
 }
 
 }

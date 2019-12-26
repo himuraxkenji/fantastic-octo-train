@@ -14,6 +14,10 @@ import { AgregarMarcaComponent } from "./agregar-marca/agregar-marca.component";
 import { ModificarMarcaComponent } from "./modificar-marca/modificar-marca.component";
 import { ListarFormaPagoComponent } from './listar-forma-pago/listar-forma-pago.component';
 import { AgregarFormaPagoComponent } from './agregar-forma-pago/agregar-forma-pago.component';
+import { ModificarFormaPagoComponent } from './modificar-forma-pago/modificar-forma-pago.component';
+import { ListarUnidadMedidaComponent } from './listar-unidad-medida/listar-unidad-medida.component';
+import { AgregarUnidadMedidaComponent } from './agregar-unidad-medida/agregar-unidad-medida.component';
+import { ModificarUnidadMedidaComponent } from './modificar-unidad-medida/modificar-unidad-medida.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { AgregarFormaPagoComponent } from './agregar-forma-pago/agregar-forma-pa
     AgregarMarcaComponent,
     ModificarMarcaComponent,
     ListarFormaPagoComponent,
-    AgregarFormaPagoComponent
+    AgregarFormaPagoComponent,
+    ModificarFormaPagoComponent,
+    ListarUnidadMedidaComponent,
+    AgregarUnidadMedidaComponent,
+    ModificarUnidadMedidaComponent
   ],
   imports: [CommonModule, FormsModule, AbmComprasRoutingModule]
 })

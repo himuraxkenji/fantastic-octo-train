@@ -1,39 +1,40 @@
-import { Marca } from './../../modelo/Marca';
 import { Router } from '@angular/router';
 import { AbmComprasService } from './../../service/abm-compras.service';
-import { Component, OnInit } from "@angular/core";
+import { UnidadMedida } from './../../modelo/UnidadMedida';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: "app-listar-marca",
-  templateUrl: "./listar-marca.component.html",
-  styleUrls: ["./listar-marca.component.css"]
+  selector: 'app-listar-unidad-medida',
+  templateUrl: './listar-unidad-medida.component.html',
+  styleUrls: ['./listar-unidad-medida.component.css']
 })
-export class ListarMarcaComponent implements OnInit {
-  marca: Marca = null;
-  marcas: Marca[] = null;
-  marcaFilter: Marca[] = null;
+export class ListarUnidadMedidaComponent implements OnInit {
+
+  unidadMedida: UnidadMedida = null;
+  unidadMedidas: UnidadMedida[] = null;
+  unidadMedidaFilter: UnidadMedida[] = null;
   busquedaNombre: string = null;
   busqueda: string = null;
 
   constructor(private serviceAbmCompra: AbmComprasService, private router: Router) {}
 
   ngOnInit() {
-    this.serviceAbmCompra.listarMarcaTodos().subscribe(data => {
+    this.serviceAbmCompra.listarUnidadMedidaTodos().subscribe(data => {
       console.log("prueba");
 
-      this.marcas = data.data;
-      this.marcaFilter = data.data;
+      this.unidadMedidas = data.data;
+      this.unidadMedidaFilter = data.data;
     });
   }
-  modificarMarca(marca: Marca) {
-    this.router.navigate(["abm-compras/modificar-marca/" + marca.id]);
+  modificarUnidadMedida(unidadMedida: UnidadMedida) {
+    this.router.navigate(["abm-compras/modificar-unidad-medida/" + unidadMedida.id]);
   }
-  deshabilitarMarca(marca: Marca) {
+  deshabilitarUnidadMedida(unidadMedida: UnidadMedida) {
     let resultado: boolean;
     resultado = confirm("¿DESEA DESHABILITAR ESTA MARCA?");
     if (resultado === true) {
       this.serviceAbmCompra
-        .desabilitarMarca(marca.id)
+        .desabilitarUnidadMedida(unidadMedida.id)
         .subscribe(data => {
           window.location.reload();
         });
@@ -41,19 +42,19 @@ export class ListarMarcaComponent implements OnInit {
   }
   filtrarBancoNombre(event: any) {
     if (this.busqueda !== null) {
-      this.marcaFilter = this.marcas.filter(item => {
+      this.unidadMedidaFilter = this.unidadMedidas.filter(item => {
         if (item.nombre.toUpperCase().includes(this.busqueda.toUpperCase())) {
           return item;
         }
       });
     } else {
-      this.marcaFilter = this.marcas;
+      this.unidadMedidaFilter = this.unidadMedidas;
     }
   }
 
   filtrarBancoAbreviatura(event: any) {
     if (this.busquedaNombre !== null) {
-      this.marcaFilter = this.marcas.filter(item => {
+      this.unidadMedidaFilter = this.unidadMedidas.filter(item => {
         if (
           item.abreviatura
             .toUpperCase()
@@ -63,7 +64,7 @@ export class ListarMarcaComponent implements OnInit {
         }
       });
     } else {
-      this.marcaFilter = this.marcas;
+      this.unidadMedidaFilter = this.unidadMedidas;
     }
   }
   backPage() {

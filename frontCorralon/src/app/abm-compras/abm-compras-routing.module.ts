@@ -1,3 +1,8 @@
+import { ModificarUnidadMedidaComponent } from './modificar-unidad-medida/modificar-unidad-medida.component';
+import { AgregarUnidadMedidaComponent } from './agregar-unidad-medida/agregar-unidad-medida.component';
+import { AgregarTipoDireccionComponent } from './../abm-ventas/agregar-tipo-direccion/agregar-tipo-direccion.component';
+import { ListarUnidadMedidaComponent } from './listar-unidad-medida/listar-unidad-medida.component';
+import { ModificarFormaPagoComponent } from './modificar-forma-pago/modificar-forma-pago.component';
 import { AgregarFormaPagoComponent } from './agregar-forma-pago/agregar-forma-pago.component';
 import { ListarFormaPagoComponent } from './listar-forma-pago/listar-forma-pago.component';
 import { ModificarMarcaComponent } from "./modificar-marca/modificar-marca.component";
@@ -18,10 +23,14 @@ const routes: Routes = [
       { path: "agregar-banco", component: AgregarBancoComponent },
       { path: "agregar-marca", component: AgregarMarcaComponent },
       { path: "agregar-forma-pago", component: AgregarFormaPagoComponent },
+      { path: "agregar-unidad-medida", component: AgregarUnidadMedidaComponent },
       { path: "listar-banco", component: ListarBancoComponent },
       { path: "listar-marca", component: ListarMarcaComponent },
       { path: "listar-forma-pago", component: ListarFormaPagoComponent },
+      { path: "listar-unidad-medida", component: ListarUnidadMedidaComponent },
       { path: "modificar-banco/:id", component: ModificarBancoComponent },
+      { path: "modificar-forma-pago/:id", component: ModificarFormaPagoComponent },
+      { path: "modificar-unidad-medida/:id", component: ModificarUnidadMedidaComponent },
       { path: "modificar-marca/:id", component: ModificarMarcaComponent }
     ]
   }

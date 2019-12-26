@@ -24,7 +24,7 @@ export class AgregarFormaPagoComponent implements OnInit {
 
     this.service.guardarFormaPago(this.formaPago).subscribe(data => {
       this.formaPago = data;
-      alert("se guardo un nuevo forma de Pago");
+      alert("SE GENERO UNA NUEVA FORMA DE PAGO");
       window.history.back();
     });
   }

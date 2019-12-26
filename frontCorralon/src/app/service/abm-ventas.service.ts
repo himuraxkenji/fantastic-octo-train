@@ -9,7 +9,7 @@ import { Response } from "../modelo/Response";
 })
 export class AbmVentasService {
   // Url = "//localhost:8081";
-  Url ="http://192.168.1.11:8081";
+  Url ="http://192.168.1.15:8081";
 
   constructor(private http: HttpClient) {}
 

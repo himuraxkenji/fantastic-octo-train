@@ -54,17 +54,17 @@
             <table class="table table-responsive-sm ">
                 <thead class="thead-dark ">
                     <tr class="text-center ">
-                        <th scope="col ">ID</th>
                         <th scope="col ">NOMBRE</th>
                         <th scope="col ">ABREVIATURA</th>
+                        <th scope="col ">HABILITACION</th>
                         <th scope="col*2 ">OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody *ngIf="bancos !=null ">
                     <tr *ngFor="let banco of bancoFilter " class="text-center ">
-                        <td>{{banco.id}}</td>
                         <td>{{banco.nombre}}</td>
                         <td>{{banco.abreviatura}}</td>
+                        <td>{{banco.habilitado}}</td>
 
                         <td>
                             <button class="btn btn-default " title="Modificar " (click)="modificarBanco(banco) ">
