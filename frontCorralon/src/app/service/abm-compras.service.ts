@@ -1,3 +1,4 @@
+import { Rubro } from './../modelo/Rubro';
 import { UnidadMedida } from './../modelo/UnidadMedida';
 import { FormaPago } from './../modelo/FormaPago';
 import { Marca } from './../modelo/Marca';
@@ -12,7 +13,7 @@ import { Response } from "../modelo/Response";
 export class AbmComprasService {
 // DE MANERA LOCAL
   // Url = "//localhost:8081";
-  Url ="http://192.168.1.15:8081";
+  Url ="http://192.168.1.100:8081";
 
   constructor(private http: HttpClient) {}
 
@@ -84,5 +85,20 @@ listarUnidadMedidaId(id: number) {
 desabilitarUnidadMedida(id: number) {
   return this.http.delete(this.Url + "/unidad-medida/" + id);
 }
-
+//SERVICE DE RUBROS
+listarRubrosTodos() {
+  return this.http.get<Response>(this.Url+ "/rubro");
+}
+guardarRubro(rubro: Rubro) {
+  return this.http.post<Rubro>(this.Url + "/rubro/", rubro);
+}
+actualizarRubro(rubro: Rubro) {
+  return this.http.put<Rubro>(this.Url + "/rubro/", rubro);
+}
+listarRubroId(id: number) {
+  return this.http.get<Response>(this.Url + "/rubro/" + id);
+}
+desabilitarRubro(id: number) {
+  return this.http.delete(this.Url + "/rubro/" + id);
+}
 }
