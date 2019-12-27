@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Objects;
@@ -35,6 +36,7 @@ public class Cliente {
 
     @Basic
     @Column(name = "nombre")
+    @NotBlank
     public String getNombre() {
         return nombre;
     }
