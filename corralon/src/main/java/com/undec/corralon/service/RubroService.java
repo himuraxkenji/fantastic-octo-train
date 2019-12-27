@@ -66,6 +66,9 @@ public class RubroService {
         rubroToUpdate.setNombre(rubro.getNombre());
         rubroToUpdate.setDescripcion(rubro.getDescripcion());
         rubroToUpdate.setFechaModificacion(new Date());
+
+        rubroToUpdate = rubroRepository.save(rubroToUpdate);
+
         response.setData(rubroToUpdate);
         response.setCode(200);
         response.setMsg("Actualizado");
