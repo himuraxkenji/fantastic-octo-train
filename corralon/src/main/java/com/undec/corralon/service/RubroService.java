@@ -27,6 +27,17 @@ public class RubroService {
         return response;
     }
 
+    public Response obtenerTodosLosRubrosHabilitados(){
+        Response response = new Response();
+        List<Rubro> rubros =  this.rubroRepository.findByHabilitacionEquals(1);
+
+        response.setData(rubros);
+        response.setCode(200);
+        response.setMsg("Rubros Habilitados");
+
+        return response;
+    }
+
     public Response obtenerPorId(Integer id) throws RubroException {
         Response response = new Response();
 

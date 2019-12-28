@@ -30,6 +30,12 @@ public class RubroController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/habilitados")
+    public ResponseEntity<Response> obtenerRubrosHabilitados() throws RubroException {
+        Response response = rubroService.obtenerTodosLosRubrosHabilitados();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping()
     public ResponseEntity<Response> crearRubro(@RequestBody Rubro rubro) throws RubroException {
         Response response = rubroService.crearRubro(rubro);
