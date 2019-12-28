@@ -21,6 +21,9 @@ import { ModificarUnidadMedidaComponent } from './modificar-unidad-medida/modifi
 import { ListarRubroComponent } from './listar-rubro/listar-rubro.component';
 import { AgregarRubroComponent } from './agregar-rubro/agregar-rubro.component';
 import { ModificarRubroComponent } from './modificar-rubro/modificar-rubro.component';
+import { ListarSubRubroComponent } from './listar-sub-rubro/listar-sub-rubro.component';
+import { AgregarSubRubroComponent } from './agregar-sub-rubro/agregar-sub-rubro.component';
+import { ModificarSubRubroComponent } from './modificar-sub-rubro/modificar-sub-rubro.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { ModificarRubroComponent } from './modificar-rubro/modificar-rubro.compo
     ModificarUnidadMedidaComponent,
     ListarRubroComponent,
     AgregarRubroComponent,
-    ModificarRubroComponent
+    ModificarRubroComponent,
+    ListarSubRubroComponent,
+    AgregarSubRubroComponent,
+    ModificarSubRubroComponent
   ],
   imports: [CommonModule, FormsModule, AbmComprasRoutingModule]
 })

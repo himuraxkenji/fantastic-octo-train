@@ -9,7 +9,7 @@ import { Response } from "../modelo/Response";
 })
 export class AbmVentasService {
   // Url = "//localhost:8081";
-  Url ="http://192.168.1.100:8081";
+  Url = "http://192.168.1.100:8081";
 
   constructor(private http: HttpClient) {}
 
@@ -51,7 +51,7 @@ export class AbmVentasService {
     return this.http.post<Distrito>(this.Url + "/distritos/", distrito);
   }
   actualizarDistrito(distrito: Distrito) {
-    console.log('Actualizar');
+    console.log("Actualizar");
 
     console.log(distrito);
 

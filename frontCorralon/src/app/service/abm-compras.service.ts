@@ -1,3 +1,5 @@
+import { SubRubroDTO } from './../modelo/SubRubroDTO';
+import { SubRubro } from './../modelo/SubRubro';
 import { Rubro } from './../modelo/Rubro';
 import { UnidadMedida } from './../modelo/UnidadMedida';
 import { FormaPago } from './../modelo/FormaPago';
@@ -89,6 +91,9 @@ desabilitarUnidadMedida(id: number) {
 listarRubrosTodos() {
   return this.http.get<Response>(this.Url+ "/rubro");
 }
+listarRubrosHabilitados() {
+  return this.http.get<Response>(this.Url+ "/rubro/habilitados");
+}
 guardarRubro(rubro: Rubro) {
   return this.http.post<Rubro>(this.Url + "/rubro/", rubro);
 }
@@ -100,5 +105,21 @@ listarRubroId(id: number) {
 }
 desabilitarRubro(id: number) {
   return this.http.delete(this.Url + "/rubro/" + id);
+}
+//SERVICE DE SUB-RUBROS
+listarSubRubrosTodos() {
+  return this.http.get<Response>(this.Url+ "/sub-rubros");
+}
+guardarSubRubro(subRubroDTO: SubRubroDTO) {
+  return this.http.post<SubRubroDTO>(this.Url + "/sub-rubros/", subRubroDTO);
+}
+actualizarSubRubro(subRubroDTO: SubRubroDTO) {
+  return this.http.put<SubRubroDTO>(this.Url + "/sub-rubros/", subRubroDTO);
+}
+listarSubRubroId(id: number) {
+  return this.http.get<Response>(this.Url + "/sub-rubros/" + id);
+}
+desabilitarSubRubro(id: number) {
+  return this.http.delete(this.Url + "/sub-rubros/" + id);
 }
 }
