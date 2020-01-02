@@ -1,7 +1,5 @@
+import { AgregarArticuloComponent } from './agregar-articulo/agregar-articulo.component';
 import { AgregarProveedorComponent } from './agregar-proveedor/agregar-proveedor.component';
-// import { ListarSubrubroComponent } from './listar-subrubro/listar-subrubro.component';
-// import { ListarRubroComponent } from './listar-rubro/listar-rubro.component';
-// import { ListarPreciosComponent } from './listar-precios/listar-precios.component';
 import { ListarArticulosComponent } from './listar-articulos/listar-articulos.component';
 import { ListarProveedorComponent } from './listar-proveedor/listar-proveedor.component';
 import { ComprasComponent } from './compras.component';
@@ -14,7 +12,8 @@ const routes: Routes = [
   children:[
     {path: 'listar-proveedor', component: ListarProveedorComponent},
     {path: 'listar-articulos', component: ListarArticulosComponent},
-    {path: 'agregar-proveedor', component: AgregarProveedorComponent}
+    {path: 'agregar-proveedor', component: AgregarProveedorComponent},
+    {path: 'agregar-articulo', component: AgregarArticuloComponent}
     // {path: 'listar-precios', component: ListarPreciosComponent},
     // {path: 'listar-rubros', component: ListarRubroComponent},
     // {path: 'listar-subrubros', component: ListarSubrubroComponent}

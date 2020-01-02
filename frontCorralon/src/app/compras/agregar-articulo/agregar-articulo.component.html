@@ -1,0 +1,92 @@
+<div class="container" ng-controller="sub Rubros">
+    <div class="card m-2">
+        <h1 class="text-center">CARGA DE ARTICULOS</h1>
+        <div class="card-body">
+            <table class="table col-md-6">
+                <thead class="thead-dark was-validated">
+                    <tr>
+                        <td>
+                            <label class="btn btn-default " for="nombre"> CODIGO</label>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="articuloDTO.codigoArt" type="text " class="form-control" placeholder="ingrese codigo" required="true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="btn btn-default " for="nombre"> NOMBRE</label>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="articuloDTO.nombre" type="text " class="form-control" placeholder="ingrese nombre" required="true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="abreviatura"> ABREVIATURA</label>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="articuloDTO.abreviatura" type="text " class="form-control " placeholder="ingrese abreviatura " required="true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="stock min"> STOCK MIN</label>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="articuloDTO.stockMin" type="text " class="form-control " placeholder="ingrese abreviatura " required="true">
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="stock min"> STOCK MAX</label>
+                        </td>
+                        <td>
+                            <input [(ngModel)]="articuloDTO.stockMax" type="text " class="form-control " placeholder="ingrese abreviatura " required="true">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="unidadMedida"> UNIDAD MEDIDA</label>
+                        </td>
+                        <td>
+                            <select (change)="listarUnidadMedida($event.target.value)" [(ngModel)]="nombreUnidadMedida" class="form-control">
+                          <option *ngFor=" let unidadMedida of unidadMedidas">
+                          {{unidadMedida.nombre}}
+                        </option>
+                      </select>
+
+                        </td>
+                        <button class="btn btn-warning " [routerLink]="[ '/abm-compras/agregar-unidad-medida'] " routerLinkActive="router-link-active " style="margin-left: 50px; ">
+                          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                            <title>UNIDAD DE MEDIDA</title>
+                            <path d="M14.249 0.438l-13.811 13.813c-0.584 0.584-0.584 1.538 0.002 2.124l3.185 3.187c0.584 0.584 1.541 0.586 2.124 0.002l13.813-13.813c0.584-0.585 0.584-1.541 0-2.125l-3.186-3.188c-0.587-0.586-1.542-0.583-2.127 0zM3.929 15.312l-0.759 0.759-1.896-1.897 0.759-0.759 1.896 1.897zM6.965 15.312l-0.759 0.759-3.415-3.415 0.759-0.76 3.415 3.416zM6.965 12.276l-0.759 0.759-1.898-1.896 0.76-0.76 1.897 1.897zM8.483 10.758l-0.759 0.759-1.896-1.896 0.759-0.76 1.896 1.897zM11.518 10.758l-0.759 0.759-3.414-3.414 0.759-0.759 3.414 3.414zM11.518 7.723l-0.759 0.759-1.896-1.896 0.759-0.759 1.896 1.896zM13.036 6.206l-0.759 0.759-1.897-1.897 0.759-0.759 1.897 1.897zM16.072 6.206l-0.76 0.759-3.414-3.415 0.759-0.76 3.415 3.416zM16.071 3.171l-0.759 0.759-1.896-1.898 0.759-0.758 1.896 1.897z"></path>
+                            </svg>
+                       </button>
+                    </tr>
+                    <!-- <tr>
+                        <td>
+                            <label for="rubro"> RUBRO</label>
+                        </td>
+                        <td>
+                            <select (change)="listarRubros($event.target.value)" [(ngModel)]="nombreRubro" class="form-control">
+                          <option *ngFor=" let rubro of rubros">
+                          {{rubro.nombre}}
+                        </option>
+                      </select>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <td>
+                            <button (click)="nuevoArticulo(articuloDTO)" class="btn btn-warning">ACEPTAR</button>
+                        </td>
+                        <td>
+                            <button (click)="volverAtras() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
+                        </td>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+</div>
