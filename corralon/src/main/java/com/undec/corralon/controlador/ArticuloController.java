@@ -2,9 +2,7 @@ package com.undec.corralon.controlador;
 
 import com.undec.corralon.DTO.ArticuloDTO;
 import com.undec.corralon.DTO.Response;
-import com.undec.corralon.excepciones.articulo.ArticuloErrorToSaveException;
 import com.undec.corralon.excepciones.articulo.ArticuloException;
-import com.undec.corralon.modelo.Articulo;
 import com.undec.corralon.service.ArticuloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -46,6 +44,12 @@ public class ArticuloController {
     @PutMapping
     public ResponseEntity<Response> actualizarArticulo(@RequestBody ArticuloDTO articuloDTO) throws ArticuloException {
         Response response = articuloService.actualizarArticulo(articuloDTO);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response> bajaArticulo(@PathVariable("id") Integer id) throws ArticuloException {
+        Response response = articuloService.darBajaArticulo(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

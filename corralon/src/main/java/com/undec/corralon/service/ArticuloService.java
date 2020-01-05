@@ -2,6 +2,7 @@ package com.undec.corralon.service;
 
 import com.undec.corralon.DTO.ArticuloDTO;
 import com.undec.corralon.DTO.Response;
+import com.undec.corralon.excepciones.articulo.ArticuloErrorToDeleteException;
 import com.undec.corralon.excepciones.articulo.ArticuloErrorToSaveException;
 import com.undec.corralon.excepciones.articulo.ArticuloErrorToUpdateException;
 import com.undec.corralon.excepciones.articulo.ArticuloException;
@@ -107,7 +108,23 @@ public class ArticuloService {
         return response;
     }
 
+    public Response darBajaArticulo(Integer id) throws ArticuloErrorToDeleteException {
+        Response response = new Response();
+        Articulo articulo = articuloRepository.findById(id).get();
 
+        if(articulo == null)
+            throw new ArticuloErrorToDeleteException();
+
+        articulo.setFechaBaja(new Date());
+        articulo.setHabilitacion(0);
+        articulo = articuloRepository.save(articulo);
+
+        response.setCode(200);
+        response.setMsg("Articulo dado de baja");
+        response.setData(articulo);
+
+        return response;
+    }
 
     private Articulo dtoToEntity(ArticuloDTO articuloDTO) {
         Articulo articulo = new Articulo();
@@ -122,12 +139,23 @@ public class ArticuloService {
         articulo.setCodigoArt(articuloDTO.getCodigoArt());
         articulo.setStockMin(articuloDTO.getStockMin());
         articulo.setStockMax(articuloDTO.getStockMax());
-        articulo.setProveedorId(proveedorRepository.findById(articuloDTO.getProveedorId()).get());
-        articulo.setUnidadMedidaId(unidadMedidaRepository.findById(articuloDTO.getUnidadMedidaId()).get());
-        articulo.setMarcaId(marcaRepository.findById(articuloDTO.getMarcaId()).get());
-        articulo.setRubroId(rubroRepository.findById(articuloDTO.getRubroId()).get());
-        articulo.setSubRubroId(subRubroRepository.findById(articuloDTO.getSubRubroId()).get());
-        articulo.setFormaPagoId(formaDePagoRepository.findById(articuloDTO.getFormaPagoId()).get());
+        if(articuloDTO.getProveedorId() != null)
+            articulo.setProveedorId(proveedorRepository.findById(articuloDTO.getProveedorId()).get());
+
+        if(articuloDTO.getUnidadMedidaId() != null)
+            articulo.setUnidadMedidaId(unidadMedidaRepository.findById(articuloDTO.getUnidadMedidaId()).get());
+
+        if(articuloDTO.getMarcaId() != null)
+            articulo.setMarcaId(marcaRepository.findById(articuloDTO.getMarcaId()).get());
+
+        if(articuloDTO.getRubroId() != null)
+            articulo.setRubroId(rubroRepository.findById(articuloDTO.getRubroId()).get());
+
+       if(articuloDTO.getSubRubroId() != null)
+            articulo.setSubRubroId(subRubroRepository.findById(articuloDTO.getSubRubroId()).get());
+
+        if(articuloDTO.getFormaPagoId() != null)
+            articulo.setFormaPagoId(formaDePagoRepository.findById(articuloDTO.getFormaPagoId()).get());
     }
 
 }
