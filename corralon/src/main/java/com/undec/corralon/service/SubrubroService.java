@@ -37,6 +37,16 @@ public class SubrubroService {
         return response;
     }
 
+    public Response buscarTodosLosSubrubrosHabilitados(){
+        Response response = new Response();
+        List<SubRubro> subrubros = subRubroRepository.findAllByHabilitacionEquals(1);
+
+        response.setCode(200);
+        response.setMsg("Todos los subrubros habilitados");
+        response.setData(subrubros);
+
+        return response;
+    }
     public Response obtenerSubrubroPorId(Integer id){
 
         Response response = new Response();

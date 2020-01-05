@@ -30,6 +30,12 @@ public class SubrubroController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/habilitados")
+    public ResponseEntity<Response> obtenerTodosLosSubrubrosHabilitados(){
+        Response response = subrubroService.buscarTodosLosSubrubrosHabilitados();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Response> guardarSubrubro(@RequestBody SubrubroDTO subrubroDTO) throws SubrubroException {
         Response response = subrubroService.guardarSubrubro(subrubroDTO);
