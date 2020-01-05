@@ -31,6 +31,11 @@ public class UnidadMedidaController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/habilitados")
+    public ResponseEntity<Response> obtenerUnidadesDeMedidaHabilitadas(){
+        Response response = unidadMedidaService.obtenerUnidadMedidaHabilitados();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
     @PostMapping
     public ResponseEntity<Response> crearUnidadMedida(@RequestBody UnidadMedida unidadMedida) throws UnidadMedidaException {
         Response response = unidadMedidaService.crearUnidadMedida(unidadMedida);

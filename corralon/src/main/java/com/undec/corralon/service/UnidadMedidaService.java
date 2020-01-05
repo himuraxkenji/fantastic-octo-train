@@ -31,6 +31,16 @@ public class UnidadMedidaService {
         return response;
     }
 
+    public Response obtenerUnidadMedidaHabilitados() {
+        List<UnidadMedida> unidadDeMedida = this.unidadMedidaRepository.findAllByHabilitacionEquals(1);
+        Response response = new Response();
+
+        response.setCode(200);
+        response.setData(unidadDeMedida);
+        response.setMsg("Unidades de Medidas habilitadas");
+
+        return response;
+    }
 
     public Response obtenerUnidadMedidaPorId(Integer id) {
 
@@ -103,4 +113,6 @@ public class UnidadMedidaService {
 
         return response;
     }
+
+
 }
