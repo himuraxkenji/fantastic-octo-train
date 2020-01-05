@@ -31,6 +31,12 @@ public class MarcaController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/habilitados")
+    public ResponseEntity<Response> obtenerHabilitados() throws MarcaNotFoundException {
+        Response response = this.marcaService.obtenerHabilitados();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Response> guardarMarca(@Valid @RequestBody Marca marca) throws MarcaNotFoundException {
         Response response = this.marcaService.guardarMarca(marca);

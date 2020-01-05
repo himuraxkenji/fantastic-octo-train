@@ -34,6 +34,15 @@ public class MarcaService {
         return response;
     }
 
+    public Response obtenerHabilitados() throws MarcaNotFoundException {
+        Response response = new Response();
+        List<Marca> marcas = this.marcaRepository.findAllByHabilitacionEquals(1);
+        response.setCode(200);
+        response.setMsg("Marcas Habilitadas");
+        response.setData(marcas);
+        return response;
+    }
+
     public Response guardarMarca(Marca marca) throws MarcaNotFoundException {
         Response response = new Response();
         marca.setFechaCreacion(new Date());
