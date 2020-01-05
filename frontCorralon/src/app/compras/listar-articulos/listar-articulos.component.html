@@ -23,7 +23,7 @@
                                 <button class="btn btn-default ">NOMBRE </button>
                             </td>
                             <td>
-                                <input type="text " [(ngModel)]="busqueda " class="form-control " placeholder="ingrese nombre " (keyup)="filtrarSubRubroNombre(event) ">
+                                <input type="text " [(ngModel)]="busqueda " class="form-control " placeholder="ingrese nombre " (keyup)="filtrarArticuloNombre(event) ">
                             </td>
                             <td>
 
@@ -65,7 +65,6 @@
                         <td>{{articulo.abreviatura}}</td>
                         <td>{{articulo.stockMin}}</td>
                         <td>{{articulo.stockMax}}</td>
-                        <td>{{articulo.unidadMedidaId.nombre}}</td>
                         <td>{{articulo.rubroId.nombre}}</td>
 
                         <td>

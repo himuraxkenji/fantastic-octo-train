@@ -9,7 +9,7 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./listar-articulos.component.css"]
 })
 export class ListarArticulosComponent implements OnInit {
-  articulo: Articulo = null;
+  // articulo: Articulo = null;
   articulos: Articulo[] = null;
   articulosFilter: Articulo[] = null;
   busquedaNombre: string = null;
@@ -18,9 +18,16 @@ export class ListarArticulosComponent implements OnInit {
 
   ngOnInit() {
     this.serviceCompra.listarArticuloTodos().subscribe(data => {
-      console.log(data.data);
       this.articulos = data.data;
       this.articulosFilter = data.data;
+      console.info('Articulos');
+
+      console.info(this.articulos);
+      console.info('ArticulosFilter');
+
+      console.info(this.articulosFilter);
+
+
     });
   }
   modificarArticulo(articulo: Articulo) {
