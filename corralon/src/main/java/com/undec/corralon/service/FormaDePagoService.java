@@ -39,6 +39,17 @@ public class FormaDePagoService {
         return response;
     }
 
+    public Response obtenerHabilitados(){
+        Response response = new Response();
+        List<FormaPago> formasDePago = this.formaDePagoRepository.findByHabilitacionEquals(1);
+
+        response.setCode(200);
+        response.setMsg("Formas de pago habilitadas");
+        response.setData(formasDePago);
+
+        return response;
+    }
+
     public Response agregarFormaDePago(FormaPago formaPago) throws Exception{
 
         Response response = new Response();
@@ -97,8 +108,6 @@ public class FormaDePagoService {
 
         return response;
     }
-
-
 
 
 }

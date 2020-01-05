@@ -28,6 +28,12 @@ public class FormaDePagoController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/habilitados")
+    public ResponseEntity<Response> obtenerHabilitados(){
+        Response response = formaDePagoService.obtenerHabilitados();
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Response> crearFormaDePago(@RequestBody FormaPago formaPago) throws Exception {
         Response response = formaDePagoService.agregarFormaDePago(formaPago);
