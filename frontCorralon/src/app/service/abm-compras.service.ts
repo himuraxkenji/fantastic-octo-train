@@ -114,6 +114,9 @@ desabilitarRubro(id: number) {
 listarSubRubrosTodos() {
   return this.http.get<Response>(this.Url+ "/sub-rubros");
 }
+listarSubRubrosHabilitados() {
+  return this.http.get<Response>(this.Url+ "/sub-rubros/habilitados");
+}
 guardarSubRubro(subRubroDTO: SubRubroDTO) {
   return this.http.post<SubRubroDTO>(this.Url + "/sub-rubros/", subRubroDTO);
 }

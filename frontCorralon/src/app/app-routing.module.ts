@@ -11,7 +11,9 @@ const routes: Routes = [
   { path: "abm-compras", loadChildren: "./abm-compras/abm-compras.module#AbmComprasModule",  canActivate:[AuthGaurdService]},
   {path: "seguridad", loadChildren:"./seguridad/seguridad.module#SeguridadModule",canActivate:[AuthGaurdService]},
   { path: 'login', component: LoginComponent},
-  { path: 'logout', component: LogoutComponent, canActivate:[AuthGaurdService]}
+  { path: 'logout', component: LogoutComponent, canActivate:[AuthGaurdService]},
+  { path: "**",pathMatch:'full', redirectTo: "ventas"}
+
 
 ];
 

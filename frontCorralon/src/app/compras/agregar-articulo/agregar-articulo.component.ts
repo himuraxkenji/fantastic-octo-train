@@ -1,3 +1,4 @@
+import { SubRubro } from './../../modelo/SubRubro';
 import { Proveedor } from './../../modelo/Proveedor';
 import { Marca } from "./../../modelo/Marca";
 import { Rubro } from "./../../modelo/Rubro";
@@ -25,6 +26,11 @@ export class AgregarArticuloComponent implements OnInit {
   rubroFilter: Rubro[] = null;
   idRubro: number = null;
   nombreRubro: string = null;
+
+  subRubros: SubRubro[] = null;
+  subRubroFilter: SubRubro[] = null;
+  idSubRubro: number = null;
+  nombreSubRubro: string = null;
 
   marcas: Marca[] = null;
   marcasFilter: Marca[] = null;
@@ -56,6 +62,13 @@ export class AgregarArticuloComponent implements OnInit {
       });
       this.rubroFilter = this.rubros;
       this.rubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
+    });
+    this.serviceAbmCompra.listarSubRubrosHabilitados().subscribe(data => {
+      this.subRubros = Object.keys(data.data).map(function(key) {
+        return data.data[key];
+      });
+      this.subRubroFilter = this.subRubros;
+      this.subRubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
     });
     this.serviceAbmCompra.listarMarcaHabilitados().subscribe(data => {
       this.marcas = Object.keys(data.data).map(function(key) {
@@ -98,6 +111,19 @@ export class AgregarArticuloComponent implements OnInit {
         this.articuloDTO.rubroId = this.rubros[i].id;
       }
     }
+
+    this.subRubros.forEach(subSubro => {
+      if (subSubro.nombre == this.nombreSubRubro) {
+        this.articuloDTO.id = subSubro.id;
+      }
+    });
+
+    for (var i = 0; i < this.subRubros.length; i++) {
+      if (this.subRubros[i].nombre == this.nombreSubRubro) {
+        this.articuloDTO.subRubroId = this.subRubros[i].id;
+      }
+    }
+
     this.marcas.forEach(marca => {
       if (marca.nombre == this.nombreMarca) {
         this.articuloDTO.id = marca.id;
@@ -125,7 +151,7 @@ export class AgregarArticuloComponent implements OnInit {
     articuloDTO.formaPagoId = 1;
     // articuloDTO.proveedorId = 1;
     // articuloDTO.rubroId=1;
-    articuloDTO.subRubroId = 1;
+    // articuloDTO.subRubroId = 1;
 
     // this.subRubroDTO.habilitacion = 1;
     // this.articuloDTO.id= null;
@@ -157,6 +183,12 @@ export class AgregarArticuloComponent implements OnInit {
     else
       this.rubroFilter = this.rubros.filter(item => item.nombre == filterVal);
   }
+  listarSubRubros(filterVal: any) {
+    if (filterVal == "0") this.subRubroFilter = this.subRubros;
+    else
+      this.subRubroFilter = this.subRubros.filter(item => item.nombre == filterVal);
+  }
+
   listarMarcas(filterVal: any) {
     if (filterVal == "0") this.marcasFilter = this.marcas;
     else
