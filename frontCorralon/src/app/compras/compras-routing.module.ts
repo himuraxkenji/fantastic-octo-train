@@ -1,3 +1,4 @@
+import { ModificarArticuloComponent } from './modificar-articulo/modificar-articulo.component';
 import { AgregarArticuloComponent } from './agregar-articulo/agregar-articulo.component';
 import { AgregarProveedorComponent } from './agregar-proveedor/agregar-proveedor.component';
 import { ListarArticulosComponent } from './listar-articulos/listar-articulos.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
     {path: 'listar-proveedor', component: ListarProveedorComponent},
     {path: 'listar-articulos', component: ListarArticulosComponent},
     {path: 'agregar-proveedor', component: AgregarProveedorComponent},
-    {path: 'agregar-articulo', component: AgregarArticuloComponent}
+    {path: 'agregar-articulo', component: AgregarArticuloComponent},
+    {path: 'modificar-articulo/:id', component: ModificarArticuloComponent}
     // {path: 'listar-precios', component: ListarPreciosComponent},
     // {path: 'listar-rubros', component: ListarRubroComponent},
     // {path: 'listar-subrubros', component: ListarSubrubroComponent}

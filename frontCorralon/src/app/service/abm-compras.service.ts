@@ -14,8 +14,8 @@ import { Response } from "../modelo/Response";
 })
 export class AbmComprasService {
 // DE MANERA LOCAL
-  Url = "//localhost:8081";
-  // Url ="http://192.168.1.100:8081";
+  // Url = "//localhost:8081";
+  Url ="http://192.168.1.100:8081";
 
   constructor(private http: HttpClient) {}
 
@@ -117,6 +117,9 @@ listarSubRubrosTodos() {
 listarSubRubrosHabilitados() {
   return this.http.get<Response>(this.Url+ "/sub-rubros/habilitados");
 }
+listarSubRubrosPorIdRubro(id : number) {
+  return this.http.get<Response>(this.Url+ "/sub-rubros/rubro/" + id);
+}
 guardarSubRubro(subRubroDTO: SubRubroDTO) {
   return this.http.post<SubRubroDTO>(this.Url + "/sub-rubros/", subRubroDTO);
 }
@@ -124,7 +127,7 @@ actualizarSubRubro(subRubroDTO: SubRubroDTO) {
   return this.http.put<SubRubroDTO>(this.Url + "/sub-rubros/", subRubroDTO);
 }
 listarSubRubroId(id: number) {
-  return this.http.get<Response>(this.Url + "/sub-rubros/" + id);
+  return this.http.get<Response[]>(this.Url + "/sub-rubros/" + id);
 }
 desabilitarSubRubro(id: number) {
   return this.http.delete(this.Url + "/sub-rubros/" + id);

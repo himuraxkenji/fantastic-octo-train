@@ -22,8 +22,8 @@ export class AgregarArticuloComponent implements OnInit {
   idUnidadMedida: number = 1;
   nombreUnidadMedida: string = null;
 
-  rubros: Rubro[] = null;
-  rubroFilter: Rubro[] = null;
+  rubros: Rubro[] = [];
+  rubroFilter: Rubro[] = [];
   idRubro: number = null;
   nombreRubro: string = null;
 
@@ -48,7 +48,7 @@ export class AgregarArticuloComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.serviceAbmCompra.listarUnidadMedidaTodos().subscribe(data => {
       this.unidadMedidas = Object.keys(data.data).map(function(key) {
         return data.data[key];
@@ -56,20 +56,33 @@ export class AgregarArticuloComponent implements OnInit {
       this.unidadMedidasFilter = this.unidadMedidas.sort((a, b) => a.nombre.length - b.nombre.length);
 
     });
-    this.serviceAbmCompra.listarRubrosTodos().subscribe(data => {
-      this.rubros = Object.keys(data.data).map(function(key) {
-        return data.data[key];
+    let rubroPromise = await this.serviceAbmCompra.listarRubrosHabilitados().toPromise().then( data =>{
+       this.rubros = Object.keys(data.data).map((key) =>  data.data[key]);
+       this.rubroFilter = this.rubros;
+        this.rubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
+
       });
-      this.rubroFilter = this.rubros;
-      this.rubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
-    });
+      //  .subscribe(data => {
+      //   this.rubros = Object.keys(data.data).map(function(key) {
+      //     return data.data[key];
+      //   });
+      console.info(this.rubros);
+
+    // this.idRubro =  this.rubros.filter( r => r.nombre === this.nombreRubro)[0].id;
+    console.log(this.rubros.filter( r => r.nombre === this.nombreRubro));
+
     this.serviceAbmCompra.listarSubRubrosHabilitados().subscribe(data => {
       this.subRubros = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
+      console.log(this.idRubro);
+
+      console.log(this.subRubros);
+
       this.subRubroFilter = this.subRubros;
       this.subRubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
-    });
+    });;
+
     this.serviceAbmCompra.listarMarcaHabilitados().subscribe(data => {
       this.marcas = Object.keys(data.data).map(function(key) {
         return data.data[key];
@@ -148,7 +161,6 @@ export class AgregarArticuloComponent implements OnInit {
     }
     articuloDTO.habilitacion = 1;
     // articuloDTO.marcaId=1;
-    articuloDTO.formaPagoId = 1;
     // articuloDTO.proveedorId = 1;
     // articuloDTO.rubroId=1;
     // articuloDTO.subRubroId = 1;
@@ -164,7 +176,6 @@ export class AgregarArticuloComponent implements OnInit {
     this.articuloDTO.proveedorId = articuloDTO.proveedorId;
     this.articuloDTO.rubroId = articuloDTO.rubroId;
     this.articuloDTO.subRubroId = articuloDTO.subRubroId;
-    this.articuloDTO.formaPagoId = articuloDTO.formaPagoId;
 
     this.serviceCompra.guardarArticulo(this.articuloDTO).subscribe(data => {
       alert("SE GUARDO UN NUEVO ARTICULO");
@@ -182,8 +193,28 @@ export class AgregarArticuloComponent implements OnInit {
     if (filterVal == "0") this.rubroFilter = this.rubros;
     else
       this.rubroFilter = this.rubros.filter(item => item.nombre == filterVal);
+
+
+    // TODO: VAlidar que no sea nulo rubroFilter
+    let idRubro  = this.rubroFilter[0].id;
+
+    this.serviceAbmCompra.listarSubRubrosPorIdRubro(idRubro).subscribe( data =>{
+      this.subRubros = Object.keys(data.data).map(function(key) {
+        return data.data[key];
+      });
+      // console.error(data.data);
+
+      console.log(this.subRubros);
+      // this.subRubros = data.data;
+      this.subRubroFilter = this.subRubros;
+      this.subRubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
+    });
+
+
+
   }
   listarSubRubros(filterVal: any) {
+
     if (filterVal == "0") this.subRubroFilter = this.subRubros;
     else
       this.subRubroFilter = this.subRubros.filter(item => item.nombre == filterVal);
@@ -199,4 +230,7 @@ export class AgregarArticuloComponent implements OnInit {
     else
       this.proveedoresFilter = this.proveedores.filter(item => item.razonSocial == filterVal);
   }
+
+
+
 }

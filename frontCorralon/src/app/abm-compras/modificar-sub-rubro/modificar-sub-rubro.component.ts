@@ -37,7 +37,7 @@ export class ModificarSubRubroComponent implements OnInit {
       console.log("se muestra -->" + id);
 
       this.serviceAbmCompra.listarSubRubroId(id).subscribe(data => {
-        this.subRubro = data.data;
+        // this.subRubro = data.data;
 
         this.serviceAbmCompra
           .listarRubroId(this.subRubro.rubroId.id)
@@ -68,7 +68,7 @@ export class ModificarSubRubroComponent implements OnInit {
     });
   }
 
-  listarDepartamentos(filterVal: any) {
+  listarRubros(filterVal: any) {
     if (filterVal == "0") this.rubrosFilter = this.rubros;
     else
       this.rubrosFilter = this.rubros.filter(

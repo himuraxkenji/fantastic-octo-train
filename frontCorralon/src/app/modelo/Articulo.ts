@@ -1,4 +1,3 @@
-import { FormaPago } from './FormaPago';
 import { SubRubro } from './SubRubro';
 import { Rubro } from './Rubro';
 import { Marca } from './Marca';
@@ -17,6 +16,5 @@ export class Articulo{
   marcaId: Marca;
   rubroId: Rubro;
   subRubroId: SubRubro;
-  formaPagoId: FormaPago;
 
 }

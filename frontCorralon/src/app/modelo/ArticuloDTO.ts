@@ -10,7 +10,6 @@ export class ArticuloDTO{
   marcaId: number;
   rubroId: number;
   subRubroId: number;
-  formaPagoId: number;
   habilitacion: number;
 
 }

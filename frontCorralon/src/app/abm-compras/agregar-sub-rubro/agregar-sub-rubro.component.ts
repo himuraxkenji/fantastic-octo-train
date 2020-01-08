@@ -44,7 +44,8 @@ export class AgregarSubRubroComponent implements OnInit {
         this.subRubroDTO.rubroId = this.rubros[i].id;
       }
     }
-    // this.subRubroDTO.habilitacion = 1;
+    this.subRubroDTO.habilitacion = 1;
+    this.subRubroDTO.id = null;
     this.subRubroDTO.nombre=this.subRubroDTO.nombre.toUpperCase();
     this.subRubroDTO.descripcion=this.subRubroDTO.descripcion.toUpperCase();
 

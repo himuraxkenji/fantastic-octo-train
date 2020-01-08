@@ -10,8 +10,8 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ListarArticulosComponent implements OnInit {
   // articulo: Articulo = null;
-  articulos: Articulo[] = null;
-  articulosFilter: Articulo[] = null;
+  articulos: Articulo[] = [];
+  articulosFilter: Articulo[] = [];
   busquedaNombre: string = null;
   busqueda: string = null;
   constructor(private serviceCompra: ComprasService, private router: Router) {}
@@ -26,7 +26,6 @@ export class ListarArticulosComponent implements OnInit {
       console.info('ArticulosFilter');
 
       console.info(this.articulosFilter);
-
 
     });
   }
