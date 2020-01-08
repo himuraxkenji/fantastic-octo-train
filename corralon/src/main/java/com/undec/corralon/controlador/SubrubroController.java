@@ -36,6 +36,12 @@ public class SubrubroController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/rubro/{id}")
+    public ResponseEntity<Response> obtenerTodosPorRubro(@PathVariable("id") Integer id){
+        Response response = subrubroService.obtenerSubrubroPorRubro(id);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<Response> guardarSubrubro(@RequestBody SubrubroDTO subrubroDTO) throws SubrubroException {
         Response response = subrubroService.guardarSubrubro(subrubroDTO);

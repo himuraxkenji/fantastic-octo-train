@@ -21,7 +21,6 @@ public class Articulo {
     private Marca marcaId;
     private Rubro rubroId;
     private SubRubro subRubroId;
-    private FormaPago formaPagoId;
     private Integer habilitacion;
     private Date fechaCreacion;
     private Date fechaModificacion;
@@ -138,16 +137,6 @@ public class Articulo {
         this.subRubroId = subRubroId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "forma_pago_id", referencedColumnName = "id")
-    public FormaPago getFormaPagoId() {
-        return formaPagoId;
-    }
-
-    public void setFormaPagoId(FormaPago formaPagoId) {
-        this.formaPagoId = formaPagoId;
-    }
-
     @Basic
     @Column(name = "habilitacion")
     public Integer getHabilitacion() {
@@ -204,7 +193,6 @@ public class Articulo {
                 Objects.equals(marcaId, articulo.marcaId) &&
                 Objects.equals(rubroId, articulo.rubroId) &&
                 Objects.equals(subRubroId, articulo.subRubroId) &&
-                Objects.equals(formaPagoId, articulo.formaPagoId) &&
                 Objects.equals(habilitacion, articulo.habilitacion) &&
                 Objects.equals(fechaCreacion, articulo.fechaCreacion) &&
                 Objects.equals(fechaModificacion, articulo.fechaModificacion) &&
@@ -213,6 +201,6 @@ public class Articulo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nombre, abreviatura, codigoArt, stockMin, stockMax, proveedorId, unidadMedidaId, marcaId, rubroId, subRubroId, formaPagoId, habilitacion, fechaCreacion, fechaModificacion, fechaBaja);
+        return Objects.hash(id, nombre, abreviatura, codigoArt, stockMin, stockMax, proveedorId, unidadMedidaId, marcaId, rubroId, subRubroId, habilitacion, fechaCreacion, fechaModificacion, fechaBaja);
     }
 }

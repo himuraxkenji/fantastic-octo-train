@@ -154,8 +154,6 @@ public class ArticuloService {
        if(articuloDTO.getSubRubroId() != null)
             articulo.setSubRubroId(subRubroRepository.findById(articuloDTO.getSubRubroId()).get());
 
-        if(articuloDTO.getFormaPagoId() != null)
-            articulo.setFormaPagoId(formaDePagoRepository.findById(articuloDTO.getFormaPagoId()).get());
     }
 
 }

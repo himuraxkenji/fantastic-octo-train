@@ -59,6 +59,18 @@ public class SubrubroService {
         return response;
     }
 
+    public Response obtenerSubrubroPorRubro(Integer rubroId){
+
+        Response response = new Response();
+        List<SubRubro> subrubro = subRubroRepository.findAllByRubroId_Id(rubroId);
+
+        response.setCode(200);
+        response.setMsg("Subrubro pertenecientes al rubro: " + this.rubroRepository.findById(rubroId).get().getNombre());
+        response.setData(subrubro);
+
+        return response;
+    }
+
     public Response guardarSubrubro(SubrubroDTO subrubroDTO) throws SubrubroException {
         Response response = new Response();
         SubRubro subRubro = mapDtoToEntity(subrubroDTO);

@@ -21,8 +21,6 @@ public class ArticuloDTO {
     private Integer rubroId;
     @JsonProperty(value = "subRubroId",required = false)
     private Integer subRubroId;
-    @JsonProperty(value = "formaPagoId",required = false)
-    private Integer formaPagoId;
     @JsonProperty(value = "habilitacion",required = false)
     private Integer habilitacion;
 
@@ -115,14 +113,6 @@ public class ArticuloDTO {
 
     public void setSubRubroId(Integer subRubroId) {
         this.subRubroId = subRubroId;
-    }
-
-    public Integer getFormaPagoId() {
-        return formaPagoId;
-    }
-
-    public void setFormaPagoId(Integer formaPagoId) {
-        this.formaPagoId = formaPagoId;
     }
 
     public Integer getHabilitacion() {
