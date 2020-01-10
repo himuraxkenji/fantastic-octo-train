@@ -79,6 +79,9 @@ desabilitarFormaPago(id: number) {
 listarUnidadMedidaTodos() {
   return this.http.get<Response>(this.Url+ "/unidad-medida");
 }
+listarUnidadMedidaHabilitados() {
+  return this.http.get<Response>(this.Url+ "/unidad-medida/habilitados");
+}
 guardarUnidadMedida(unidadMedida: UnidadMedida) {
   return this.http.post<UnidadMedida>(this.Url + "/unidad-medida/", unidadMedida);
 }
