@@ -1,3 +1,7 @@
+import { Proveedor } from "./../../modelo/Proveedor";
+import { Marca } from "./../../modelo/Marca";
+import { SubRubro } from "./../../modelo/SubRubro";
+import { UnidadMedida } from "./../../modelo/UnidadMedida";
 import { AbmComprasService } from "./../../service/abm-compras.service";
 import { ActivatedRoute } from "@angular/router";
 import { ComprasService } from "./../../service/compras.service";
@@ -5,6 +9,7 @@ import { Rubro } from "./../../modelo/Rubro";
 import { ArticuloDTO } from "./../../modelo/ArticuloDTO";
 import { Articulo } from "./../../modelo/Articulo";
 import { Component, OnInit } from "@angular/core";
+import { Key } from 'protractor';
 
 @Component({
   selector: "app-modificar-articulo",
@@ -15,6 +20,13 @@ export class ModificarArticuloComponent implements OnInit {
   articulo: Articulo = new Articulo();
   articuloDTO: ArticuloDTO = new ArticuloDTO();
 
+  unidadMedidaFilter: UnidadMedida[] = null;
+  unidadMedidas: UnidadMedida[] = null;
+  unidadMedidaSelected: UnidadMedida = null;
+  nombreUnidadMedida: string = null;
+  idUnidadMedida: number = null;
+  unidadMedida: UnidadMedida;
+
   rubrosFilter: Rubro[] = null;
   rubros: Rubro[] = null;
   rubroSelected: Rubro;
@@ -22,37 +34,82 @@ export class ModificarArticuloComponent implements OnInit {
   idRubro: number = null;
   rubro: Rubro;
 
+  subRubrosFilter: SubRubro[] = null;
+  subRubros: SubRubro[] = null;
+  subRubroSelected: SubRubro;
+  nombreSubRubro: string = null;
+  idSubRubro: number = null;
+  subRubro: SubRubro;
+
+  marcasFilter: Marca[] = null;
+  marcas: Marca[] = null;
+  marcaSelected: Marca;
+  nombreMarca: string = null;
+  idMarca: number = null;
+  marca: Marca;
+
+  proveedorFilter: Proveedor[] = null;
+  proveedores: Proveedor[] = null;
+  proveedorSelected: Proveedor;
+  nombreProveedor: string = null;
+  idPrveedor: number = null;
+  proveedor: Proveedor;
+
   constructor(
     private serviceAbmCompra: AbmComprasService,
     private serviceCompra: ComprasService,
     private id: ActivatedRoute
   ) {}
 
-  ngOnInit() {
-    this.serviceAbmCompra.listarRubrosHabilitados().subscribe(data => {
-      this.rubros = Object.keys(data.data).map(function(key) {
-        return data.data[key];
-      });
-      // console.log("this.departamentos", this.departamentos);
-      let id: number;
+  async ngOnInit() {
+    let id: number;
       this.id.params.subscribe(data => (id = data["id"]));
       console.log("se muestra -->" + id);
 
-      this.serviceCompra.listarArticuloId(id).subscribe(data => {
-        this.articulo = data.data;
 
-        this.serviceAbmCompra
-          .listarRubroId(this.articulo.rubroId.id)
-          .subscribe(resp => {
-            this.rubroSelected = resp.data;
-            console.log("this.rubroSelected======>", this.rubroSelected);
-          });
+      let promise  = await this.serviceCompra.listarArticuloId(id).toPromise().then(data =>{
+      // .subscribe(data => {
+        this.articulo = data.data;
+        console.log(this.articulo);
+
+
       });
+
+      this.serviceAbmCompra.listarUnidadMedidaHabilitados().subscribe( data =>{
+        this.unidadMedidas = data.data;
+        console.log(data.data);
+        this.unidadMedidaSelected = this.articulo.unidadMedidaId;
+        console.log(this.unidadMedidaSelected.nombre);
+
+        console.log(this.unidadMedidaSelected);
+        // this.serviceAbmCompra.listarUnidadMedidaId(this.articulo.unidadMedidaId.id).subscribe(resp => {
+        //   this.unidadMedidaSelected = resp.data;
+        //   console.log(resp.data);
+
+        // })
+        // this.serviceAbmCompra.listarRubrosHabilitados().subscribe(data => {
+        //   this.rubros = Object.keys(data.data).map(function(key) {
+        //     return data.data[key];
+
+        //     this.serviceAbmCompra
+        //       .listarRubroId(this.articulo.rubroId.id)
+        //       .subscribe(resp => {
+        //         this.rubroSelected = resp.data;
+        //         // console.log("this.rubroSelected======>", this.rubroSelected);
+        //       });
+        //       //
+        //   });
+
     });
+
   }
+
+
   volverAtras() {
     window.history.back();
   }
+
+
   // -----------------
   actualizarSubRubro(articulo: Articulo) {
     this.articuloDTO.nombre = this.articulo.nombre;
@@ -60,20 +117,25 @@ export class ModificarArticuloComponent implements OnInit {
     this.articuloDTO.codigoArt = articulo.codigoArt;
     this.articuloDTO.habilitacion = articulo.habilitacion;
     this.articuloDTO.rubroId = articulo.rubroId.id;
+    this.articuloDTO.unidadMedidaId = articulo.unidadMedidaId.id;
     console.log(this.articuloDTO);
 
-    this.serviceCompra
-      .actualizarArticulo(this.articuloDTO)
-      .subscribe(data => {
-        this.articuloDTO = data;
-        alert("SE ACTUALIZO EL SUB RUBRO " + this.articuloDTO.nombre);
-        window.history.back();
-      });
+    this.serviceCompra.actualizarArticulo(this.articuloDTO).subscribe(data => {
+      this.articuloDTO = data;
+      alert("SE ACTUALIZO EL SUB RUBRO " + this.articuloDTO.nombre);
+      window.history.back();
+    });
   }
 
   listarRubros(filterVal: any) {
     if (filterVal == "0") this.rubrosFilter = this.rubros;
     else
       this.rubrosFilter = this.rubros.filter(item => item.nombre == filterVal);
+  }
+
+  listarUnidadMedidas(filterVal: any) {
+    if (filterVal == "0") this.unidadMedidaFilter = this.unidadMedidas;
+    else
+      this.unidadMedidaFilter = this.unidadMedidas.filter(item => item.nombre == filterVal);
   }
 }
