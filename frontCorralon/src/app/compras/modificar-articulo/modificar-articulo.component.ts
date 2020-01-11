@@ -9,7 +9,7 @@ import { Rubro } from "./../../modelo/Rubro";
 import { ArticuloDTO } from "./../../modelo/ArticuloDTO";
 import { Articulo } from "./../../modelo/Articulo";
 import { Component, OnInit } from "@angular/core";
-import { Key } from 'protractor';
+import { Key } from "protractor";
 
 @Component({
   selector: "app-modificar-articulo",
@@ -63,52 +63,30 @@ export class ModificarArticuloComponent implements OnInit {
 
   async ngOnInit() {
     let id: number;
-      this.id.params.subscribe(data => (id = data["id"]));
-      console.log("se muestra -->" + id);
+    this.id.params.subscribe(data => (id = data["id"]));
+    console.log("se muestra -->" + id);
 
-
-      let promise  = await this.serviceCompra.listarArticuloId(id).toPromise().then(data =>{
-      // .subscribe(data => {
+    let promise = await this.serviceCompra
+      .listarArticuloId(id)
+      .toPromise()
+      .then(data => {
         this.articulo = data.data;
         console.log(this.articulo);
-
-
       });
 
-      this.serviceAbmCompra.listarUnidadMedidaHabilitados().subscribe( data =>{
-        this.unidadMedidas = data.data;
-        console.log(data.data);
-        this.unidadMedidaSelected = this.articulo.unidadMedidaId;
-        console.log(this.unidadMedidaSelected.nombre);
+    this.serviceAbmCompra.listarUnidadMedidaHabilitados().subscribe(data => {
+      this.unidadMedidas = data.data;
+      console.log(data.data);
+      this.unidadMedidaSelected = this.articulo.unidadMedidaId;
+      console.log(this.unidadMedidaSelected.nombre);
 
-        console.log(this.unidadMedidaSelected);
-        // this.serviceAbmCompra.listarUnidadMedidaId(this.articulo.unidadMedidaId.id).subscribe(resp => {
-        //   this.unidadMedidaSelected = resp.data;
-        //   console.log(resp.data);
-
-        // })
-        // this.serviceAbmCompra.listarRubrosHabilitados().subscribe(data => {
-        //   this.rubros = Object.keys(data.data).map(function(key) {
-        //     return data.data[key];
-
-        //     this.serviceAbmCompra
-        //       .listarRubroId(this.articulo.rubroId.id)
-        //       .subscribe(resp => {
-        //         this.rubroSelected = resp.data;
-        //         // console.log("this.rubroSelected======>", this.rubroSelected);
-        //       });
-        //       //
-        //   });
-
+      console.log(this.unidadMedidaSelected);
     });
-
   }
-
 
   volverAtras() {
     window.history.back();
   }
-
 
   // -----------------
   actualizarSubRubro(articulo: Articulo) {
@@ -136,6 +114,8 @@ export class ModificarArticuloComponent implements OnInit {
   listarUnidadMedidas(filterVal: any) {
     if (filterVal == "0") this.unidadMedidaFilter = this.unidadMedidas;
     else
-      this.unidadMedidaFilter = this.unidadMedidas.filter(item => item.nombre == filterVal);
+      this.unidadMedidaFilter = this.unidadMedidas.filter(
+        item => item.nombre == filterVal
+      );
   }
 }
