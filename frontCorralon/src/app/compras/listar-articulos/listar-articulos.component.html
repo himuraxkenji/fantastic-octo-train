@@ -50,25 +50,25 @@
                     <tr class="text-center ">
                         <th scope="col ">CODIGO</th>
                         <th scope="col ">NOMBRE</th>
-                        <!-- <th scope="col ">ABREVIATURA</th> -->
-                        <th scope="col ">STOCK ACTUAL</th>
-                        <!-- <th scope="col ">STOCK MIN</th>
+                        <th scope="col ">ABREVIATURA</th>
+                        <th scope="col ">STOCK MIN</th>
                         <th scope="col ">STOCK MAX</th>
                         <th scope="col ">UNID. MED</th>
-                        <th scope="col ">RUBRO</th>-->
-                        <th scope="col*2 ">CARGA DE cCANT</th>
-                        <!-- <th scope="col*2 ">OPCIONES</th> -->
+                        <th scope="col ">RUBRO</th>
+                        <th scope="col*2 ">OPCIONES</th>
                     </tr>
                 </thead>
-                <tbody *ngIf="articulos !=null ">
+                <tbody *ngIf="articulos !=null  ">
                     <tr *ngFor="let articulo of articulosFilter " class="text-center">
                         <td>{{articulo.codigoArt}}</td>
                         <td>{{articulo.nombre}}</td>
                         <td>{{articulo.abreviatura}}</td>
-                        <!-- <td>{{articulo.stockMin}}</td>
+                        <td>{{articulo.stockMin}}</td>
                         <td>{{articulo.stockMax}}</td>
-                        <td>{{articulo.unidadMedidaId.abreviatura}}</td>
-                        <td>{{articulo.rubroId.nombre}}</td> -->
+                        <td *ngIf="articulo.unidadMedidaId == null"></td>
+                        <td *ngIf="articulo.unidadMedidaId != null">{{articulo.unidadMedidaId.id}}</td>
+                        <td *ngIf="articulo.unidadMedidaId == null"></td>
+                        <td *ngIf="articulo.unidadMedidaId != null">{{articulo.rubroId.nombre}}</td>
 
                         <td>
                             <button class="btn btn-default " title="Modificar " (click)="modificarArticulo(articulo)">

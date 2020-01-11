@@ -76,11 +76,28 @@ export class ModificarArticuloComponent implements OnInit {
 
     this.serviceAbmCompra.listarUnidadMedidaHabilitados().subscribe(data => {
       this.unidadMedidas = data.data;
-      console.log(data.data);
+      // console.log(data.data);
       this.unidadMedidaSelected = this.articulo.unidadMedidaId;
-      console.log(this.unidadMedidaSelected.nombre);
+    });
 
-      console.log(this.unidadMedidaSelected);
+    this.serviceAbmCompra.listarRubrosHabilitados().subscribe(data => {
+      this.rubros = data.data;
+      this.rubroSelected = this.articulo.rubroId;
+    });
+
+    this.serviceAbmCompra.listarSubRubrosHabilitados().subscribe(data => {
+      this.subRubros = data.data;
+      this.subRubroSelected = this.articulo.subRubroId;
+    });
+
+    this.serviceAbmCompra.listarMarcaHabilitados().subscribe(data => {
+      this.marcas = data.data;
+      this.marcaSelected = this.articulo.marcaId;
+    });
+
+    this.serviceCompra.listarProveedoresHabilitados().subscribe(data => {
+      this.proveedores = data.data;
+      this.proveedorSelected = this.articulo.proveedorId;
     });
   }
 
@@ -89,13 +106,20 @@ export class ModificarArticuloComponent implements OnInit {
   }
 
   // -----------------
-  actualizarSubRubro(articulo: Articulo) {
+  actualizarArticulo(articulo: Articulo) {
     this.articuloDTO.nombre = this.articulo.nombre;
     this.articuloDTO.id = articulo.id;
+    this.articuloDTO.abreviatura = articulo.abreviatura;
     this.articuloDTO.codigoArt = articulo.codigoArt;
+    this.articuloDTO.stockMax = articulo.stockMax;
+    this.articuloDTO.stockMin = articulo.stockMin;
     this.articuloDTO.habilitacion = articulo.habilitacion;
-    this.articuloDTO.rubroId = articulo.rubroId.id;
     this.articuloDTO.unidadMedidaId = articulo.unidadMedidaId.id;
+    this.articuloDTO.rubroId = articulo.rubroId.id;
+    this.articuloDTO.subRubroId = articulo.subRubroId.id;
+    this.articuloDTO.marcaId = articulo.marcaId.id;
+
+
     console.log(this.articuloDTO);
 
     this.serviceCompra.actualizarArticulo(this.articuloDTO).subscribe(data => {
@@ -105,17 +129,4 @@ export class ModificarArticuloComponent implements OnInit {
     });
   }
 
-  listarRubros(filterVal: any) {
-    if (filterVal == "0") this.rubrosFilter = this.rubros;
-    else
-      this.rubrosFilter = this.rubros.filter(item => item.nombre == filterVal);
-  }
-
-  listarUnidadMedidas(filterVal: any) {
-    if (filterVal == "0") this.unidadMedidaFilter = this.unidadMedidas;
-    else
-      this.unidadMedidaFilter = this.unidadMedidas.filter(
-        item => item.nombre == filterVal
-      );
-  }
 }

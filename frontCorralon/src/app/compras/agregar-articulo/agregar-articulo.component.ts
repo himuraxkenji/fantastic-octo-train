@@ -1,5 +1,5 @@
-import { SubRubro } from './../../modelo/SubRubro';
-import { Proveedor } from './../../modelo/Proveedor';
+import { SubRubro } from "./../../modelo/SubRubro";
+import { Proveedor } from "./../../modelo/Proveedor";
 import { Marca } from "./../../modelo/Marca";
 import { Rubro } from "./../../modelo/Rubro";
 import { AbmComprasService } from "src/app/service/abm-compras.service";
@@ -53,23 +53,26 @@ export class AgregarArticuloComponent implements OnInit {
       this.unidadMedidas = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
-      this.unidadMedidasFilter = this.unidadMedidas.sort((a, b) => a.nombre.length - b.nombre.length);
-
+      this.unidadMedidasFilter = this.unidadMedidas.sort(
+        (a, b) => a.nombre.length - b.nombre.length
+      );
     });
-    let rubroPromise = await this.serviceAbmCompra.listarRubrosHabilitados().toPromise().then( data =>{
-       this.rubros = Object.keys(data.data).map((key) =>  data.data[key]);
-       this.rubroFilter = this.rubros;
+    let rubroPromise = await this.serviceAbmCompra
+      .listarRubrosHabilitados()
+      .toPromise()
+      .then(data => {
+        this.rubros = Object.keys(data.data).map(key => data.data[key]);
+        this.rubroFilter = this.rubros;
         this.rubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
-
       });
-      //  .subscribe(data => {
-      //   this.rubros = Object.keys(data.data).map(function(key) {
-      //     return data.data[key];
-      //   });
-      console.info(this.rubros);
+    //  .subscribe(data => {
+    //   this.rubros = Object.keys(data.data).map(function(key) {
+    //     return data.data[key];
+    //   });
+    console.info(this.rubros);
 
     // this.idRubro =  this.rubros.filter( r => r.nombre === this.nombreRubro)[0].id;
-    console.log(this.rubros.filter( r => r.nombre === this.nombreRubro));
+    console.log(this.rubros.filter(r => r.nombre === this.nombreRubro));
 
     this.serviceAbmCompra.listarSubRubrosHabilitados().subscribe(data => {
       this.subRubros = Object.keys(data.data).map(function(key) {
@@ -81,19 +84,23 @@ export class AgregarArticuloComponent implements OnInit {
 
       this.subRubroFilter = this.subRubros;
       this.subRubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
-    });;
+    });
 
     this.serviceAbmCompra.listarMarcaHabilitados().subscribe(data => {
       this.marcas = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
-      this.marcasFilter = this.marcas.sort((a, b) => a.nombre.length - b.nombre.length);
+      this.marcasFilter = this.marcas.sort(
+        (a, b) => a.nombre.length - b.nombre.length
+      );
     });
     this.serviceCompra.listarProveedoresHabilitados().subscribe(data => {
       this.proveedores = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
-      this.proveedoresFilter = this.proveedores.sort((a, b) => a.razonSocial.length - b.razonSocial.length);;
+      this.proveedoresFilter = this.proveedores.sort(
+        (a, b) => a.razonSocial.length - b.razonSocial.length
+      );
     });
   }
   volverAtras() {
@@ -165,8 +172,8 @@ export class AgregarArticuloComponent implements OnInit {
     // articuloDTO.rubroId=1;
     // articuloDTO.subRubroId = 1;
 
-    // this.subRubroDTO.habilitacion = 1;
-    // this.articuloDTO.id= null;
+    this.articuloDTO.habilitacion = 1;
+    this.articuloDTO.id = null;
     this.articuloDTO.nombre = articuloDTO.nombre.toUpperCase();
     this.articuloDTO.abreviatura = articuloDTO.abreviatura.toUpperCase();
     this.articuloDTO.codigoArt = articuloDTO.codigoArt.toUpperCase();
@@ -177,10 +184,20 @@ export class AgregarArticuloComponent implements OnInit {
     this.articuloDTO.rubroId = articuloDTO.rubroId;
     this.articuloDTO.subRubroId = articuloDTO.subRubroId;
 
-    this.serviceCompra.guardarArticulo(this.articuloDTO).subscribe(data => {
-      alert("SE GUARDO UN NUEVO ARTICULO");
-      window.history.back();
-    });
+    // this.serviceCompra.guardarArticulo(this.articuloDTO).subscribe(data => {
+    //   alert("SE GUARDO UN NUEVO ARTICULO");
+    //   window.history.back();
+    // });
+
+    this.serviceCompra.guardarArticulo(this.articuloDTO).subscribe(
+      resp => {
+        alert("SE GUARDO UN NUEVO ARTICULO");
+        window.history.back();
+      },
+      error => {
+        alert("Se produjo un error en la carga");
+      }
+    );
   }
   listarUnidadMedida(filterVal: any) {
     if (filterVal == "0") this.unidadMedidasFilter = this.unidadMedidas;
@@ -194,11 +211,10 @@ export class AgregarArticuloComponent implements OnInit {
     else
       this.rubroFilter = this.rubros.filter(item => item.nombre == filterVal);
 
-
     // TODO: VAlidar que no sea nulo rubroFilter
-    let idRubro  = this.rubroFilter[0].id;
+    let idRubro = this.rubroFilter[0].id;
 
-    this.serviceAbmCompra.listarSubRubrosPorIdRubro(idRubro).subscribe( data =>{
+    this.serviceAbmCompra.listarSubRubrosPorIdRubro(idRubro).subscribe(data => {
       this.subRubros = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
@@ -209,15 +225,13 @@ export class AgregarArticuloComponent implements OnInit {
       this.subRubroFilter = this.subRubros;
       this.subRubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
     });
-
-
-
   }
   listarSubRubros(filterVal: any) {
-
     if (filterVal == "0") this.subRubroFilter = this.subRubros;
     else
-      this.subRubroFilter = this.subRubros.filter(item => item.nombre == filterVal);
+      this.subRubroFilter = this.subRubros.filter(
+        item => item.nombre == filterVal
+      );
   }
 
   listarMarcas(filterVal: any) {
@@ -228,9 +242,8 @@ export class AgregarArticuloComponent implements OnInit {
   listarProveedores(filterVal: any) {
     if (filterVal == "0") this.proveedoresFilter = this.proveedores;
     else
-      this.proveedoresFilter = this.proveedores.filter(item => item.razonSocial == filterVal);
+      this.proveedoresFilter = this.proveedores.filter(
+        item => item.razonSocial == filterVal
+      );
   }
-
-
-
 }

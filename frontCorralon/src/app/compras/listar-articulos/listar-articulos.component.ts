@@ -2,6 +2,7 @@ import { Router } from "@angular/router";
 import { ComprasService } from "./../../service/compras.service";
 import { Articulo } from "./../../modelo/Articulo";
 import { Component, OnInit } from "@angular/core";
+import { delay } from "rxjs/operators";
 
 @Component({
   selector: "app-listar-articulos",
@@ -14,21 +15,32 @@ export class ListarArticulosComponent implements OnInit {
   articulosFilter: Articulo[] = [];
   busquedaNombre: string = null;
   busqueda: string = null;
+  loaded: boolean = false;
   constructor(private serviceCompra: ComprasService, private router: Router) {}
 
   ngOnInit() {
-    this.serviceCompra.listarArticuloTodos().subscribe(data => {
-      this.articulos = data.data;
-      this.articulosFilter = data.data;
-      console.info('Articulos');
-
-      console.info(this.articulos);
-      console.info('ArticulosFilter');
-
-      console.info(this.articulosFilter);
+    this.fetchEvent().then(() => {
+      console.log(this.articulos);
 
     });
   }
+
+  fetchEvent() {
+    return this.serviceCompra
+      .listarArticuloTodos()
+      .toPromise()
+      .then(data => {
+        // subscribe(data => {
+        this.articulos = data.data;
+        this.articulosFilter = this.articulos;
+        console.info("Articulos");
+        console.info(data.data);
+        console.info("ArticulosFilter");
+
+        console.info(this.articulosFilter);
+      });
+  }
+
   modificarArticulo(articulo: Articulo) {
     this.router.navigate(["compras/modificar-articulo/" + articulo.id]);
   }

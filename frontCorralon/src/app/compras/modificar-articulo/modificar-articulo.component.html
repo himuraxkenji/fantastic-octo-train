@@ -47,18 +47,7 @@
                                         <input #nombre [(ngModel)]="articulo.stockMin" type="text " class="form-control" placeholder={{articuloDTO.stockMin}} required="true">
                                     </td>
                                 </tr>
-                                <!-- id : number;
-                  nombre: string;
-                  abreviatura: string;
-                  codigoArt: string;
-                  stockMin: number;
-                  stockMax: number;
-                  proveedorId: number;
-                  unidadMedidaId: number;
-                  marcaId: number;
-                  rubroId: number;
-                  subRubroId: number;
-                  habilitacion: number; -->
+
                             </div>
                             <div class="column col-md-6">
                                 <tr>
@@ -74,7 +63,7 @@
                       </select>
                                     </td>
                                 </tr>
-                                <!-- <tr>
+                                <tr>
                                     <td>
                                         <label for="rubroId"> RUBRO</label>
                                     </td>
@@ -91,9 +80,9 @@
                                         <label for="subRubroId"> SUB RUBRO</label>
                                     </td>
                                     <td>
-                                        <select [(ngModel)]="nombreRubro" class="form-control">
-                        <option *ngFor=" let rubro of rubros"[selected]="rubro.nombre==rubroSelected.nombre">
-                        {{rubro.nombre}}
+                                        <select [(ngModel)]="nombreSubRubro" class="form-control">
+                        <option *ngFor=" let subRubro of subRubros"[selected]="subRubro.nombre==subRubroSelected.nombre">
+                        {{subRubro.nombre}}
                       </option>
                     </select>
                                     </td>
@@ -103,9 +92,9 @@
                                         <label for="marcaId"> MARCA</label>
                                     </td>
                                     <td>
-                                        <select [(ngModel)]="nombreRubro" class="form-control">
-                      <option *ngFor=" let rubro of rubros"[selected]="rubro.nombre==rubroSelected.nombre">
-                      {{rubro.nombre}}
+                                        <select [(ngModel)]="nombreMarca" class="form-control">
+                      <option *ngFor=" let marca of marcas"[selected]="marca.nombre==marcaSelected.nombre">
+                      {{marca.nombre}}
                     </option>
                   </select>
                                     </td>
@@ -115,13 +104,13 @@
                                         <label for="proveedorId"> PROVEEDOR</label>
                                     </td>
                                     <td>
-                                        <select [(ngModel)]="nombreRubro" class="form-control">
-                    <option *ngFor=" let rubro of rubros"[selected]="rubro.nombre==rubroSelected.nombre">
-                    {{rubro.nombre}}
+                                        <select [(ngModel)]="nombreProveedor" class="form-control">
+                    <option *ngFor=" let proveedor of proveedores"[selected]="proveedor.razonSocial==proveedorSelected.razonSocial">
+                    {{proveedor.razonSocial}}
                   </option>
                 </select>
                                     </td>
-                                </tr> -->
+                                </tr>
 
                             </div>
                         </div>
@@ -129,7 +118,7 @@
                     <div class="row justify-content-center">
                         <tr>
                             <td>
-                                <button (click)="actualizarSubRubro(articulo)" class="btn btn-warning ">ACEPTAR</button>
+                                <button (click)="actualizarArticulo(articulo)" class="btn btn-warning ">ACEPTAR</button>
                             </td>
                             <td>
                                 <button (click)="volverAtras() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
@@ -142,17 +131,3 @@
     </div>
 
 </div>
-<!-- <select id="departamento" name="departamento" [(ngModel)]="departamento" class="form-control ">
-                            <option *ngFor="let departamento of departamentos" [selected]="departamento.nombre===departamentoSelected.nombre">
-                                  {{departamento.nombre}}
-                            </option>
-                      </select> -->
-
-<!-- <label class="btn btn-default " for="departamento "> DEPARTAMENTO </label>
-
-
-
-    </div>
-</div>
-
-</div> -->
