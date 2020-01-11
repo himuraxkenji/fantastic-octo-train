@@ -1,7 +1,7 @@
 package com.undec.corralon.controlador;
 
 import com.undec.corralon.DTO.Response;
-import com.undec.corralon.excepciones.Pedido.PedidoErrorToSaveException;
+import com.undec.corralon.excepciones.Pedido.PedidoException;
 import com.undec.corralon.modelo.Pedido;
 import com.undec.corralon.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,20 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<Response> guardarPedido(@RequestBody Pedido pedido) throws PedidoErrorToSaveException {
+    public ResponseEntity<Response> guardarPedido(@RequestBody Pedido pedido) throws PedidoException {
         Response response = pedidoService.crearPedido(pedido);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @PutMapping
+    public ResponseEntity<Response> modificarPedido(@RequestBody Pedido pedido) throws PedidoException {
+        Response response = pedidoService.modificarPedido(pedido);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Response> eliminarPedido(@PathVariable("id") Integer id) throws PedidoException {
+        Response response = pedidoService.darBajaPedido(id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
