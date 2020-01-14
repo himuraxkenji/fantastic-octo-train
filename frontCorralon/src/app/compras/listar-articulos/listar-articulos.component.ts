@@ -13,15 +13,15 @@ export class ListarArticulosComponent implements OnInit {
   // articulo: Articulo = null;
   articulos: Articulo[] = [];
   articulosFilter: Articulo[] = [];
-  busquedaNombre: string = null;
   busqueda: string = null;
+  busquedaRubro: string = null;
+  busquedaCodigo: string = null;
   loaded: boolean = false;
   constructor(private serviceCompra: ComprasService, private router: Router) {}
 
   ngOnInit() {
     this.fetchEvent().then(() => {
       console.log(this.articulos);
-
     });
   }
 
@@ -61,6 +61,36 @@ export class ListarArticulosComponent implements OnInit {
         }
       });
     } else {
+      this.articulosFilter = this.articulos;
+    }
+  }
+  filtrarArticuloCodigo(event: any) {
+    if (this.busquedaCodigo !== null) {
+      this.articulosFilter = this.articulos.filter(item => {
+        if (
+          item.codigoArt
+            .toUpperCase()
+            .includes(this.busquedaCodigo.toUpperCase())
+        ) {
+          return item;
+        }
+      });
+    } else {
+      this.articulosFilter = this.articulos;
+    }
+  }
+  filtrarArticuloRubro(event: any) {
+    console.log("================ENTRO================");
+
+    if (this.busquedaRubro !== null) {
+      this.articulosFilter = this.articulos.filter(item => {
+        if (item.rubroId !== null){
+          if(item.rubroId.nombre.toUpperCase().includes(this.busquedaRubro.toUpperCase())){
+          return item;
+          }
+      }
+      });
+    }       else {
       this.articulosFilter = this.articulos;
     }
   }

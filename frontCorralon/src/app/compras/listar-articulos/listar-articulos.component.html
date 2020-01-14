@@ -16,36 +16,57 @@
 
         <div class="card-body ">
             <div class="row ">
-                <table class="table ">
+                <table class="table table-borderless">
                     <thead class="thead-dark ">
-                        <tr>
-                            <td>
-                                <button class="btn btn-default ">NOMBRE </button>
-                            </td>
-                            <td>
-                                <input type="text " [(ngModel)]="busqueda " class="form-control " placeholder="ingrese nombre " (keyup)="filtrarArticuloNombre(event) ">
-                            </td>
-                            <td>
+                        <div class="container ">
+                            <div class="row justify-content-center ">
+                                <div class="column col-md-12 ">
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-default ">NOMBRE </button>
+                                        </td>
+                                        <td>
+                                            <input type="text " [(ngModel)]="busqueda " class="form-control " placeholder="ingrese nombre " (keyup)="filtrarArticuloNombre(event) ">
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-default ">CODIGO </button>
+                                        </td>
+                                        <td>
+                                            <input type="text " [(ngModel)]="busquedaCodigo " class="form-control " placeholder="ingrese código " (keyup)="filtrarArticuloCodigo(event) ">
+                                        </td>
+                                        <td>
 
-                                <button class="btn btn-warning " [routerLink]="[ '/compras/agregar-articulo'] " routerLinkActive="router-link-active " style="margin-left: 50px; ">
-                                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32">
+                                            <button class="btn btn-warning " [routerLink]="[ '/compras/agregar-articulo'] " routerLinkActive="router-link-active " style="margin-left: 50px; ">
+                                  <svg version="1.1 " xmlns="http://www.w3.org/2000/svg " width="20 " height="20 " viewBox="0 0 32 32 ">
                                     <title>ARTICULO</title>
-                                    <path d="M12 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path>
-                                    <path d="M32 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z"></path> -->
-                                    <path d="M32 16v-12h-24c0-1.105-0.895-2-2-2h-6v2h4l1.502 12.877c-0.915 0.733-1.502 1.859-1.502 3.123 0 2.209 1.791 4 4 4h24v-2h-24c-1.105 0-2-0.895-2-2 0-0.007 0-0.014 0-0.020l26-3.98z"></path> -->
+                                    <path d="M12 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z "></path>
+                                    <path d="M32 29c0 1.657-1.343 3-3 3s-3-1.343-3-3c0-1.657 1.343-3 3-3s3 1.343 3 3z "></path> -->
+                                    <path d="M32 16v-12h-24c0-1.105-0.895-2-2-2h-6v2h4l1.502 12.877c-0.915 0.733-1.502 1.859-1.502 3.123 0 2.209 1.791 4 4 4h24v-2h-24c-1.105 0-2-0.895-2-2 0-0.007 0-0.014 0-0.020l26-3.98z "></path> -->
                                 </svg>
                         NUEVO ARTICULO
                       </button>
-                            </td>
-                        </tr>
-
+                                        </td>
+                                    </tr>
+                                </div>
+                                <div class="column col-md-12 left ">
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-default ">RUBRO </button>
+                                        </td>
+                                        <td>
+                                            <input type="text " [(ngModel)]="busquedaRubro " class="form-control " placeholder="ingrese rubro " (keyup)="filtrarArticuloRubro(event) ">
+                                        </td>
+                                    </tr>
+                                </div>
+                            </div>
+                        </div>
                     </thead>
                 </table>
             </div>
         </div>
 
         <div class=" card-body p-0 " style="width:1100px; height:400px; overflow: auto; ">
-            <table class="table table-responsive-sm table-hover">
+            <table class="table table-responsive-sm table-hover ">
                 <thead class="thead-dark ">
                     <tr class="text-center ">
                         <th scope="col ">CODIGO</th>
@@ -58,28 +79,28 @@
                         <th scope="col*2 ">OPCIONES</th>
                     </tr>
                 </thead>
-                <tbody *ngIf="articulos !=null  ">
-                    <tr *ngFor="let articulo of articulosFilter " class="text-center">
+                <tbody *ngIf="articulos !=null ">
+                    <tr *ngFor="let articulo of articulosFilter " class="text-center ">
                         <td>{{articulo.codigoArt}}</td>
                         <td>{{articulo.nombre}}</td>
                         <td>{{articulo.abreviatura}}</td>
                         <td>{{articulo.stockMin}}</td>
                         <td>{{articulo.stockMax}}</td>
-                        <td *ngIf="articulo.unidadMedidaId == null"></td>
-                        <td *ngIf="articulo.unidadMedidaId != null">{{articulo.unidadMedidaId.id}}</td>
-                        <td *ngIf="articulo.unidadMedidaId == null"></td>
-                        <td *ngIf="articulo.unidadMedidaId != null">{{articulo.rubroId.nombre}}</td>
+                        <td *ngIf="articulo.unidadMedidaId==null "></td>
+                        <td *ngIf="articulo.unidadMedidaId !=null ">{{articulo.unidadMedidaId.abreviatura}}</td>
+                        <td *ngIf="articulo.rubroId==null "></td>
+                        <td *ngIf="articulo.rubroId !=null ">{{articulo.rubroId.nombre}}</td>
 
                         <td>
-                            <button class="btn btn-default " title="Modificar " (click)="modificarArticulo(articulo)">
+                            <button class="btn btn-default " title="Modificar " (click)="modificarArticulo(articulo) ">
                         <svg xmlns="http://www.w3.org/2000/svg " width="14 " height="16 " viewBox="0 0 14 16 "><path fill-rule="evenodd " d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39
-  1.02 0 1.41z "/></svg>
+                    1.02 0 1.41z "/></svg>
                      </button>
 
 
-                            <button class="btn btn-default " title="Eliminar " style="margin-left: 10px; " (click)="deshabilitarArticulo(articulo)">
-                    <svg xmlns="http://www.w3.org/2000/svg " width="12 " height="16 " viewBox="0 0 12 16 "><path fill-rule="evenodd " d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48
-  1.48L7.48 8z "/></svg>
+                            <button class="btn btn-default " title="Eliminar " style="margin-left: 10px; " (click)="deshabilitarArticulo(articulo) ">
+                    <svg xmlns="http://www.w3.org/2000/svg " width="12 " height="16 " viewBox="0 0 12 16 "><path fill-rule="evenodd " d="M7.48 8l3.75 3.75-1.48 1.48L6 9.48l-3.75 3.75-1.48-1.48L4.52 8 .77 4.25l1.48-1.48L6 6.52l3.75-3.75 1.48 1.48L7.48
+                    8z "/></svg>
                     </button>
                         </td>
 
