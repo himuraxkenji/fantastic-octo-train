@@ -54,6 +54,7 @@ public class PedidoService {
         Response response = new Response();
 
         pedido = this.pedidoRepository.save(pedido);
+        pedido.setHabilitacion(1);
 
         if(pedido == null)
             throw new PedidoErrorToSaveException();
