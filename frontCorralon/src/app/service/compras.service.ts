@@ -1,3 +1,4 @@
+import { Pedido } from './../modelo/Pedido';
 import { ArticuloDTO } from './../modelo/ArticuloDTO';
 import { Articulo } from './../modelo/Articulo';
 import { Proveedor } from './../modelo/Proveedor';
@@ -42,5 +43,25 @@ export class ComprasService {
   }
   desabilitarArticulo(id: number) {
     return this.http.delete(this.Url + "/articulos/" + id);
+  }
+
+  // SERVICE THE PEDIDO
+  listarPedidoTodos() {
+    return this.http.get<Response>(this.Url+ "/pedidos");
+  }
+  listarPedidosHabilitados() {
+    return this.http.get<Response>(this.Url+ "/pedidos/habilitados");
+  }
+  guardarPedidos(pedido: Pedido) {
+    return this.http.post<Pedido>(this.Url + "/pedidos/", pedido);
+  }
+  actualizarPedido(pedido: Pedido) {
+    return this.http.put<Pedido>(this.Url + "/pedidos/", pedido);
+  }
+  listarPedidoId(id: number) {
+    return this.http.get<Response>(this.Url + "/pedidos/" + id);
+  }
+  desabilitarPedido(id: number) {
+    return this.http.delete(this.Url + "/pedidos/" + id);
   }
 }

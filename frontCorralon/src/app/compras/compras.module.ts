@@ -10,6 +10,8 @@ import { ListarArticulosComponent } from './listar-articulos/listar-articulos.co
 import { AgregarProveedorComponent } from './agregar-proveedor/agregar-proveedor.component';
 import { ModificarArticuloComponent } from './modificar-articulo/modificar-articulo.component';
 import { AgregarArticuloComponent } from './agregar-articulo/agregar-articulo.component';
+import { ListarPedidoComponent } from './listar-pedido/listar-pedido.component';
+import { AgregarPedidoComponent } from './agregar-pedido/agregar-pedido.component';
 // import { ListarPreciosComponent } from './listar-precios/listar-precios.component';
 // import { ListarRubroComponent } from './listar-rubro/listar-rubro.component';
 // import { ListarSubrubroComponent } from './listar-subrubro/listar-subrubro.component';
@@ -22,7 +24,9 @@ import { AgregarArticuloComponent } from './agregar-articulo/agregar-articulo.co
   ListarArticulosComponent,
   AgregarProveedorComponent,
   ModificarArticuloComponent,
-  AgregarArticuloComponent
+  AgregarArticuloComponent,
+  ListarPedidoComponent,
+  AgregarPedidoComponent
   // ListarPreciosComponent,
   // ListarRubroComponent,
   // ListarSubrubroComponent
