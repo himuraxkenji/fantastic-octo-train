@@ -1,3 +1,5 @@
+import { AgregarPedidoComponent } from './agregar-pedido/agregar-pedido.component';
+import { ListarPedidoComponent } from './listar-pedido/listar-pedido.component';
 import { ModificarArticuloComponent } from './modificar-articulo/modificar-articulo.component';
 import { AgregarArticuloComponent } from './agregar-articulo/agregar-articulo.component';
 import { AgregarProveedorComponent } from './agregar-proveedor/agregar-proveedor.component';
@@ -13,8 +15,10 @@ const routes: Routes = [
   children:[
     {path: 'listar-proveedor', component: ListarProveedorComponent},
     {path: 'listar-articulos', component: ListarArticulosComponent},
+    {path: 'listar-pedido', component: ListarPedidoComponent},
     {path: 'agregar-proveedor', component: AgregarProveedorComponent},
     {path: 'agregar-articulo', component: AgregarArticuloComponent},
+    {path: 'agregar-pedido', component: AgregarPedidoComponent},
     {path: 'modificar-articulo/:id', component: ModificarArticuloComponent}
     // {path: 'listar-precios', component: ListarPreciosComponent},
     // {path: 'listar-rubros', component: ListarRubroComponent},
