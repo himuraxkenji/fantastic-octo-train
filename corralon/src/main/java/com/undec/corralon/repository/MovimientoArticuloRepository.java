@@ -11,9 +11,11 @@ import java.util.List;
 public interface MovimientoArticuloRepository extends JpaRepository<MovimientoArticulo, Integer> {
     List<MovimientoArticulo> findMovimientoArticuloByPedidoId_IdEquals(Integer id);
 
-   @Query("SELECT SUM(m.movimiento) FROM MovimientoArticulo m WHERE m.pedidoId=(:id)")
-   Integer findAllByArticuloId(@Param("id") Integer id);
+//   @Query("SELECT SUM(m.movimiento) FROM MovimientoArticulo m WHERE m.pedidoId = :id")
+//   double findAllByArticuloId(@Param("id") Integer id);
 
-//    Integer countMovimientoArticuloByArticuloId(Integer id);
+    @Query("SELECT SUM(m.movimiento) FROM MovimientoArticulo m WHERE m.articuloId.id = :id and m.articuloId.habilitacion = 1")
+    Double stockPorArticulo(@Param("id") Integer idArticulo);
+//    Integer countMovimientoArticuloByArticuloId_Id(Integer id);
 
 }

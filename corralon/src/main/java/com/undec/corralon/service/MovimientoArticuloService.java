@@ -3,6 +3,7 @@ package com.undec.corralon.service;
 import com.undec.corralon.DTO.Response;
 import com.undec.corralon.modelo.Articulo;
 import com.undec.corralon.modelo.MovimientoArticulo;
+import com.undec.corralon.modelo.Pedido;
 import com.undec.corralon.repository.ArticuloRepository;
 import com.undec.corralon.repository.MovimientoArticuloRepository;
 import com.undec.corralon.repository.PedidoRepository;
@@ -39,14 +40,13 @@ public class MovimientoArticuloService {
     public Response obtenerStockArticulos(){
 
         Response response = new Response();
-        Map<Integer, Integer> stock = new HashMap<Integer, Integer>();
+        Map<Integer, Double> stock = new HashMap<Integer, Double>();
         List<Articulo> articulos = this.articuloRepository.findAll();
-
-
-        articulos.stream().forEach( p -> {
+        articulos.forEach( p -> {
             Integer idArticulo = p.getId();
-            Integer stockArt = this.movimientoArticuloRepository.findAllByArticuloId(idArticulo);
-
+            Double stockArt = this.movimientoArticuloRepository.stockPorArticulo(idArticulo);
+            if( stockArt == null)
+                stockArt = 0.0;
             stock.put(idArticulo,stockArt );
 
         });
