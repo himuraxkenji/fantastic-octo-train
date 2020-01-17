@@ -1,10 +1,7 @@
-<div class="container" ng-controller="sub Rubros">
+<div class="container" ng-controller="pedido">
     <div class="card m-2">
-        <h1 class="text-center">CARGA DE ARTICULOS</h1>
+        <h1 class="text-center">CARGA DE PEDIDOS</h1>
         <div class="card-body">
-
-
-            <!-- <table class="table col-md-6"> -->
             <table class=" table table-borderless col-md border-0">
                 <thead class="thead-dark was-validated">
                     <div class="container">
@@ -22,22 +19,47 @@
                                         <label for="fecha"> FECHA</label>
                                     </td>
                                     <td>
-                                        <input [(ngModel)]="pedido.fecha" type="text " class="form-control " placeholder="ingrese abreviatura " required="true">
+                                        <input [(ngModel)]="pedido.fecha" type="date" class="form-control " placeholder="ingrese abreviatura " required="true">
                                     </td>
                                 </tr>
+
                                 <tr>
                                     <td>
                                         <label for="descripcion"> DESCRIPCION</label>
                                     </td>
                                     <td>
-                                        <input [(ngModel)]="pedido.descripcion" type="text" class="form-control " placeholder="ingrese abreviatura " required="true">
+                                        <textarea [(ngModel)]="pedido.descripcion" class="form-control" rows="3" cols="12" placeholder="ingrese descripcion" required="true"> </textarea>
                                     </td>
                                 </tr>
                             </div>
-                            <div class="column col-md-6">
-                                <h1>lista de completa para el check</h1>
-                            </div>
+                            <!-- <div class ="column col-md-12"></div> -->
+                            <div class="card-body p-0" style="width:1100px; height:400px; overflow: auto; ">
+                                <!-- div class=" card-body p-0 " style="width:1100px; height:400px; overflow: auto; "> -->
+                                <table class="table table-responsive-sm table-hover ">
+                                    <thead class="thead-light border border-dark">
+                                        <tr class="text-center ">
+                                            <th scope="col*4 ">CODIGO</th>
+                                            <th scope="col *4">NOMBRE</th>
+                                            <th scope="col *3">STOCK ACTUAL</th>
+                                            <th scope="col *1">CARGA</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="articulos !=null ">
+                                        <tr *ngFor="let articulo of articulosFilter; let i = index" class="text-center ">
+                                            <td>{{articulo.codigoArt}}</td>
+                                            <td>{{articulo.nombre}}</td>
+                                            <td>{{stockArticulo[i]}}</td>
+                                            <!-- <td class="column col-2 col-md-2 col-xl-1"> -->
+                                            <td>
+                                                <input type="number" value="0" class="form-control text-center " placeholder="carga">
+                                            </td>
+                                            <!-- <td *ngIf="articulo.unidadMedidaId==null "></td>
+                                            <td *ngIf="articulo.unidadMedidaId !=null ">{{articulo.unidadMedidaId.abreviatura}}</td> -->
 
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -57,5 +79,4 @@
             </table>
         </div>
     </div>
-
 </div>

@@ -1,3 +1,4 @@
+import { Articulo } from './../../modelo/Articulo';
 import { ListarArticulosComponent } from './../listar-articulos/listar-articulos.component';
 import { Router } from '@angular/router';
 import { ComprasService } from './../../service/compras.service';
@@ -16,12 +17,15 @@ export class ListarPedidoComponent implements OnInit {
   busqueda: string = null;
   busquedaFecha: string = null;
 
+  //
+  //
   constructor(private serviceCompra: ComprasService, private router: Router) {}
 
   ngOnInit() {
     this.fetchEvent().then(() => {
       console.log(this.pedidos);
     });
+
   }
 
   fetchEvent() {
@@ -34,6 +38,7 @@ export class ListarPedidoComponent implements OnInit {
 
       });
   }
+
 
   deshabilitarPedido(pedido: Pedido) {
     let resultado: boolean;

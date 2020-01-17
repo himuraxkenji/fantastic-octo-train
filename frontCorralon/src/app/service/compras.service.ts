@@ -44,7 +44,9 @@ export class ComprasService {
   desabilitarArticulo(id: number) {
     return this.http.delete(this.Url + "/articulos/" + id);
   }
-
+  listarStockArticulo() {
+    return this.http.get<Response>(this.Url+ "/movimientos/stock");
+  }
   // SERVICE THE PEDIDO
   listarPedidoTodos() {
     return this.http.get<Response>(this.Url+ "/pedidos");
@@ -64,4 +66,5 @@ export class ComprasService {
   desabilitarPedido(id: number) {
     return this.http.delete(this.Url + "/pedidos/" + id);
   }
+
 }
