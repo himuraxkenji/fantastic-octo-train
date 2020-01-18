@@ -1,9 +1,9 @@
 package com.undec.corralon.service;
 
+import com.undec.corralon.DTO.MovimientoArticuloDTO;
 import com.undec.corralon.DTO.Response;
 import com.undec.corralon.modelo.Articulo;
 import com.undec.corralon.modelo.MovimientoArticulo;
-import com.undec.corralon.modelo.Pedido;
 import com.undec.corralon.repository.ArticuloRepository;
 import com.undec.corralon.repository.MovimientoArticuloRepository;
 import com.undec.corralon.repository.PedidoRepository;
@@ -58,5 +58,22 @@ public class MovimientoArticuloService {
 
         return response;
 
+    }
+
+    public Response guardarMovimiento(MovimientoArticuloDTO movimientoArticuloDTO){
+        Response response = new Response();
+        MovimientoArticulo movimientoArticulo = new MovimientoArticulo();
+
+        movimientoArticulo.setFecha(movimientoArticuloDTO.getFecha());
+        movimientoArticulo.setMovimiento(movimientoArticuloDTO.getMovimiento());
+        movimientoArticulo.setArticuloId(this.articuloRepository.findById(movimientoArticuloDTO.getArticuloId()).get());
+        movimientoArticulo.setPedidoId(this.pedidoRepository.findById(movimientoArticuloDTO.getPedidoId()).get());
+
+        movimientoArticulo = this.movimientoArticuloRepository.save(movimientoArticulo);
+
+        response.setCode(200);
+        response.setMsg("Movimiento guardado");
+        response.setData(movimientoArticulo);
+        return  response;
     }
 }
