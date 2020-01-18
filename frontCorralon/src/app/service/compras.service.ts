@@ -1,3 +1,4 @@
+import { MovimientoArticuloDTO } from './../modelo/MovimientoArticuloDTO';
 import { Pedido } from './../modelo/Pedido';
 import { ArticuloDTO } from './../modelo/ArticuloDTO';
 import { Articulo } from './../modelo/Articulo';
@@ -54,8 +55,9 @@ export class ComprasService {
   listarPedidosHabilitados() {
     return this.http.get<Response>(this.Url+ "/pedidos/habilitados");
   }
-  guardarPedidos(pedido: Pedido) {
-    return this.http.post<Pedido>(this.Url + "/pedidos/", pedido);
+  async guardarPedidos(pedido: Pedido) {
+    let pedidos = await this.http.post<Response>(this.Url + "/pedidos/", pedido).toPromise();
+    return pedidos;
   }
   actualizarPedido(pedido: Pedido) {
     return this.http.put<Pedido>(this.Url + "/pedidos/", pedido);
@@ -66,5 +68,8 @@ export class ComprasService {
   desabilitarPedido(id: number) {
     return this.http.delete(this.Url + "/pedidos/" + id);
   }
-
+// SERVICE MOVIMIENTO
+guardarMovimiento(movimientoArticuloDTO: MovimientoArticuloDTO) {
+  return this.http.post<Response>(this.Url + "/movimientos/", movimientoArticuloDTO);
+}
 }

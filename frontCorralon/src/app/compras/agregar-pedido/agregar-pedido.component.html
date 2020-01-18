@@ -19,7 +19,8 @@
                                         <label for="fecha"> FECHA</label>
                                     </td>
                                     <td>
-                                        <input [(ngModel)]="pedido.fecha" type="date" class="form-control " placeholder="ingrese abreviatura " required="true">
+                                        <input [(ngModel)]="pedido.fecha" type="date" class="form-control " required="true">
+
                                     </td>
                                 </tr>
 
@@ -41,7 +42,7 @@
                                             <th scope="col*4 ">CODIGO</th>
                                             <th scope="col *4">NOMBRE</th>
                                             <th scope="col *3">STOCK ACTUAL</th>
-                                            <th scope="col *1">CARGA</th>
+                                            <th scope="col 10%">CARGA</th>
                                         </tr>
                                     </thead>
                                     <tbody *ngIf="articulos !=null ">
@@ -51,7 +52,7 @@
                                             <td>{{stockArticulo[i]}}</td>
                                             <!-- <td class="column col-2 col-md-2 col-xl-1"> -->
                                             <td>
-                                                <input type="number" value="0" class="form-control text-center " placeholder="carga">
+                                                <input [(ngModel)]="movimientoArticulosDTO[i].movimiento" type="number" class="form-control text-center " placeholder="carga">
                                             </td>
                                             <!-- <td *ngIf="articulo.unidadMedidaId==null "></td>
                                             <td *ngIf="articulo.unidadMedidaId !=null ">{{articulo.unidadMedidaId.abreviatura}}</td> -->

@@ -60,17 +60,17 @@ export class ListarPedidoComponent implements OnInit {
       this.pedidosFilter = this.pedidos;
     }
   }
-  filtarPedidoFecha(event: any) {
-    if (this.busquedaFecha !== null) {
-      this.pedidosFilter = this.pedidos.filter(item => {
-        if (item.fecha.includes(this.busquedaFecha)) {
-          return item;
-        }
-      });
-    } else {
-      this.pedidosFilter = this.pedidos;
-    }
-  }
+  // filtarPedidoFecha(event: any) {
+  //   if (this.busquedaFecha !== null) {
+  //     this.pedidosFilter = this.pedidos.filter(item => {
+  //       if (item.fecha.includes(this.busquedaFecha)) {
+  //         return item;
+  //       }
+  //     });
+  //   } else {
+  //     this.pedidosFilter = this.pedidos;
+  //   }
+  // }
   backPage() {
     window.history.back();
   }
