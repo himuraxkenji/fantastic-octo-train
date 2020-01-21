@@ -1,21 +1,24 @@
-import { Articulo } from './../../modelo/Articulo';
-import { ListarArticulosComponent } from './../listar-articulos/listar-articulos.component';
-import { Router } from '@angular/router';
-import { ComprasService } from './../../service/compras.service';
-import { Pedido } from './../../modelo/Pedido';
-import { Component, OnInit } from '@angular/core';
+import { Articulo } from "./../../modelo/Articulo";
+import { ListarArticulosComponent } from "./../listar-articulos/listar-articulos.component";
+import { Router } from "@angular/router";
+import { ComprasService } from "./../../service/compras.service";
+import { Pedido } from "./../../modelo/Pedido";
+import { Component, OnInit } from "@angular/core";
+import * as _ from "lodash";
 
 @Component({
-  selector: 'app-listar-pedido',
-  templateUrl: './listar-pedido.component.html',
-  styleUrls: ['./listar-pedido.component.css']
+  selector: "app-listar-pedido",
+  templateUrl: "./listar-pedido.component.html",
+  styleUrls: ["./listar-pedido.component.css"]
 })
 export class ListarPedidoComponent implements OnInit {
-
   pedidos: Pedido[] = [];
   pedidosFilter: Pedido[] = [];
   busqueda: string = null;
   busquedaFecha: string = null;
+  searchDesde: string = "";
+  searchHasta: string = "";
+  rows: any[];
 
   //
   //
@@ -25,7 +28,6 @@ export class ListarPedidoComponent implements OnInit {
     this.fetchEvent().then(() => {
       console.log(this.pedidos);
     });
-
   }
 
   fetchEvent() {
@@ -35,10 +37,8 @@ export class ListarPedidoComponent implements OnInit {
       .then(data => {
         this.pedidos = data.data;
         this.pedidosFilter = this.pedidos;
-
       });
   }
-
 
   deshabilitarPedido(pedido: Pedido) {
     let resultado: boolean;
@@ -60,17 +60,39 @@ export class ListarPedidoComponent implements OnInit {
       this.pedidosFilter = this.pedidos;
     }
   }
-  // filtarPedidoFecha(event: any) {
-  //   if (this.busquedaFecha !== null) {
-  //     this.pedidosFilter = this.pedidos.filter(item => {
-  //       if (item.fecha.includes(this.busquedaFecha)) {
-  //         return item;
-  //       }
-  //     });
-  //   } else {
-  //     this.pedidosFilter = this.pedidos;
-  //   }
-  // }
+
+  updateFilterDateDesde() {
+    let val = null;
+    if (this.searchDesde != null && this.searchDesde !== "") {
+      val = new Date(this.searchDesde);
+      this.pedidosFilter = [];
+      this.pedidosFilter = this.pedidos.filter(element => {
+        return new Date(element.fecha).valueOf() >= val.valueOf();
+      });
+    } else {
+      this.pedidosFilter = this.pedidos;
+    }
+    this.orderRows();
+  }
+
+  updateFilterDateHasta() {
+    let val = null;
+    if (this.searchHasta != null && this.searchHasta !== "") {
+      val = new Date(this.searchHasta);
+      // filter our data
+      this.pedidosFilter = this.pedidosFilter.filter(element => {
+        return new Date(element.fecha).valueOf() <= val.valueOf();
+      });
+    } else {
+      this.pedidosFilter = this.pedidos;
+    }
+
+    this.orderRows();
+  }
+  orderRows() {
+    this.pedidosFilter = _.orderBy(this.pedidosFilter, ["fecha"], ["desc"]);
+  }
+
   backPage() {
     window.history.back();
   }

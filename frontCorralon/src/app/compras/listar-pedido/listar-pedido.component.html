@@ -21,16 +21,22 @@
                                 <div class="column col-md-12 ">
                                     <tr>
                                         <td>
-                                            <button class="btn btn-default ">NOMBRE </button>
+                                            <label>NOMBRE</label>
                                         </td>
                                         <td>
                                             <input type="text " [(ngModel)]="busqueda " class="form-control " placeholder="ingrese nombre " (keyup)="filtarPedidoNombre(event) ">
                                         </td>
                                         <td>
-                                            <button class="btn btn-default ">FECHA </button>
+                                            <label>DESDE</label>
                                         </td>
                                         <td>
-                                            <input type="date" [(ngModel)]="busquedaFecha " class="form-control " (keyup)="filtarPedidoFecha(event) ">
+                                            <input type="date" name="search2" class="form-control" [(ngModel)]="searchDesde" placeholder="Desde..." (change)='updateFilterDateDesde()' />
+                                        </td>
+                                        <td>
+                                            <label>HASTA</label>
+                                        </td>
+                                        <td>
+                                            <input type="date" name="search3" class="form-control" [(ngModel)]="searchHasta" placeholder="Hasta..." (change)='updateFilterDateHasta()' />
                                         </td>
                                         <td>
 
