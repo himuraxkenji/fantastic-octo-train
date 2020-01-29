@@ -1,3 +1,4 @@
+import { Proveedor } from './../../modelo/Proveedor';
 import { Articulo } from "./../../modelo/Articulo";
 import { ListarArticulosComponent } from "./../listar-articulos/listar-articulos.component";
 import { Router } from "@angular/router";
@@ -19,6 +20,8 @@ export class ListarPedidoComponent implements OnInit {
   searchDesde: string = "";
   searchHasta: string = "";
   rows: any[];
+  proveedores: Proveedor[]=[];
+  razonSocial: string;
 
   //
   //
@@ -28,6 +31,7 @@ export class ListarPedidoComponent implements OnInit {
     this.fetchEvent().then(() => {
       console.log(this.pedidos);
     });
+
   }
 
   fetchEvent() {
@@ -96,4 +100,5 @@ export class ListarPedidoComponent implements OnInit {
   backPage() {
     window.history.back();
   }
+
 }

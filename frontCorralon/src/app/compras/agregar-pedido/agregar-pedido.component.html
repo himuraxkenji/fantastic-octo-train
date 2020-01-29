@@ -31,6 +31,19 @@
                                     <td>
                                         <textarea [(ngModel)]="pedido.descripcion" class="form-control" rows="3" cols="12" placeholder="ingrese descripcion" required="true"> </textarea>
                                     </td>
+
+                                    <td>
+                                        <label>PROVEEDOR</label>
+                                    </td>
+                                    <td>
+                                        <select (change)="listarFiltro()" [(ngModel)]="razonSocial" class="form-control">
+                                          <option *ngFor=" let prov of proveedores" [ngValue]="prov.razonSocial" selected="razonSocial">
+                                          {{prov.razonSocial}}
+                                        </option>
+                                      </select>
+                                    </td>
+
+
                                 </tr>
                             </div>
                             <!-- <div class ="column col-md-12"></div> -->

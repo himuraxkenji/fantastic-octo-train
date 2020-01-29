@@ -1,0 +1,2 @@
+por cada pantalla exportaciones a pdf y excel
+no exista modificar pero si consultar para pedidos para eso existen los ajustes.

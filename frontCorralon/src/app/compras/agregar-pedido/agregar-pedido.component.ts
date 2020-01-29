@@ -1,4 +1,5 @@
-import { element } from 'protractor';
+import { Proveedor } from "./../../modelo/Proveedor";
+import { element } from "protractor";
 import { MovimientoArticuloDTO } from "./../../modelo/MovimientoArticuloDTO";
 import { Articulo } from "./../../modelo/Articulo";
 import { Router } from "@angular/router";
@@ -22,19 +23,23 @@ export class AgregarPedidoComponent implements OnInit {
 
   articulosFilter: Articulo[] = null;
   stockArticulo: number[] = [];
+  proveedores: Proveedor[] = [];
+  razonSocial: string;
+
   constructor(private comprasService: ComprasService) {}
 
   async ngOnInit() {
     await this.fetchEvent2().then(() => {
-      this.articulos.forEach( (a, index )=> {
+      this.articulos.forEach((a, index) => {
         this.movimientoArticulosDTO.push(new MovimientoArticuloDTO());
         this.movimientoArticulosDTO[index].movimiento = null;
-      })
+      });
     });
     this.fetchEvent().then(() => {});
+    this.listaProveedor();
   }
 
-   guardarPedido(pedido: Pedido) {
+  guardarPedido(pedido: Pedido) {
     this.pedido.id = null;
     this.pedido.nombre = pedido.nombre.toUpperCase();
     this.pedido.fecha = pedido.fecha;
@@ -46,38 +51,38 @@ export class AgregarPedidoComponent implements OnInit {
       this.pedido = data.data;
 
       this.movimientoArticulosDTO.forEach((element, index) => {
-
         if (element.movimiento !== null) {
           this.movimientoArticuloDTO.id = null;
-          this.movimientoArticuloDTO.fecha=pedido.fecha;
-          this.movimientoArticuloDTO.articuloId= this.articulos[index].id;
-          this.movimientoArticuloDTO.movimiento = this.movimientoArticulosDTO[index].movimiento;
+          this.movimientoArticuloDTO.fecha = pedido.fecha;
+          this.movimientoArticuloDTO.articuloId = this.articulos[index].id;
+          this.movimientoArticuloDTO.movimiento = this.movimientoArticulosDTO[
+            index
+          ].movimiento;
           this.movimientoArticuloDTO.pedidoId = data.data.id;
           console.log(this.movimientoArticuloDTO);
-
 
           this.comprasService
             .guardarMovimiento(this.movimientoArticuloDTO)
             .subscribe(resp => {
-              console.log('entre :V');
-
+              console.log("entre :V");
             });
         }
-
-    });
+      });
 
       // }
-
     });
 
     alert("SE GUARDO UN NUEVO PEDIDO");
     window.history.back();
-// for (let index = 0; index < this.movimientoArticulosDTO.length; index++) {
-//   const element = array[index];
-
-
+    // for (let index = 0; index < this.movimientoArticulosDTO.length; index++) {
+    //   const element = array[index];
   }
-
+  listaProveedor() {
+    this.comprasService.listarProveedoresHabilitados().subscribe(data => {
+      this.proveedores = data.data;
+      this.razonSocial= this.proveedores[0].razonSocial;
+    });
+  }
   fetchEvent2() {
     return this.comprasService
       .listarArticuloHabilitados()
@@ -101,5 +106,15 @@ export class AgregarPedidoComponent implements OnInit {
   }
   volverAtras() {
     window.history.back();
+  }
+
+  listarFiltro() {
+    console.log(this.razonSocial);
+    this.articulosFilter = [];
+    this.articulos.forEach(element => {
+      element.proveedorId.razonSocial === this.razonSocial
+        ? this.articulosFilter.push(element)
+        : false;
+    });
   }
 }
