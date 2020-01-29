@@ -72,7 +72,7 @@
                 <tbody *ngIf="pedidos !=null ">
                     <tr *ngFor="let pedido of pedidosFilter " class="text-center ">
                         <td>{{pedido.nombre}}</td>
-                        <td>{{pedido.fecha}}</td>
+                        <td>{{pedido.fecha | date: 'dd-MM-yyyy' }}</td>
                         <td>{{pedido.descripcion}}</td>
 
                         <td>

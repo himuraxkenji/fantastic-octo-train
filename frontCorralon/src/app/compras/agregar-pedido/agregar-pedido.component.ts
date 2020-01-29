@@ -42,7 +42,12 @@ export class AgregarPedidoComponent implements OnInit {
   guardarPedido(pedido: Pedido) {
     this.pedido.id = null;
     this.pedido.nombre = pedido.nombre.toUpperCase();
-    this.pedido.fecha = pedido.fecha;
+    let fechaString = this.jsonStringDate(this.pedido.fecha);
+    let fechaCorrecta = new Date(fechaString);
+    fechaCorrecta.setMinutes(
+      fechaCorrecta.getMinutes() + fechaCorrecta.getTimezoneOffset()
+    );
+    this.pedido.fecha = fechaCorrecta;
     this.pedido.descripcion = pedido.descripcion.toUpperCase();
 
     this.comprasService.guardarPedidos(this.pedido).then(data => {
@@ -50,16 +55,36 @@ export class AgregarPedidoComponent implements OnInit {
 
       this.pedido = data.data;
 
+      //       El this.encuestaForm.controls['fechaDesde'].value reemplazalo por lo del ng model tuyo
+
+      // let dateFrom  = new Date(this.encuestaForm.controls['fechaDesde'].value);
+      // dateFrom.setMinutes(dateFrom.getMinutes() + dateFrom.getTimezoneOffset());
+
       this.movimientoArticulosDTO.forEach((element, index) => {
         if (element.movimiento !== null) {
           this.movimientoArticuloDTO.id = null;
-          this.movimientoArticuloDTO.fecha = pedido.fecha;
+          let fechaString = this.jsonStringDate(this.pedido.fecha);
+          let fechaCorrecta = new Date(fechaString);
+          fechaCorrecta.setMinutes(
+            fechaCorrecta.getMinutes() + fechaCorrecta.getTimezoneOffset()
+          );
+
+          this.movimientoArticuloDTO.fecha = fechaCorrecta;
+
           this.movimientoArticuloDTO.articuloId = this.articulos[index].id;
           this.movimientoArticuloDTO.movimiento = this.movimientoArticulosDTO[
             index
           ].movimiento;
           this.movimientoArticuloDTO.pedidoId = data.data.id;
+
           console.log(this.movimientoArticuloDTO);
+
+          console.log("muetra fecha");
+          console.log(this.movimientoArticuloDTO.fecha);
+          console.log('fecha correcta');
+          console.log(fechaCorrecta);
+
+
 
           this.comprasService
             .guardarMovimiento(this.movimientoArticuloDTO)
@@ -80,7 +105,7 @@ export class AgregarPedidoComponent implements OnInit {
   listaProveedor() {
     this.comprasService.listarProveedoresHabilitados().subscribe(data => {
       this.proveedores = data.data;
-      this.razonSocial= this.proveedores[0].razonSocial;
+      this.razonSocial = this.proveedores[0].razonSocial;
     });
   }
   fetchEvent2() {
@@ -116,5 +141,12 @@ export class AgregarPedidoComponent implements OnInit {
         ? this.articulosFilter.push(element)
         : false;
     });
+  }
+  jsonStringDate(jdate): string {
+    if (jdate != null) {
+      const resp = new Date(jdate);
+      return resp.toISOString().substring(0, 10);
+    }
+    return "";
   }
 }

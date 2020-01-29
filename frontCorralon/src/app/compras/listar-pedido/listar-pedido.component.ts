@@ -40,10 +40,32 @@ export class ListarPedidoComponent implements OnInit {
       .toPromise()
       .then(data => {
         this.pedidos = data.data;
+        console.log('fechas: ');
         this.pedidosFilter = this.pedidos;
+
+        this.pedidos.forEach((p , index)=>{
+          console.log(p.fecha);
+
+          this.pedidos[index].fecha = new Date(p.fecha);
+          this.pedidos[index].fecha.setMinutes(this.pedidos[index].fecha.getMinutes() + this.pedidos[index].fecha.getTimezoneOffset());
+
+          this.pedidosFilter[index].fecha = new Date(p.fecha);
+          this.pedidosFilter[index].fecha.setMinutes(this.pedidosFilter[index].fecha.getMinutes() + this.pedidosFilter[index].fecha.getTimezoneOffset());
+          // console.log(p.fecha);
+
+        })
+
+
+
       });
   }
-
+  jsonStringDate(jdate): string {
+    if (jdate != null) {
+      const resp = new Date(jdate);
+      return resp.toISOString().substring(0, 10);
+    }
+    return "";
+  }
   deshabilitarPedido(pedido: Pedido) {
     let resultado: boolean;
     resultado = confirm("¿DESEA DESHABILITAR ESTE PEDIDO?");

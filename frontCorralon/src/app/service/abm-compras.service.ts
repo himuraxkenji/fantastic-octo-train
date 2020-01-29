@@ -14,8 +14,8 @@ import { Response } from "../modelo/Response";
 })
 export class AbmComprasService {
 // DE MANERA LOCAL
-  Url = "//localhost:8081";
-  // Url ="http://192.168.1.100:8081";
+  // Url = "//localhost:8081";
+  Url ="http://192.168.1.100:8081";
 
   constructor(private http: HttpClient) {}
 

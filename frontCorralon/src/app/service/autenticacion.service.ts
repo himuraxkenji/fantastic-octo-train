@@ -18,8 +18,8 @@ export class AutenticacionService {
   constructor(private httpClient: HttpClient) {}
 
   autenticacion(username, password) {
-    // return this.httpClient.post<any>('http://192.168.1.100:8081/authenticate',{username,password}).pipe(
-      return this.httpClient.post<any>('http://localhost:8081/authenticate',{username,password}).pipe(
+    return this.httpClient.post<any>('http://192.168.1.100:8081/authenticate',{username,password}).pipe(
+      // return this.httpClient.post<any>('http://localhost:8081/authenticate',{username,password}).pipe(
      map(
        userData => {
         sessionStorage.setItem('username',username);
