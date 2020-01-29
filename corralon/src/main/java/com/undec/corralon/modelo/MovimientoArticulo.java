@@ -3,6 +3,7 @@ package com.undec.corralon.modelo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ import java.util.Objects;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class MovimientoArticulo {
     private Integer id;
-    private Date fecha;
+    private Timestamp fecha;
     private Integer movimiento;
     private Articulo articuloId;
     private Ajustes ajusteId;
@@ -30,11 +31,11 @@ public class MovimientoArticulo {
 
     @Basic
     @Column(name = "fecha")
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 

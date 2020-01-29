@@ -21,10 +21,13 @@ public class PedidoService {
 
     public Response obtenerTodosLosPedidos(){
         Response response = new Response();
-
         response.setCode(200);
         response.setData(this.pedidoRepository.findAll());
         response.setMsg("Todos los pedidos");
+        for (Pedido fecha : this.pedidoRepository.findAll()) {
+            System.out.println("pedidos" + fecha.getFecha());
+        }
+
 
         return response;
     }
@@ -52,7 +55,6 @@ public class PedidoService {
 
     public Response crearPedido(Pedido pedido) throws PedidoException {
         Response response = new Response();
-
         pedido = this.pedidoRepository.save(pedido);
         pedido.setHabilitacion(1);
 
@@ -62,7 +64,7 @@ public class PedidoService {
         response.setCode(200);
         response.setData(pedido);
         response.setMsg("Pedido guardado");
-
+    System.out.println("crear pedido -->"+pedido.getFecha());
         return response;
     }
 

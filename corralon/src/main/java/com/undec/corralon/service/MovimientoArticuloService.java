@@ -10,6 +10,7 @@ import com.undec.corralon.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @Service
@@ -64,7 +65,7 @@ public class MovimientoArticuloService {
         Response response = new Response();
         MovimientoArticulo movimientoArticulo = new MovimientoArticulo();
 
-        movimientoArticulo.setFecha(movimientoArticuloDTO.getFecha());
+        movimientoArticulo.setFecha(new Timestamp(movimientoArticuloDTO.getFecha().getTime()));
         movimientoArticulo.setMovimiento(movimientoArticuloDTO.getMovimiento());
         movimientoArticulo.setArticuloId(this.articuloRepository.findById(movimientoArticuloDTO.getArticuloId()).get());
         movimientoArticulo.setPedidoId(this.pedidoRepository.findById(movimientoArticuloDTO.getPedidoId()).get());

@@ -1,5 +1,6 @@
 package com.undec.corralon.DTO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Date;
@@ -8,7 +9,6 @@ public class MovimientoArticuloDTO {
 
     @JsonProperty(value = "id", required = false)
     private Integer id;
-
     private Date fecha;
     private Integer movimiento;
     private Integer articuloId;
