@@ -35,11 +35,21 @@
                                     <td>
                                         <label>PROVEEDOR</label>
                                     </td>
-                                    <td>
+                                    <!-- <td>
                                         <select (change)="listarFiltro()" [(ngModel)]="razonSocial" class="form-control">
                                           <option *ngFor=" let prov of proveedores" [ngValue]="prov.razonSocial" selected="razonSocial">
                                           {{prov.razonSocial}}
                                         </option>
+                                      </select>
+                                    </td> -->
+
+
+                                    <td>
+                                        <select (change)="listarFiltro()" [(ngModel)]="razonSocial" class="form-control">
+                                          <option *ngFor=" let prov of proveedores" value="{{prov.razonSocial}}" >
+                                            <label *ngIf="prov.razonSocial !== ' '" >{{prov.razonSocial}}</label>
+                                            <label *ngIf="prov.razonSocial === ' '" >Todos</label>
+                                          </option>
                                       </select>
                                     </td>
 
@@ -65,7 +75,7 @@
                                             <td>{{stockArticulo[i]}}</td>
                                             <!-- <td class="column col-2 col-md-2 col-xl-1"> -->
                                             <td>
-                                                <input [(ngModel)]="movimientoArticulosDTO[i].movimiento" type="number" class="form-control text-center " placeholder="carga">
+                                                <input (change)="guardarCarga()" [(ngModel)]="movimientoFilter[i].movimiento" type="number" class="form-control text-center " placeholder="cantidad">
                                             </td>
                                             <!-- <td *ngIf="articulo.unidadMedidaId==null "></td>
                                             <td *ngIf="articulo.unidadMedidaId !=null ">{{articulo.unidadMedidaId.abreviatura}}</td> -->

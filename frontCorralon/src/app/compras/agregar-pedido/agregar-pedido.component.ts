@@ -1,9 +1,7 @@
+import { logging } from 'protractor';
 import { Proveedor } from "./../../modelo/Proveedor";
-import { element } from "protractor";
 import { MovimientoArticuloDTO } from "./../../modelo/MovimientoArticuloDTO";
 import { Articulo } from "./../../modelo/Articulo";
-import { Router } from "@angular/router";
-import { AbmComprasService } from "src/app/service/abm-compras.service";
 import { ComprasService } from "./../../service/compras.service";
 import { Pedido } from "./../../modelo/Pedido";
 import { Component, OnInit } from "@angular/core";
@@ -24,7 +22,8 @@ export class AgregarPedidoComponent implements OnInit {
   articulosFilter: Articulo[] = null;
   stockArticulo: number[] = [];
   proveedores: Proveedor[] = [];
-  razonSocial: string;
+  razonSocial: string  = ' ';
+  movimientoFilter: MovimientoArticuloDTO[] = [];
 
   constructor(private comprasService: ComprasService) {}
 
@@ -33,10 +32,15 @@ export class AgregarPedidoComponent implements OnInit {
       this.articulos.forEach((a, index) => {
         this.movimientoArticulosDTO.push(new MovimientoArticuloDTO());
         this.movimientoArticulosDTO[index].movimiento = null;
+        this.movimientoArticulosDTO[index].articuloId = a.id;
+
       });
     });
     this.fetchEvent().then(() => {});
     this.listaProveedor();
+    this.movimientoFilter = this.movimientoArticulosDTO;
+    console.log('Razon social: ' + this.razonSocial);
+
   }
 
   guardarPedido(pedido: Pedido) {
@@ -54,11 +58,6 @@ export class AgregarPedidoComponent implements OnInit {
       console.log(data);
 
       this.pedido = data.data;
-
-      //       El this.encuestaForm.controls['fechaDesde'].value reemplazalo por lo del ng model tuyo
-
-      // let dateFrom  = new Date(this.encuestaForm.controls['fechaDesde'].value);
-      // dateFrom.setMinutes(dateFrom.getMinutes() + dateFrom.getTimezoneOffset());
 
       this.movimientoArticulosDTO.forEach((element, index) => {
         if (element.movimiento !== null) {
@@ -81,10 +80,8 @@ export class AgregarPedidoComponent implements OnInit {
 
           console.log("muetra fecha");
           console.log(this.movimientoArticuloDTO.fecha);
-          console.log('fecha correcta');
+          console.log("fecha correcta");
           console.log(fechaCorrecta);
-
-
 
           this.comprasService
             .guardarMovimiento(this.movimientoArticuloDTO)
@@ -105,7 +102,9 @@ export class AgregarPedidoComponent implements OnInit {
   listaProveedor() {
     this.comprasService.listarProveedoresHabilitados().subscribe(data => {
       this.proveedores = data.data;
-      this.razonSocial = this.proveedores[0].razonSocial;
+      this.proveedores.sort((a,b) => a.razonSocial.length - b.razonSocial.length)
+
+      // this.razonSocial = this.proveedores[0].razonSocial;
     });
   }
   fetchEvent2() {
@@ -123,8 +122,6 @@ export class AgregarPedidoComponent implements OnInit {
       .toPromise()
       .then(data => {
         this.articulos.forEach((a, index) => {
-          // console.log(index);
-          // console.log(a.id);
           this.stockArticulo.push(data.data[a.id]);
         });
       });
@@ -133,15 +130,81 @@ export class AgregarPedidoComponent implements OnInit {
     window.history.back();
   }
 
-  listarFiltro() {
-    console.log(this.razonSocial);
+  async listarFiltro() {
     this.articulosFilter = [];
-    this.articulos.forEach(element => {
-      element.proveedorId.razonSocial === this.razonSocial
-        ? this.articulosFilter.push(element)
-        : false;
+
+    // ;
+
+    if( this.razonSocial === ' ') {
+      this.articulosFilter = this.articulos;
+      this.movimientoFilter = this.movimientoArticulosDTO;
+    } else {
+      await this.articulos.forEach(p => (p.proveedorId.razonSocial === this.razonSocial) ? this.articulosFilter.push(p) : false);
+      // (p.id == this.movimientoFilter) ? this.articulosFilter.push(p) : false;
+
+      // if(p.proveedorId.razonSocial === this.razonSocial){
+      //   this.articulosFilter.push(p);
+
+        // this.movimientoArticulosDTO.filter( (w) => p.id == w.articuloId );
+      // }
+      this.movimientoFilter = [];
+      console.warn('Movimiento filter');
+
+      for( let articulo of this.articulosFilter) {
+        for( let movimiento of this.movimientoArticulosDTO) {
+          if( movimiento.articuloId == articulo.id){
+            this.movimientoFilter.push(movimiento);
+
+            console.log(movimiento.articuloId + ' - ' + articulo.id);
+          }
+
+          }
+      }
+      // for( let movimiento of this.movimientoArticulosDTO) {
+      //   for( let articulo of this.articulosFilter) {
+      //     if( movimiento.articuloId == articulo.id){
+      //       this.movimientoFilter.push(movimiento);
+      //     }
+      //   }
+      // }
+
+      // this.movimientoArticulosDTO.forEach((w, index) => {
+      //   this.articulosFilter.forEach( q => (w.articuloId == q.id) ? ) q.movimiento = this.movimientoFilter[index].movimiento
+      //   (this.articulosFilter[index].id == w.articuloId)? w.movimiento = this.movimientoFilter[index].movimiento : false
+      // });
+
+
+    }
+    console.error('Sali');
+
+    console.log('Movimiento Filter');
+
+    console.log(this.movimientoFilter);
+
+    console.log('Movimiento articulo');
+    console.log(this.movimientoArticulosDTO);
+
+    // this.movimientoArticulosDTO.forEach( (p, index) => console.log(`Articulo  ${index} : - ${p.movimiento} `));
+  }
+
+  actualizarStockFiltro(articulosFilter: Articulo[] ) {
+    this.stockArticulo = [];
+    return this.comprasService
+    .listarStockArticulo()
+    .toPromise()
+    .then(data => {
+      articulosFilter.forEach((a, index) => {
+        this.stockArticulo.push(data.data[a.id]);
+      });
     });
   }
+  guardarCarga() {
+    console.log('Entre');
+  }
+
+
+
+
   jsonStringDate(jdate): string {
     if (jdate != null) {
       const resp = new Date(jdate);
@@ -150,3 +213,4 @@ export class AgregarPedidoComponent implements OnInit {
     return "";
   }
 }
+
