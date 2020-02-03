@@ -123,4 +123,7 @@ export class ListarPedidoComponent implements OnInit {
     window.history.back();
   }
 
+  consultarPedido(pedido: Pedido){
+    this.router.navigate(['consultar-pedido/']);
+  }
 }

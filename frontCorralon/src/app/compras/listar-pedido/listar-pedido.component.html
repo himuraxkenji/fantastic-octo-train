@@ -76,16 +76,13 @@
                         <td>{{pedido.descripcion}}</td>
 
                         <td>
-                            <!-- <button class="btn btn-default " title="Modificar " (click)="modificarPedido(pedido) ">
-                      <svg xmlns="http://www.w3.org/2000/svg " width="14 " height="16 " viewBox="0 0 14 16 "><path fill-rule="evenodd " d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39
-                  1.02 0 1.41z "/></svg>
-                   </button> -->
 
 
-                            <button class="btn btn-default " title="consulta " style="margin-left: 10px; " (click)="deshabilitarPedido(articulo) ">
-                              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 20 20">
+
+                            <button class="btn btn-default " title="consulta " style="margin-left: 10px; " [routerLink]="[ '/compras/consultar-pedido/' + pedido.id] " routerLinkActive="router-link-active ">
+                              <svg version="1.1 " xmlns="http://www.w3.org/2000/svg " width="20 " height="30 " viewBox="0 0 20 20 ">
                                 <title>consulta</title>
-                                <path d="M15 0h-4c-0.553 0-1 0.447-1 1l0.023 0.222c1.102 0 2 0.897 2 2v11.359l0.977-1.181 3 3.6v-16c0-0.553-0.447-1-1-1zM9.023 3h-4.023c-0.553 0-1 0.447-1 1v16l3-3.6 3 3.6v-16c0-0.553-0.424-1-0.977-1z"></path>
+                                <path d="M15 0h-4c-0.553 0-1 0.447-1 1l0.023 0.222c1.102 0 2 0.897 2 2v11.359l0.977-1.181 3 3.6v-16c0-0.553-0.447-1-1-1zM9.023 3h-4.023c-0.553 0-1 0.447-1 1v16l3-3.6 3 3.6v-16c0-0.553-0.424-1-0.977-1z "></path>
                                 </svg>
                   </button>
                         </td>

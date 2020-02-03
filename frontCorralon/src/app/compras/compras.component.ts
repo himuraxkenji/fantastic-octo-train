@@ -18,7 +18,8 @@ export class ComprasComponent implements OnInit {
       this.router.url.includes("/agregar-proveedor") ||
       this.router.url.includes("/agregar-articulo") ||
       this.router.url.includes("/agregar-pedido") ||
-      this.router.url.includes("/modificar-articulo")
+      this.router.url.includes("/modificar-articulo")||
+      this.router.url.includes("/consultar-pedido")
     )
       return false;
     else return true;

@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { FormsModule } from '@angular/forms';
 import { ComprasComponent } from './compras.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { ModificarArticuloComponent } from './modificar-articulo/modificar-artic
 import { AgregarArticuloComponent } from './agregar-articulo/agregar-articulo.component';
 import { ListarPedidoComponent } from './listar-pedido/listar-pedido.component';
 import { AgregarPedidoComponent } from './agregar-pedido/agregar-pedido.component';
+import { ConsultarPedidoComponent } from './consultar-pedido/consultar-pedido.component';
 // import { ListarPreciosComponent } from './listar-precios/listar-precios.component';
 // import { ListarRubroComponent } from './listar-rubro/listar-rubro.component';
 // import { ListarSubrubroComponent } from './listar-subrubro/listar-subrubro.component';
@@ -26,7 +28,8 @@ import { AgregarPedidoComponent } from './agregar-pedido/agregar-pedido.componen
   ModificarArticuloComponent,
   AgregarArticuloComponent,
   ListarPedidoComponent,
-  AgregarPedidoComponent
+  AgregarPedidoComponent,
+  ConsultarPedidoComponent
   // ListarPreciosComponent,
   // ListarRubroComponent,
   // ListarSubrubroComponent
@@ -34,7 +37,8 @@ import { AgregarPedidoComponent } from './agregar-pedido/agregar-pedido.componen
   imports: [
     CommonModule,
     ComprasRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class ComprasModule { }

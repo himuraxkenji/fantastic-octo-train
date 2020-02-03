@@ -1,0 +1,62 @@
+<div class="container mt-2" ng-controller="pedido">
+
+    <div class="card-body thead-dark was-validated">
+        <h1 class="text-center mt-4" *ngIf="consultar">PEDIDOS</h1>
+        <h1 class="text-center" *ngIf="!consultar">CARGA DE PEDIDOS</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <label for="nombre"> NOMBRE</label>
+                <input [(ngModel)]="pedido.nombre" type="text " class="form-control" placeholder="ingrese nombre" required="true" [disabled]="consultar">
+            </div>
+            <div class="col-md-6">
+                <label for="fecha"> FECHA</label>
+                <input [(ngModel)]="pedido.fecha" type="date" class="form-control " required="true" [disabled]="consultar">
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <label for="descripcion"> DESCRIPCION</label>
+                <textarea [(ngModel)]="pedido.descripcion" class="form-control" rows="3" cols="12" placeholder="ingrese descripcion" required="true" [disabled]="consultar"></textarea>
+            </div>
+            <div class="col-md-6">
+                <label>PROVEEDOR</label>
+                <select (change)="listarFiltro()" [(ngModel)]="razonSocial" class="form-control" [disabled]="consultar">
+                      <option *ngFor=" let prov of proveedores" value="{{prov.razonSocial}}" >
+                        <label *ngIf="prov.razonSocial !== ' '" >{{prov.razonSocial}}</label>
+                        <label *ngIf="prov.razonSocial === ' '" >Todos</label>
+                      </option>
+                    </select>
+            </div>
+        </div>
+        <div class="card-body p-0 mt-2 row col-md-12 ">
+            <table class="table table-hover col-md-12 ">
+                <thead class="thead-light  border-dark  col-md-12">
+                    <tr class="text-center d-flex col-md-12 ">
+                        <th class="col-md-4">CODIGO</th>
+                        <th class="col-md-4">NOMBRE</th>
+                        <th class="col-md-3">STOCK ACTUAL</th>
+                        <th class="col-md-1">CARGA</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="articulos !=null " style="display: block; height: 300px; overflow-y: scroll;">
+                    <tr *ngFor="let articulo of articulosFilter; let i = index" class="text-center d-flex col-md-12 ">
+                        <td class="col-md-4">{{articulo.codigoArt}}</td>
+                        <td class="col-md-4">{{articulo.nombre}}</td>
+                        <td class="col-md-3">{{stockArticulo[i]}}</td>
+                        <td class="col-md-1">
+                            <input (change)="guardarCarga()" [(ngModel)]="movimientoFilter[i].movimiento" type="number" class="form-control text-center " placeholder="cantidad" [disabled]="consultar">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row justify-content-center" *ngIf="!consultar">
+    <button (click)="guardarPedido(pedido)" class="btn btn-warning ">ACEPTAR</button>
+    <button (click)="volverAtras() " class="btn btn-danger " style="margin-left: 10px; ">CANCELAR</button>
+</div>
+<div class="row justify-content-center" *ngIf="consultar">
+    <button (click)="volverAtras()" class="btn btn-warning ">ATRAS</button>
+</div>
