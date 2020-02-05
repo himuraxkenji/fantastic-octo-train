@@ -1,20 +1,26 @@
+import { LogisticaModule } from './../../logistica/logistica.module';
+import { LoginComponent } from './../../login/login.component';
 import { SubRubro } from "./../../modelo/SubRubro";
 import { Proveedor } from "./../../modelo/Proveedor";
 import { Marca } from "./../../modelo/Marca";
 import { Rubro } from "./../../modelo/Rubro";
 import { AbmComprasService } from "src/app/service/abm-compras.service";
-import { Router } from "@angular/router";
+import { Router, NavigationEnd, RoutesRecognized } from "@angular/router";
 import { ComprasService } from "./../../service/compras.service";
 import { UnidadMedida } from "./../../modelo/UnidadMedida";
 import { ArticuloDTO } from "./../../modelo/ArticuloDTO";
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { filter, pairwise, map } from 'rxjs/operators';
+import { resolve } from 'url';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: "app-agregar-articulo",
   templateUrl: "./agregar-articulo.component.html",
   styleUrls: ["./agregar-articulo.component.css"]
 })
-export class AgregarArticuloComponent implements OnInit {
+export class AgregarArticuloComponent implements OnInit, OnDestroy {
   articuloDTO: ArticuloDTO = new ArticuloDTO();
 
   unidadMedidas: UnidadMedida[] = null;
@@ -41,12 +47,22 @@ export class AgregarArticuloComponent implements OnInit {
   proveedoresFilter: Proveedor[] = null;
   idProveedor: number = 1;
   nombreProveedor: string = null;
+  articuloDTOStorage: ArticuloDTO = new ArticuloDTO();
+  subs:any;
+  private previousUrl: string;
 
   constructor(
     private serviceAbmCompra: AbmComprasService,
     private serviceCompra: ComprasService,
     private router: Router
-  ) {}
+  ) {
+
+
+    console.warn('Events');
+
+    // this.router.parent.subcribe(() => {});
+    console.warn('end')
+  }
 
   async ngOnInit() {
     this.serviceAbmCompra.listarUnidadMedidaTodos().subscribe(data => {
@@ -57,6 +73,7 @@ export class AgregarArticuloComponent implements OnInit {
         (a, b) => a.nombre.length - b.nombre.length
       );
     });
+
     let rubroPromise = await this.serviceAbmCompra
       .listarRubrosHabilitados()
       .toPromise()
@@ -65,23 +82,11 @@ export class AgregarArticuloComponent implements OnInit {
         this.rubroFilter = this.rubros;
         this.rubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
       });
-    //  .subscribe(data => {
-    //   this.rubros = Object.keys(data.data).map(function(key) {
-    //     return data.data[key];
-    //   });
-    console.info(this.rubros);
-
-    // this.idRubro =  this.rubros.filter( r => r.nombre === this.nombreRubro)[0].id;
-    console.log(this.rubros.filter(r => r.nombre === this.nombreRubro));
 
     this.serviceAbmCompra.listarSubRubrosHabilitados().subscribe(data => {
       this.subRubros = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
-      console.log(this.idRubro);
-
-      console.log(this.subRubros);
-
       this.subRubroFilter = this.subRubros;
       this.subRubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
     });
@@ -94,7 +99,7 @@ export class AgregarArticuloComponent implements OnInit {
         (a, b) => a.nombre.length - b.nombre.length
       );
     });
-    this.serviceCompra.listarProveedoresHabilitados().subscribe(data => {
+    await this.serviceCompra.listarProveedoresHabilitados().subscribe(data => {
       this.proveedores = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
@@ -102,7 +107,41 @@ export class AgregarArticuloComponent implements OnInit {
         (a, b) => a.razonSocial.length - b.razonSocial.length
       );
     });
+
+    this.subs = this.previousRoute$.subscribe(url => {
+      this.previousUrl = url;
+      this.getDataFromLocalStorage(url);
+    });
+console.error(this.previousUrl);
+
+
   }
+
+  get previousRoute$(): Observable<string> {
+    return this.router.events.pipe(
+      filter(e => e instanceof RoutesRecognized),
+      pairwise(),
+      map((e: [RoutesRecognized, RoutesRecognized]) => e[0].url)
+    );
+  }
+  // tslint:disable-next-line: ban-types
+  getDataFromLocalStorage(url: string){
+    console.log('previo url--> ');
+    console.log(url);
+
+    if (url == '/abm-compras/agregar-unidad-medida') {
+      this.articuloDTO = JSON.parse(localStorage.getItem('articuloDTO'))
+      // const prom = new Promise<ArticuloDTO>((resolve, reject) =>{});
+      //  prom.then(val=> {
+      //   this.articuloDTOStorage= JSON.parse(localStorage.getItem('articuloDTO'));
+      //   localStorage.clear();
+
+      // })
+      console.log('ARTICULO: ');
+      console.log(this.articuloDTO);
+    }
+  }
+
   volverAtras() {
     window.history.back();
   }
@@ -167,11 +206,6 @@ export class AgregarArticuloComponent implements OnInit {
       }
     }
     articuloDTO.habilitacion = 1;
-    // articuloDTO.marcaId=1;
-    // articuloDTO.proveedorId = 1;
-    // articuloDTO.rubroId=1;
-    // articuloDTO.subRubroId = 1;
-
     this.articuloDTO.habilitacion = 1;
     this.articuloDTO.id = null;
     this.articuloDTO.nombre = articuloDTO.nombre.toUpperCase();
@@ -183,11 +217,6 @@ export class AgregarArticuloComponent implements OnInit {
     this.articuloDTO.proveedorId = articuloDTO.proveedorId;
     this.articuloDTO.rubroId = articuloDTO.rubroId;
     this.articuloDTO.subRubroId = articuloDTO.subRubroId;
-
-    // this.serviceCompra.guardarArticulo(this.articuloDTO).subscribe(data => {
-    //   alert("SE GUARDO UN NUEVO ARTICULO");
-    //   window.history.back();
-    // });
 
     this.serviceCompra.guardarArticulo(this.articuloDTO).subscribe(
       resp => {
@@ -218,10 +247,7 @@ export class AgregarArticuloComponent implements OnInit {
       this.subRubros = Object.keys(data.data).map(function(key) {
         return data.data[key];
       });
-      // console.error(data.data);
-
       console.log(this.subRubros);
-      // this.subRubros = data.data;
       this.subRubroFilter = this.subRubros;
       this.subRubroFilter.sort((a, b) => a.nombre.length - b.nombre.length);
     });
@@ -235,7 +261,7 @@ export class AgregarArticuloComponent implements OnInit {
   }
 
   listarMarcas(filterVal: any) {
-    if (filterVal == "0") this.marcasFilter = this.marcas;
+    if (filterVal == '0') this.marcasFilter = this.marcas;
     else
       this.marcasFilter = this.marcas.filter(item => item.nombre == filterVal);
   }
@@ -246,4 +272,11 @@ export class AgregarArticuloComponent implements OnInit {
         item => item.razonSocial == filterVal
       );
   }
+
+  ngOnDestroy(): void {
+    console.log('Destroy');
+    localStorage.setItem('articuloDTO', JSON.stringify(this.articuloDTO));
+    this.subs.unsubscribe()
+  }
+
 }

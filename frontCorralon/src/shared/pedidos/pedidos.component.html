@@ -34,16 +34,16 @@
                     <tr class="text-center d-flex col-md-12 ">
                         <th class="col-md-4">CODIGO</th>
                         <th class="col-md-4">NOMBRE</th>
-                        <th class="col-md-3">STOCK ACTUAL</th>
-                        <th class="col-md-1">CARGA</th>
+                        <th class="col-md-2">STOCK ACTUAL</th>
+                        <th class="col-md-2">CARGA</th>
                     </tr>
                 </thead>
                 <tbody *ngIf="articulos !=null " style="display: block; height: 300px; overflow-y: scroll;">
                     <tr *ngFor="let articulo of articulosFilter; let i = index" class="text-center d-flex col-md-12 ">
                         <td class="col-md-4">{{articulo.codigoArt}}</td>
                         <td class="col-md-4">{{articulo.nombre}}</td>
-                        <td class="col-md-3">{{stockArticulo[i]}}</td>
-                        <td class="col-md-1">
+                        <td class="col-md-2">{{stockArticulo[i]}}</td>
+                        <td class="col-md-2">
                             <input (change)="guardarCarga()" [(ngModel)]="movimientoFilter[i].movimiento" type="number" class="form-control text-center " placeholder="cantidad" [disabled]="consultar">
                         </td>
                     </tr>
