@@ -23,6 +23,8 @@ export class ListarArticulosComponent implements OnInit {
     this.fetchEvent().then(() => {
       console.log(this.articulos);
     });
+    localStorage.clear();
+    localStorage.setItem('listar', 'true');
   }
 
   fetchEvent() {

@@ -47,22 +47,16 @@ export class AgregarArticuloComponent implements OnInit, OnDestroy {
   proveedoresFilter: Proveedor[] = null;
   idProveedor: number = 1;
   nombreProveedor: string = null;
-  articuloDTOStorage: ArticuloDTO = new ArticuloDTO();
+  // articuloDTOStorage: ArticuloDTO = new ArticuloDTO();
   subs:any;
   private previousUrl: string;
+  articuloStorage: ArticuloStorage = new ArticuloStorage();
+
 
   constructor(
     private serviceAbmCompra: AbmComprasService,
     private serviceCompra: ComprasService,
-    private router: Router
-  ) {
-
-
-    console.warn('Events');
-
-    // this.router.parent.subcribe(() => {});
-    console.warn('end')
-  }
+    private router: Router) {}
 
   async ngOnInit() {
     this.serviceAbmCompra.listarUnidadMedidaTodos().subscribe(data => {
@@ -108,37 +102,20 @@ export class AgregarArticuloComponent implements OnInit, OnDestroy {
       );
     });
 
-    this.subs = this.previousRoute$.subscribe(url => {
-      this.previousUrl = url;
-      this.getDataFromLocalStorage(url);
-    });
-console.error(this.previousUrl);
-
+    await this.getDataFromLocalStorage().then(() => console.log('Resolve!'));
 
   }
 
-  get previousRoute$(): Observable<string> {
-    return this.router.events.pipe(
-      filter(e => e instanceof RoutesRecognized),
-      pairwise(),
-      map((e: [RoutesRecognized, RoutesRecognized]) => e[0].url)
-    );
-  }
-  // tslint:disable-next-line: ban-types
-  getDataFromLocalStorage(url: string){
-    console.log('previo url--> ');
-    console.log(url);
+  async getDataFromLocalStorage() {
+    if ( localStorage.getItem('listar') === 'false' ) {
 
-    if (url == '/abm-compras/agregar-unidad-medida') {
-      this.articuloDTO = JSON.parse(localStorage.getItem('articuloDTO'))
-      // const prom = new Promise<ArticuloDTO>((resolve, reject) =>{});
-      //  prom.then(val=> {
-      //   this.articuloDTOStorage= JSON.parse(localStorage.getItem('articuloDTO'));
-      //   localStorage.clear();
-
-      // })
-      console.log('ARTICULO: ');
-      console.log(this.articuloDTO);
+      const promise = new Promise( resolve => {
+          setTimeout(() => {
+            // this.nombreUnidadMedida = localStorage.getItem('nombreUnidadMedida');
+            this.articuloStorage = JSON.parse(localStorage.getItem('articuloStorage'));
+            this.articuloDTO = JSON.parse(localStorage.getItem('articuloDTO'));
+          }, 100);
+      });
     }
   }
 
@@ -149,59 +126,59 @@ console.error(this.previousUrl);
     // this.articuloDTO.unidadMedidaId = 1;
 
     this.unidadMedidas.forEach(unidadMedida => {
-      if (unidadMedida.nombre == this.nombreUnidadMedida) {
+      if (unidadMedida.nombre == this.articuloStorage.unidadMedida) {
         this.articuloDTO.id = unidadMedida.id;
       }
     });
 
     for (var i = 0; i < this.unidadMedidas.length; i++) {
-      if (this.unidadMedidas[i].nombre == this.nombreUnidadMedida) {
+      if (this.unidadMedidas[i].nombre == this.articuloStorage.unidadMedida) {
         this.articuloDTO.unidadMedidaId = this.unidadMedidas[i].id;
       }
     }
     this.rubros.forEach(rubro => {
-      if (rubro.nombre == this.nombreRubro) {
+      if (rubro.nombre == this.articuloStorage.rubro) {
         this.articuloDTO.id = rubro.id;
       }
     });
 
     for (var i = 0; i < this.rubros.length; i++) {
-      if (this.rubros[i].nombre == this.nombreRubro) {
+      if (this.rubros[i].nombre == this.articuloStorage.rubro) {
         this.articuloDTO.rubroId = this.rubros[i].id;
       }
     }
 
     this.subRubros.forEach(subSubro => {
-      if (subSubro.nombre == this.nombreSubRubro) {
+      if (subSubro.nombre == this.articuloStorage.subRubro) {
         this.articuloDTO.id = subSubro.id;
       }
     });
 
     for (var i = 0; i < this.subRubros.length; i++) {
-      if (this.subRubros[i].nombre == this.nombreSubRubro) {
+      if (this.subRubros[i].nombre == this.articuloStorage.subRubro) {
         this.articuloDTO.subRubroId = this.subRubros[i].id;
       }
     }
 
     this.marcas.forEach(marca => {
-      if (marca.nombre == this.nombreMarca) {
+      if (marca.nombre == this.articuloStorage.marca) {
         this.articuloDTO.id = marca.id;
       }
     });
 
     for (var i = 0; i < this.marcas.length; i++) {
-      if (this.marcas[i].nombre == this.nombreMarca) {
+      if (this.marcas[i].nombre == this.articuloStorage.marca) {
         this.articuloDTO.marcaId = this.marcas[i].id;
       }
     }
     this.proveedores.forEach(proveedor => {
-      if (proveedor.razonSocial == this.nombreProveedor) {
+      if (proveedor.razonSocial == this.articuloStorage.proveedor) {
         this.articuloDTO.id = proveedor.id;
       }
     });
 
     for (var i = 0; i < this.proveedores.length; i++) {
-      if (this.proveedores[i].razonSocial == this.nombreProveedor) {
+      if (this.proveedores[i].razonSocial == this.articuloStorage.proveedor) {
         this.articuloDTO.proveedorId = this.proveedores[i].id;
       }
     }
@@ -274,9 +251,20 @@ console.error(this.previousUrl);
   }
 
   ngOnDestroy(): void {
-    console.log('Destroy');
+    let list = localStorage.getItem('listar');
+
+    if ( list === 'true'){
+      localStorage.setItem('listar', 'false');
+    }
     localStorage.setItem('articuloDTO', JSON.stringify(this.articuloDTO));
-    this.subs.unsubscribe()
+    localStorage.setItem('articuloStorage', JSON.stringify(this.articuloStorage));
   }
 
+}
+export class ArticuloStorage{
+  unidadMedida: string;
+  rubro: string;
+  subRubro: string;
+  marca: string;
+  proveedor: string;
 }

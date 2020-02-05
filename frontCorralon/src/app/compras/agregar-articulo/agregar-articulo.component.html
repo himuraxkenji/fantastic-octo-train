@@ -58,7 +58,8 @@
                                         <label for="unidadMedida"> UNIDAD MEDIDA</label>
                                     </td>
                                     <td>
-                                        <select (change)="listarUnidadMedida($event.target.value)" [(ngModel)]="nombreUnidadMedida" class="form-control">
+                                        <!-- <select (change)="listarUnidadMedida($event.target.value)"  [(ngModel)]="nombreUnidadMedida" class="form-control"> -->
+                                        <select (change)="listarUnidadMedida($event.target.value)" [(ngModel)]="articuloStorage.unidadMedida" class="form-control">
                                           <option *ngFor=" let unidadMedida of unidadMedidas">
                                             {{unidadMedida.nombre}}
                                           </option>
@@ -79,7 +80,7 @@
                                         <label for="rubro"> RUBRO</label>
                                     </td>
                                     <td>
-                                        <select (change)="listarRubros($event.target.value)" [(ngModel)]="nombreRubro" class="form-control">
+                                        <select (change)="listarRubros($event.target.value)" [(ngModel)]="articuloStorage.rubro" class="form-control">
                         <option *ngFor=" let rubro of rubros">
                         {{rubro.nombre}}
                         </option>
@@ -100,7 +101,7 @@
                                         <label for="sub-rubro"> SUB RUBRO</label>
                                     </td>
                                     <td>
-                                        <select (change)="listarSubRubros($event.target.value)" [(ngModel)]="nombreSubRubro" class="form-control">
+                                        <select (change)="listarSubRubros($event.target.value)" [(ngModel)]="articuloStorage.subRubro" class="form-control">
                         <option *ngFor=" let subRubro of subRubros">
                         {{subRubro.nombre}}
                         </option>
@@ -121,7 +122,7 @@
                                         <label for="marca"> MARCA</label>
                                     </td>
                                     <td>
-                                        <select (change)="listarMarcas($event.target.value)" [(ngModel)]="nombreMarca" class="form-control">
+                                        <select (change)="listarMarcas($event.target.value)" [(ngModel)]="articuloStorage.marca" class="form-control">
                         <option *ngFor=" let marca of marcas">
                         {{marca.nombre}}
                         </option>
@@ -142,7 +143,7 @@
                                         <label for="proveedor"> PROVEEDOR</label>
                                     </td>
                                     <td>
-                                        <select (change)="listarProveedores($event.target.value)" [(ngModel)]="nombreProveedor" class="form-control">
+                                        <select (change)="listarProveedores($event.target.value)" [(ngModel)]="articuloStorage.proveedor" class="form-control">
                         <option *ngFor=" let proveedor of proveedores">
                         {{proveedor.razonSocial}}
                         </option>
