@@ -1,19 +1,16 @@
 package com.undec.corralon.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.Objects;
+
 
 @Entity
 @Table(name = "pedido", schema = "santo_domingo_corralon")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pedido {
     private int id;
-    private Timestamp fecha;
+    private String fecha;
     private String nombre;
     private String descripcion;
     private Integer habilitacion;
@@ -31,11 +28,11 @@ public class Pedido {
 
     @Basic
     @Column(name = "fecha")
-    public Timestamp getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Timestamp fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

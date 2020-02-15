@@ -10,6 +10,8 @@ import com.undec.corralon.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,10 +26,6 @@ public class PedidoService {
         response.setCode(200);
         response.setData(this.pedidoRepository.findAll());
         response.setMsg("Todos los pedidos");
-        for (Pedido fecha : this.pedidoRepository.findAll()) {
-            System.out.println("pedidos" + fecha.getFecha());
-        }
-
 
         return response;
     }
@@ -55,8 +53,12 @@ public class PedidoService {
 
     public Response crearPedido(Pedido pedido) throws PedidoException {
         Response response = new Response();
-        pedido = this.pedidoRepository.save(pedido);
         pedido.setHabilitacion(1);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String horaDeCarga = LocalDateTime.now().format(formatter).toString();
+        horaDeCarga = horaDeCarga.substring(10, horaDeCarga.length());
+        pedido.setFecha( pedido.getFecha() + horaDeCarga);
+        pedido = this.pedidoRepository.save(pedido);
 
         if(pedido == null)
             throw new PedidoErrorToSaveException();
@@ -64,7 +66,6 @@ public class PedidoService {
         response.setCode(200);
         response.setData(pedido);
         response.setMsg("Pedido guardado");
-    System.out.println("crear pedido -->"+pedido.getFecha());
         return response;
     }
 

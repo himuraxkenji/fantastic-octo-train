@@ -9,7 +9,7 @@ public class MovimientoArticuloDTO {
 
     @JsonProperty(value = "id", required = false)
     private Integer id;
-    private Date fecha;
+    private String fecha;
     private Integer movimiento;
     private Integer articuloId;
     private Integer ajusteId;
@@ -26,11 +26,11 @@ public class MovimientoArticuloDTO {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

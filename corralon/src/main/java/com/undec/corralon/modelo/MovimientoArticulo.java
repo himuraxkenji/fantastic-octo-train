@@ -12,7 +12,7 @@ import java.util.Objects;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class MovimientoArticulo {
     private Integer id;
-    private Timestamp fecha;
+    private String fecha;
     private Integer movimiento;
     private Articulo articuloId;
     private Ajustes ajusteId;
@@ -31,11 +31,11 @@ public class MovimientoArticulo {
 
     @Basic
     @Column(name = "fecha")
-    public Timestamp getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Timestamp fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -95,5 +95,17 @@ public class MovimientoArticulo {
     @Override
     public int hashCode() {
         return Objects.hash(id, fecha, movimiento, articuloId, ajusteId, pedidoId);
+    }
+
+    @Override
+    public String toString() {
+        return "MovimientoArticulo{" +
+                "id=" + id +
+                ", fecha=" + fecha +
+                ", movimiento=" + movimiento +
+                ", articuloId=" + articuloId +
+                ", ajusteId=" + ajusteId +
+                ", pedidoId=" + pedidoId +
+                '}';
     }
 }
