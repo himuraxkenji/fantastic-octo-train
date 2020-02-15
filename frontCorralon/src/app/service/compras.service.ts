@@ -72,4 +72,7 @@ export class ComprasService {
 guardarMovimiento(movimientoArticuloDTO: MovimientoArticuloDTO) {
   return this.http.post<Response>(this.Url + "/movimientos/", movimientoArticuloDTO);
 }
+getMovimientosPrevios(idPedido: number) {
+    return this.http.get<Response>(this.Url + `/movimientos/${idPedido}`);
+}
 }

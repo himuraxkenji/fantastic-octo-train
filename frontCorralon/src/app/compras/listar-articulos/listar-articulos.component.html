@@ -54,12 +54,12 @@
   </div>
 
   <div class="row">
-    <table class=" table table-hover container">
+      <table class=" table table-hover container">
       <thead class="thead-dark ">
       <tr class="text-center d-flex col-md-12 p-0">
-        <th class="col-1">CODIGO</th>
-        <th class="col-3">NOMBRE</th>
-        <th class="col-1">ABREVIATURA</th>
+        <th class="col-1">COD</th>
+        <th class="col-2">NOMBRE</th>
+        <th class="col-2">ABR.</th>
         <th class="col-1">STOCK MIN</th>
         <th class="col-1">STOCK MAX</th>
         <th class="col-1">UNID. MED</th>
@@ -70,8 +70,8 @@
       <tbody *ngIf="articulos !=null " class="tbody-scroll">
       <tr *ngFor="let articulo of articulosFilter " class="text-center d-flex col-md-12 p-0">
         <td class="col-1">{{articulo.codigoArt}}</td>
-        <td class="col-3">{{articulo.nombre}}</td>
-        <td class="col-1">{{articulo.abreviatura}}</td>
+        <td class="col-2">{{articulo.nombre}}</td>
+        <td class="col-2">{{articulo.abreviatura}}</td>
         <td class="col-1">{{articulo.stockMin}}</td>
         <td class="col-1">{{articulo.stockMax}}</td>
         <td class="col-1" *ngIf="articulo.unidadMedidaId==null "></td>

@@ -11,3 +11,12 @@
 .table-wrapper-scroll-y {
     display: block;
 }
+.table-scroll{
+  width:1100px;
+  height:400px;
+}
+.tbody-scroll {
+  display: block;
+  height: 400px;
+  overflow-y: auto;
+}

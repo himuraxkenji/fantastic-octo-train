@@ -46,11 +46,11 @@ export class ListarPedidoComponent implements OnInit {
         this.pedidos.forEach((p , index)=>{
           console.log(p.fecha);
 
-          this.pedidos[index].fecha = new Date(p.fecha);
-          this.pedidos[index].fecha.setMinutes(this.pedidos[index].fecha.getMinutes() + this.pedidos[index].fecha.getTimezoneOffset());
-
-          this.pedidosFilter[index].fecha = new Date(p.fecha);
-          this.pedidosFilter[index].fecha.setMinutes(this.pedidosFilter[index].fecha.getMinutes() + this.pedidosFilter[index].fecha.getTimezoneOffset());
+          // this.pedidos[index].fecha = new Date(p.fecha);
+          // this.pedidos[index].fecha.setMinutes(this.pedidos[index].fecha.getMinutes() + this.pedidos[index].fecha.getTimezoneOffset());
+          //
+          // this.pedidosFilter[index].fecha = new Date(p.fecha);
+          // this.pedidosFilter[index].fecha.setMinutes(this.pedidosFilter[index].fecha.getMinutes() + this.pedidosFilter[index].fecha.getTimezoneOffset());
           // console.log(p.fecha);
 
         })

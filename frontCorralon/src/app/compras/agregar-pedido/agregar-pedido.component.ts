@@ -46,12 +46,12 @@ export class AgregarPedidoComponent implements OnInit {
   guardarPedido(pedido: Pedido) {
     this.pedido.id = null;
     this.pedido.nombre = pedido.nombre.toUpperCase();
-    let fechaString = this.jsonStringDate(this.pedido.fecha);
-    let fechaCorrecta = new Date(fechaString);
-    fechaCorrecta.setMinutes(
-      fechaCorrecta.getMinutes() + fechaCorrecta.getTimezoneOffset()
-    );
-    this.pedido.fecha = fechaCorrecta;
+    // let fechaString = this.jsonStringDate(this.pedido.fecha);
+    // let fechaCorrecta = new Date(fechaString);
+    // fechaCorrecta.setMinutes(
+    //   fechaCorrecta.getMinutes() + fechaCorrecta.getTimezoneOffset()
+    // );
+    // this.pedido.fecha = fechaCorrecta;
     this.pedido.descripcion = pedido.descripcion.toUpperCase();
 
     this.comprasService.guardarPedidos(this.pedido).then(data => {
@@ -62,13 +62,13 @@ export class AgregarPedidoComponent implements OnInit {
       this.movimientoArticulosDTO.forEach((element, index) => {
         if (element.movimiento !== null) {
           this.movimientoArticuloDTO.id = null;
-          let fechaString = this.jsonStringDate(this.pedido.fecha);
-          let fechaCorrecta = new Date(fechaString);
-          fechaCorrecta.setMinutes(
-            fechaCorrecta.getMinutes() + fechaCorrecta.getTimezoneOffset()
-          );
+          // let fechaString = this.jsonStringDate(this.pedido.fecha);
+          // let fechaCorrecta = new Date(fechaString);
+          // fechaCorrecta.setMinutes(
+          //   fechaCorrecta.getMinutes() + fechaCorrecta.getTimezoneOffset()
+          // );
 
-          this.movimientoArticuloDTO.fecha = fechaCorrecta;
+          // this.movimientoArticuloDTO.fecha = fechaCorrecta;
 
           this.movimientoArticuloDTO.articuloId = this.articulos[index].id;
           this.movimientoArticuloDTO.movimiento = this.movimientoArticulosDTO[
@@ -78,10 +78,10 @@ export class AgregarPedidoComponent implements OnInit {
 
           console.log(this.movimientoArticuloDTO);
 
-          console.log("muetra fecha");
-          console.log(this.movimientoArticuloDTO.fecha);
-          console.log("fecha correcta");
-          console.log(fechaCorrecta);
+          // console.log("muetra fecha");
+          // console.log(this.movimientoArticuloDTO.fecha);
+          // console.log("fecha correcta");
+          // console.log(fechaCorrecta);
 
           this.comprasService
             .guardarMovimiento(this.movimientoArticuloDTO)
