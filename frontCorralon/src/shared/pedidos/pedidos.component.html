@@ -1,6 +1,7 @@
-<div class="container mt-2" ng-controller="pedido">
+<div class="container" ng-controller="pedido">
+<!--  <div class="container mt-2" ng-controller="pedido">-->
 
-    <div class="card-body thead-dark was-validated">
+<div class="card-body thead-dark was-validated">
         <h1 class="text-center mt-4" *ngIf="consultar">PEDIDOS</h1>
         <h1 class="text-center" *ngIf="!consultar">CARGA DE PEDIDOS</h1>
         <div class="row">
@@ -21,7 +22,7 @@
             </div>
             <div class="col-md-6">
                 <label>PROVEEDOR</label>
-                <select (change)="listarFiltro()" [(ngModel)]="razonSocial" class="form-control">
+                <select (change)="listarFiltro()" [(ngModel)]="razonSocial" class="form-control" [disabled]="consultar">
                       <option *ngFor=" let prov of proveedores" value="{{prov.razonSocial}}" >
                         <label *ngIf="prov.razonSocial !== ' '" >{{prov.razonSocial}}</label>
                         <label *ngIf="prov.razonSocial === ' '" >Todos</label>

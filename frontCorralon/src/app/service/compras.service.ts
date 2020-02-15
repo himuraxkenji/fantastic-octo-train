@@ -75,4 +75,7 @@ guardarMovimiento(movimientoArticuloDTO: MovimientoArticuloDTO) {
 getMovimientosPrevios(idPedido: number) {
     return this.http.get<Response>(this.Url + `/movimientos/${idPedido}`);
 }
+getMovimientosStock(idPedido: number){
+    return this.http.get<Response>(this.Url + `/movimientos/stock/${idPedido}`);
+}
 }
