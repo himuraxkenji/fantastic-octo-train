@@ -24,9 +24,15 @@ public class MovimientoArticuloController {
         return new ResponseEntity<Response>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/stock/{id}")
+    public ResponseEntity<Response> obtenerStockArticulo(@PathVariable("id") Integer idPedido){
+        Response response = movimientoArticuloService.obtenerMovimientosPorPedido(idPedido);
+        return new ResponseEntity<Response>(response, HttpStatus.OK);
+    }
+
     @GetMapping("/stock")
-    public ResponseEntity<Response> obtenerStockArticulo(){
-        Response response = movimientoArticuloService.obtenerStockArticulosActual();
+    public ResponseEntity<Response> obtenerStockTodosArticulos(){
+        Response response = movimientoArticuloService.obtenerTodosLosMoviemientos();
         return new ResponseEntity<Response>(response, HttpStatus.OK);
     }
 
