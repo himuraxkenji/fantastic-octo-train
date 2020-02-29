@@ -3,13 +3,14 @@ import { Cliente } from "./../modelo/Cliente";
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Response } from "../modelo/Response";
+import {environment} from "../../environments/environment.prod";
 
 @Injectable({
   providedIn: "root"
 })
 export class VentasService {
-  // Url = "//localhost:8081";
-  Url ="http://192.168.1.100:8081";
+
+  Url = environment.url;
 
   constructor(private http: HttpClient) {}
 

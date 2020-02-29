@@ -1,3 +1,4 @@
+import { Ajuste } from './../modelo/Ajuste';
 import { SubRubroDTO } from './../modelo/SubRubroDTO';
 import { SubRubro } from './../modelo/SubRubro';
 import { Rubro } from './../modelo/Rubro';
@@ -8,14 +9,15 @@ import { Banco } from "./../modelo/Banco";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Response } from "../modelo/Response";
+import {environment} from "../../environments/environment.prod";
 
 @Injectable({
   providedIn: "root"
 })
 export class AbmComprasService {
 // DE MANERA LOCAL
-  // Url = "//localhost:8081";
-  Url ="http://192.168.1.100:8081";
+
+  Url =environment.url;
 
   constructor(private http: HttpClient) {}
 
@@ -134,5 +136,25 @@ listarSubRubroId(id: number) {
 }
 desabilitarSubRubro(id: number) {
   return this.http.delete(this.Url + "/sub-rubros/" + id);
+}
+ // SERVICE THE AJUSTES
+ listarAjustesTodos() {
+  return this.http.get<Response>(this.Url+ "/ajustes");
+}
+listarAjustesHabilitados() {
+  return this.http.get<Response>(this.Url+ "/ajustes/habilitados");
+}
+async guardarAjustes(ajuste: Ajuste) {
+  let ajustes = await this.http.post<Response>(this.Url + "/ajustes/", ajuste).toPromise();
+  return ajustes;
+}
+actualizarAjuste(ajuste: Ajuste) {
+  return this.http.put<Ajuste>(this.Url + "/ajustes/", ajuste);
+}
+listarAjusteId(id: number) {
+  return this.http.get<Response>(this.Url + "/ajustes/" + id);
+}
+desabilitarAjuste(id: number) {
+  return this.http.delete(this.Url + "/ajustes/" + id);
 }
 }

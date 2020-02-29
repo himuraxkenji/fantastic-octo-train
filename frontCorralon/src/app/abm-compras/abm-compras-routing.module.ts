@@ -1,3 +1,4 @@
+import { ListarAjunteComponent } from './listar-ajunte/listar-ajunte.component';
 import { ModificarSubRubroComponent } from './modificar-sub-rubro/modificar-sub-rubro.component';
 import { AgregarSubRubroComponent } from './agregar-sub-rubro/agregar-sub-rubro.component';
 import { ListarSubRubroComponent } from './listar-sub-rubro/listar-sub-rubro.component';
@@ -38,6 +39,7 @@ const routes: Routes = [
       { path: "listar-unidad-medida", component: ListarUnidadMedidaComponent },
       { path: "listar-rubro", component: ListarRubroComponent },
       { path: "listar-sub-rubro", component: ListarSubRubroComponent },
+      { path: "listar-ajuste", component: ListarAjunteComponent },
       { path: "modificar-banco/:id", component: ModificarBancoComponent },
       { path: "modificar-forma-pago/:id", component: ModificarFormaPagoComponent },
       { path: "modificar-unidad-medida/:id", component: ModificarUnidadMedidaComponent },

@@ -24,6 +24,8 @@ import { ModificarRubroComponent } from './modificar-rubro/modificar-rubro.compo
 import { ListarSubRubroComponent } from './listar-sub-rubro/listar-sub-rubro.component';
 import { AgregarSubRubroComponent } from './agregar-sub-rubro/agregar-sub-rubro.component';
 import { ModificarSubRubroComponent } from './modificar-sub-rubro/modificar-sub-rubro.component';
+import { ListarAjunteComponent } from './listar-ajunte/listar-ajunte.component';
+import { AgregarAjusteComponent } from './agregar-ajuste/agregar-ajuste.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ModificarSubRubroComponent } from './modificar-sub-rubro/modificar-sub-
     ModificarRubroComponent,
     ListarSubRubroComponent,
     AgregarSubRubroComponent,
-    ModificarSubRubroComponent
+    ModificarSubRubroComponent,
+    ListarAjunteComponent,
+    AgregarAjusteComponent
   ],
   imports: [CommonModule, FormsModule, AbmComprasRoutingModule]
 })

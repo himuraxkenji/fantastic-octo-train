@@ -1,5 +1,5 @@
-<div class="container mt-2" ng-controller="articulo">
-
+<div class="container" ng-controller="articulo">
+  <!--  <div class="container mt-2" ng-controller="articulo">-->
   <div class="row mt-4">
     <button class="col-1 btn btn-default" (click)="backPage()" title="volver">
       <svg width="50" height="50" viewBox="0 0 20 20">
@@ -16,7 +16,7 @@
       </svg>
       LISTA DE ARTICULOS
     </h1>
-  </div>
+
 
   <div class="row mt-4 ml-4">
     <div class=" form-inline form-group col-md-4 ">
@@ -53,32 +53,33 @@
     </div>
   </div>
 
-  <div class="row">
-      <table class=" table table-hover container">
+  <div class="card-body p-0" style="width:1100px; height:400px; overflow: auto; ">
+    <table class=" table table-holder">
       <thead class="thead-dark ">
-      <tr class="text-center d-flex col-md-12 p-0">
-        <th class="col-1">COD</th>
-        <th class="col-2">NOMBRE</th>
-        <th class="col-2">ABR.</th>
-        <th class="col-1">STOCK MIN</th>
-        <th class="col-1">STOCK MAX</th>
-        <th class="col-1">UNID. MED</th>
-        <th class="col-2">RUBRO</th>
-        <th class="col-2">OPCIONES</th>
+      <!--      <tr class="text-center d-flex col-md-12 p-0">-->
+      <tr class="text-center">
+        <th scope="col">COD</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">ABR.</th>
+        <th scope="col">STOCK MIN</th>
+        <th scope="col">STOCK MAX</th>
+        <th scope="col">UNID. MED</th>
+        <th scope="col">RUBRO</th>
+        <th scope="col*2">OPCIONES</th>
       </tr>
       </thead>
-      <tbody *ngIf="articulos !=null " class="tbody-scroll">
-      <tr *ngFor="let articulo of articulosFilter " class="text-center d-flex col-md-12 p-0">
-        <td class="col-1">{{articulo.codigoArt}}</td>
-        <td class="col-2">{{articulo.nombre}}</td>
-        <td class="col-2">{{articulo.abreviatura}}</td>
-        <td class="col-1">{{articulo.stockMin}}</td>
-        <td class="col-1">{{articulo.stockMax}}</td>
-        <td class="col-1" *ngIf="articulo.unidadMedidaId==null "></td>
-        <td class="col-1" *ngIf="articulo.unidadMedidaId !=null ">{{articulo.unidadMedidaId.abreviatura}}</td>
-        <td class="col-2" *ngIf="articulo.rubroId==null "></td>
-        <td class="col-2" *ngIf="articulo.rubroId !=null ">{{articulo.rubroId.nombre}}</td>
-        <td class="col-2">
+      <tbody *ngIf="articulos !=null ">
+      <tr *ngFor="let articulo of articulosFilter " class="text-center">
+        <td>{{articulo.codigoArt}}</td>
+        <td>{{articulo.nombre}}</td>
+        <td>{{articulo.abreviatura}}</td>
+        <td>{{articulo.stockMin}}</td>
+        <td>{{articulo.stockMax}}</td>
+        <td *ngIf="articulo.unidadMedidaId==null "></td>
+        <td *ngIf="articulo.unidadMedidaId !=null ">{{articulo.unidadMedidaId.abreviatura}}</td>
+        <td *ngIf="articulo.rubroId==null "></td>
+        <td *ngIf="articulo.rubroId !=null ">{{articulo.rubroId.nombre}}</td>
+        <td>
           <button class=" col-1 btn btn-default " title="Modificar " (click)="modificarArticulo(articulo) ">
             <svg width="14 " height="16 " viewBox="0 0 14 16 ">
               <path fill-rule="evenodd " d="M0 12v3h3l8-8-3-3-8 8zm3 2H1v-2h1v1h1v1zm10.3-9.3L12 6 9 3l1.3-1.3a.996.996 0 0 1 1.41 0l1.59 1.59c.39.39.39
@@ -96,5 +97,6 @@
       </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </div>
