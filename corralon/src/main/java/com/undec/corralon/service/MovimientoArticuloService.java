@@ -108,14 +108,17 @@ public class MovimientoArticuloService {
         List<Double> movimientoArticulo = new ArrayList<Double>();
 
         articulos.stream().forEach(p-> {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-            String fecha = LocalDateTime.now().format(formatter).toString();
-            System.out.println(fecha);
-            Double mov = this.movimientoArticuloRepository.stockPorArticulo(p.getId(), fecha);
-            System.out.println(mov);
-            if( mov == null)
-                mov = 0.0;
-            movimientoArticulo.add(mov);
+            if (p.getHabilitacion() != 0){
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                String fecha = LocalDateTime.now().format(formatter).toString();
+                System.out.println(fecha);
+                Double mov = this.movimientoArticuloRepository.stockPorArticulo(p.getId(), fecha);
+                System.out.println(mov);
+                if( mov == null)
+                    mov = 0.0;
+                movimientoArticulo.add(mov);
+            }
+
         });
 
 

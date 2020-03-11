@@ -17,6 +17,7 @@ import {Proveedor} from 'src/app/modelo/Proveedor';
 export class PedidosComponent implements OnInit {
 
   @Input() consultar: boolean;
+
   pedido: Pedido = new Pedido();
 
   articulos: Articulo[] = [];
@@ -31,6 +32,10 @@ export class PedidosComponent implements OnInit {
   movimientoFilter: MovimientoArticuloDTO[] = [];
   movimientosPrevios : StockArticulo[] =[]
   stockArticuloPorPedido : StockArticulo[] = [];
+
+  articulosStockMovimiento: any[] =[];
+  articulosStockMovimientoFilter: any[] =[];
+
   constructor(private comprasService: ComprasService,
               private route: Router,
               private active: ActivatedRoute) {
@@ -50,9 +55,9 @@ export class PedidosComponent implements OnInit {
         this.movimientoArticulosDTO[index].movimiento = null;
         this.movimientoArticulosDTO[index].articuloId = a.id;
         this.movimientoFilter = this.movimientoArticulosDTO;
-        console.log(a.id + " - " + a.nombre);
       });
     });
+
     this.getMovimientos().then(() => {
       this.getStock()
     });
@@ -62,6 +67,8 @@ export class PedidosComponent implements OnInit {
   }
 
   guardarPedido(pedido: Pedido) {
+    console.log(this.articulosStockMovimientoFilter);
+
     this.pedido.id = null;
     this.pedido.nombre = pedido.nombre.toUpperCase();
     this.pedido.fecha = pedido.fecha;
@@ -72,15 +79,13 @@ export class PedidosComponent implements OnInit {
 
       this.pedido = data.data;
 
-      this.movimientoArticulosDTO.forEach((element, index) => {
-        if (element.movimiento !== null) {
+      this.articulosStockMovimientoFilter.forEach((artStockMov, index) => {
+        if (artStockMov.movimiento.movimiento !== null) {
           this.movimientoArticuloDTO.id = null;
           this.movimientoArticuloDTO.fecha = pedido.fecha;
-          this.movimientoArticuloDTO.articuloId = this.articulos[index].id;
-          this.movimientoArticuloDTO.movimiento = this.movimientoArticulosDTO[index].movimiento;
+          this.movimientoArticuloDTO.articuloId = artStockMov.articulo.id; // this.articulos[index].id;
+          this.movimientoArticuloDTO.movimiento = artStockMov.movimiento.movimiento; // this.movimientoArticulosDTO[index].movimiento;
           this.movimientoArticuloDTO.pedidoId = data.data.id;
-
-          console.log(this.movimientoArticuloDTO);
 
           this.comprasService
             .guardarMovimiento(this.movimientoArticuloDTO)
@@ -90,7 +95,6 @@ export class PedidosComponent implements OnInit {
         }
       });
 
-      // }
     });
 
     alert("SE GUARDO UN NUEVO PEDIDO");
@@ -145,12 +149,17 @@ export class PedidosComponent implements OnInit {
         .listarStockArticulo()
         .toPromise()
         .then(data => {
-          console.log('listar')
-          console.log(data.data);
+          console.log('lista');
+
+
           this.articulos.forEach((a, index) => {
             this.stockArticulo.push(data.data[index]);
-            console.log('Consultar: ' + data.data[a.id]);
+            this.articulosStockMovimiento.push({'articulo': a, 'stock': data.data[index], 'movimiento': this.movimientoFilter[index] });
+            this.articulosStockMovimientoFilter = this.articulosStockMovimiento;
           });
+
+          console.log(this.articulosStockMovimiento);
+
           console.log(this.stockArticulo)
         });
 
@@ -162,36 +171,14 @@ export class PedidosComponent implements OnInit {
   }
 
   async listarFiltro() {
-    this.articulosFilter = [];
+    this.articulosStockMovimientoFilter = [];
     if (this.razonSocial === ' ') {
-      this.articulosFilter = this.articulos;
-      this.movimientoFilter = this.movimientoArticulosDTO;
+      this.articulosStockMovimientoFilter = this.articulosStockMovimiento;
     } else {
-      await this.articulos.forEach(p => (p.proveedorId.razonSocial === this.razonSocial) ? this.articulosFilter.push(p) : false);
-      this.movimientoFilter = [];
-      console.warn('Movimiento filter');
-
-      for (let articulo of this.articulosFilter) {
-        for (let movimiento of this.movimientoArticulosDTO) {
-          if (movimiento.articuloId == articulo.id) {
-            this.movimientoFilter.push(movimiento);
-
-            console.log(movimiento.articuloId + ' - ' + articulo.id);
-          }
-
-        }
-      }
-
+      await this.articulosStockMovimiento.forEach( artStockMov=> {
+          (artStockMov.articulo.proveedorId.razonSocial === this.razonSocial) ? this.articulosStockMovimientoFilter.push(artStockMov) : false ;
+      });
     }
-    console.error('Sali');
-
-    console.log('Movimiento Filter');
-
-    console.log(this.movimientoFilter);
-
-    console.log('Movimiento articulo');
-    console.log(this.movimientoArticulosDTO);
-
 
   }
 
@@ -219,9 +206,7 @@ export class PedidosComponent implements OnInit {
         .then(data => {
           let keys = Object.keys( data.data );
           let value = Object.values(data.data);
-          keys.forEach( (k, index) => this.stockArticuloPorPedido.push(new StockArticulo(Number(k), Number(value[index]) )))
-          this.articulosFilter = this.articulosFilter.filter( a => keys.includes(String(a.id)));
-
+          keys.forEach( (k, index) => this.stockArticuloPorPedido.push(new StockArticulo(Number(k), Number(value[index]) )));
           this.movimientoFilter = [];
           keys.forEach( (k, index) => {
             let mov = new MovimientoArticuloDTO();
@@ -229,21 +214,21 @@ export class PedidosComponent implements OnInit {
             mov.movimiento = Number(value[index]);
             this.movimientoFilter.push(mov)
           });
+
           let indexMovpre = [];
           this.movimientoFilter.forEach(p=> indexMovpre.push(p.articuloId));
-          console.log('mivev')
-          console.log(keys);
-          console.log('MovPrev')
-          console.log(this.movimientosPrevios);
           this.movimientosPrevios = this.movimientosPrevios.filter(m => indexMovpre.includes(m.idArticulo));
-          console.log('Mov pre');
-          console.log(this.movimientosPrevios);
-
           this.stockArticulo.splice(0, this.stockArticulo.length);
-          console.log('stock antes');
-          console.log(this.stockArticulo)
           this.movimientosPrevios.forEach(m => this.stockArticulo.push(m.stock));
-          console.log(this.stockArticulo);
+
+          this.articulosFilter = this.articulosFilter.filter( a => keys.includes(String(a.id)));
+          this.articulosFilter.forEach((a, index) => {
+            this.articulosStockMovimiento.push({'articulo': a, 'stock': this.stockArticulo[index], 'movimiento': this.movimientoFilter[index]});
+            this.articulosStockMovimientoFilter = this.articulosStockMovimiento;
+          });
+          console.error(this.articulosStockMovimiento);
+          console.error('Soy un fucking error ');
+
         });
 
     }
