@@ -191,6 +191,8 @@ export class PedidosComponent implements OnInit {
         articulosFilter.forEach((a, index) => {
           this.stockArticulo.push(data.data[a.id]);
         });
+      
+      
       });
   }
 

@@ -41,12 +41,19 @@
             <div class="col-md-4 col-lg-4 form-group form-inline">
                 <label for="inputRubro" class="form-label mr-4">RUBRO </label>
                 <input type="text " [(ngModel)]="busquedaRubro" class="form-control " placeholder="ingrese rubro " (keyup)="filtrarArticuloRubro(event)" id="inputRubro">
+
+
+            </div>
+            <div>
+                <button class="btn btn-outline-dark" (click)="exportarPDF()">
+                    exportar PDF
+                </button>
             </div>
 
         </div>
 
 
-        <div class="card-body p-0" style="width:1100px; height:400px; overflow: auto; ">
+        <div class="card-body p-0" style="width:1100px; height:400px; overflow: auto; " id="listArt">
             <table class=" table table-holder">
                 <thead class="thead-dark ">
                     <!--      <tr class="text-center d-flex col-md-12 p-0">-->

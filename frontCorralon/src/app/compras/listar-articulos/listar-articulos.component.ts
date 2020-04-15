@@ -2,7 +2,8 @@ import { Router } from "@angular/router";
 import { ComprasService } from "./../../service/compras.service";
 import { Articulo } from "./../../modelo/Articulo";
 import { Component, OnInit } from "@angular/core";
-import { delay } from "rxjs/operators";
+import * as jsPDF from "jspdf";
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: "app-listar-articulos",
@@ -99,5 +100,11 @@ export class ListarArticulosComponent implements OnInit {
 
   backPage() {
     window.history.back();
+  }
+  exportarPDF(){
+    const doc = new jsPDF ();
+    doc.fromHTML(document.getElementById('listArt'),10,10);
+    doc.save('Lista de articulos')
+
   }
 }

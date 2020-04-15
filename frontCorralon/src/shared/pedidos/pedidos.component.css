@@ -2,10 +2,11 @@
     background-color: white;
     height: 100%;
     padding: 0px;
-}
+
+ }
 
 .tbody-scroll {
   display: block;
-  height: 400px;
+  height: 300px;
   overflow-y: auto;
 }
