@@ -1,23 +1,30 @@
 import { Router } from "@angular/router";
 import { ComprasService } from "./../../service/compras.service";
 import { Articulo } from "./../../modelo/Articulo";
-import { Component, OnInit } from "@angular/core";
-import * as jsPDF from "jspdf";
-import { DOCUMENT } from '@angular/common';
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
+// import * as jsPDF from "jspdf";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { DOCUMENT } from "@angular/common";
+import { element } from 'protractor';
 
 @Component({
   selector: "app-listar-articulos",
   templateUrl: "./listar-articulos.component.html",
-  styleUrls: ["./listar-articulos.component.css"]
+  styleUrls: ["./listar-articulos.component.css"],
 })
 export class ListarArticulosComponent implements OnInit {
   // articulo: Articulo = null;
+  @ViewChild("listArt", { static: false }) content: ElementRef;
+
   articulos: Articulo[] = [];
   articulosFilter: Articulo[] = [];
   busqueda: string = null;
   busquedaRubro: string = null;
   busquedaCodigo: string = null;
   loaded: boolean = false;
+
+  export: boolean = true;
   constructor(private serviceCompra: ComprasService, private router: Router) {}
 
   ngOnInit() {
@@ -25,14 +32,14 @@ export class ListarArticulosComponent implements OnInit {
       console.log(this.articulos);
     });
     localStorage.clear();
-    localStorage.setItem('listar', 'true');
+    localStorage.setItem("listar", "true");
   }
 
   fetchEvent() {
     return this.serviceCompra
       .listarArticuloTodos()
       .toPromise()
-      .then(data => {
+      .then((data) => {
         // subscribe(data => {
         this.articulos = data.data;
         this.articulosFilter = this.articulos;
@@ -51,14 +58,14 @@ export class ListarArticulosComponent implements OnInit {
     let resultado: boolean;
     resultado = confirm("¿DESEA DESHABILITAR ESTE ARTICULO?");
     if (resultado === true) {
-      this.serviceCompra.desabilitarArticulo(articulo.id).subscribe(data => {
+      this.serviceCompra.desabilitarArticulo(articulo.id).subscribe((data) => {
         window.location.reload();
       });
     }
   }
   filtrarArticuloNombre(event: any) {
     if (this.busqueda !== null) {
-      this.articulosFilter = this.articulos.filter(item => {
+      this.articulosFilter = this.articulos.filter((item) => {
         if (item.nombre.toUpperCase().includes(this.busqueda.toUpperCase())) {
           return item;
         }
@@ -69,7 +76,7 @@ export class ListarArticulosComponent implements OnInit {
   }
   filtrarArticuloCodigo(event: any) {
     if (this.busquedaCodigo !== null) {
-      this.articulosFilter = this.articulos.filter(item => {
+      this.articulosFilter = this.articulos.filter((item) => {
         if (
           item.codigoArt
             .toUpperCase()
@@ -86,14 +93,18 @@ export class ListarArticulosComponent implements OnInit {
     console.log("================ENTRO================");
 
     if (this.busquedaRubro !== null) {
-      this.articulosFilter = this.articulos.filter(item => {
-        if (item.rubroId !== null){
-          if(item.rubroId.nombre.toUpperCase().includes(this.busquedaRubro.toUpperCase())){
-          return item;
+      this.articulosFilter = this.articulos.filter((item) => {
+        if (item.rubroId !== null) {
+          if (
+            item.rubroId.nombre
+              .toUpperCase()
+              .includes(this.busquedaRubro.toUpperCase())
+          ) {
+            return item;
           }
-      }
+        }
       });
-    }       else {
+    } else {
       this.articulosFilter = this.articulos;
     }
   }
@@ -101,10 +112,11 @@ export class ListarArticulosComponent implements OnInit {
   backPage() {
     window.history.back();
   }
-  exportarPDF(){
-    const doc = new jsPDF ();
-    doc.fromHTML(document.getElementById('listArt'),10,10);
-    doc.save('Lista de articulos')
-
+  exportarPDF(valor: boolean) {
+    this.export = valor;
+    const doc = new jsPDF();
+    doc.autoTable({ html: "#listArt" });
+    doc.save("table.pdf");
+    this.export = true;
   }
 }
