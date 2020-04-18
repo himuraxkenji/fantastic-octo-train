@@ -1,4 +1,6 @@
 {
     "git.ignoreLimitWarning": true,
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "html.format.endWithNewline": true,
+    "html.format.extraLiners": ""
 }

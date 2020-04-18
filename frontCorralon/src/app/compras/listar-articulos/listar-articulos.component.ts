@@ -112,11 +112,14 @@ export class ListarArticulosComponent implements OnInit {
   backPage() {
     window.history.back();
   }
-  exportarPDF(valor: boolean) {
-    this.export = valor;
+  exportarPDF() {
+    this.export = false;
     const doc = new jsPDF();
     doc.autoTable({ html: "#listArt" });
     doc.save("table.pdf");
     this.export = true;
+  }
+  exportarExcel() {
+    
   }
 }
