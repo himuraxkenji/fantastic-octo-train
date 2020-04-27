@@ -2,11 +2,10 @@ import { Router } from "@angular/router";
 import { ComprasService } from "./../../service/compras.service";
 import { Articulo } from "./../../modelo/Articulo";
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
-// import * as jsPDF from "jspdf";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { DOCUMENT } from "@angular/common";
-import { element } from 'protractor';
+import { ExcelExportService } from "../../service/excel-export.service";
+import { ArticuloExcel } from "../../modelo/ArticuloExcel";
 
 @Component({
   selector: "app-listar-articulos",
@@ -19,13 +18,18 @@ export class ListarArticulosComponent implements OnInit {
 
   articulos: Articulo[] = [];
   articulosFilter: Articulo[] = [];
+
   busqueda: string = null;
   busquedaRubro: string = null;
   busquedaCodigo: string = null;
   loaded: boolean = false;
 
   export: boolean = true;
-  constructor(private serviceCompra: ComprasService, private router: Router) {}
+  constructor(
+    private serviceCompra: ComprasService,
+    private router: Router,
+    private excelService: ExcelExportService
+  ) {}
 
   ngOnInit() {
     this.fetchEvent().then(() => {
@@ -119,7 +123,8 @@ export class ListarArticulosComponent implements OnInit {
     doc.save("table.pdf");
     this.export = true;
   }
-  exportarExcel() {
-    
+  exportarExcel(): void {
+    console.warn("MUESTRA DE EXCEL");
+    this.excelService.exportToExcel(this.articulosFilter, "articulos");
   }
 }

@@ -1,5 +1,5 @@
-export class ArticuloDTO{
-  id : number;
+export class ArticuloDTO {
+  id: number;
   nombre: string;
   abreviatura: string;
   codigoArt: string;
@@ -11,5 +11,4 @@ export class ArticuloDTO{
   rubroId: number;
   subRubroId: number;
   habilitacion: number;
-
 }

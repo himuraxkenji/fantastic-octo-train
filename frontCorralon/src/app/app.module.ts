@@ -4,13 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { FormsModule} from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-
-
+import { ExcelExportService } from './service/excel-export.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +24,7 @@ import { LogoutComponent } from './logout/logout.component';
     HttpClientModule,
   ],
   providers: [VentasService,
+    ExcelExportService,
     {provide:HTTP_INTERCEPTORS, useClass: BasicAuthHtppInterceptorServiceService, multi:true }
   ],
   bootstrap: [AppComponent]

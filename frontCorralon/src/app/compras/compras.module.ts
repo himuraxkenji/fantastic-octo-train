@@ -14,10 +14,7 @@ import { AgregarArticuloComponent } from './agregar-articulo/agregar-articulo.co
 import { ListarPedidoComponent } from './listar-pedido/listar-pedido.component';
 import { AgregarPedidoComponent } from './agregar-pedido/agregar-pedido.component';
 import { ConsultarPedidoComponent } from './consultar-pedido/consultar-pedido.component';
-// import { ListarPreciosComponent } from './listar-precios/listar-precios.component';
-// import { ListarRubroComponent } from './listar-rubro/listar-rubro.component';
-// import { ListarSubrubroComponent } from './listar-subrubro/listar-subrubro.component';
-
+import { ExcelExportService } from '../service/excel-export.service';
 
 @NgModule({
   declarations: [SubMenuComponent,
@@ -39,6 +36,9 @@ import { ConsultarPedidoComponent } from './consultar-pedido/consultar-pedido.co
     ComprasRoutingModule,
     FormsModule,
     SharedModule
+  ],
+  providers: [
+    ExcelExportService
   ]
 })
 export class ComprasModule { }
