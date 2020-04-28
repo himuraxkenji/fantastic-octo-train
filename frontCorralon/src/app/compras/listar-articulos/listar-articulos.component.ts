@@ -5,7 +5,7 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { ExcelExportService } from "../../service/excel-export.service";
-import { ArticuloExcel } from "../../modelo/ArticuloExcel";
+import { ArticuloExcel } from '../../modelo/ArticuloExcel';
 
 @Component({
   selector: "app-listar-articulos",
@@ -124,7 +124,15 @@ export class ListarArticulosComponent implements OnInit {
     this.export = true;
   }
   exportarExcel(): void {
-    console.warn("MUESTRA DE EXCEL");
+    const articulosExcel = [];
+
+    // for (let index = 0; index < this.articulosFilter.length; index++) {
+    //     articulosExcel[index].codigoArt = this.articulosFilter[index].codigoArt;      
+    //     articulosExcel[index].nombre = this.articulosFilter[index].nombre;      
+    //     articulosExcel[index].stockMin = this.articulosFilter[index].stockMin;      
+    //     articulosExcel[index].stockMax = this.articulosFilter[index].stockMax;      
+    // }
+
     this.excelService.exportToExcel(this.articulosFilter, "articulos");
   }
 }

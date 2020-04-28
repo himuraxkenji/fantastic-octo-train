@@ -14,13 +14,17 @@ export class ExcelExportService {
 
   exportToExcel(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
+    console.warn("exportToExcel");
+
+    console.log(json);
+
     const workbook: XLSX.WorkBook = {
-      Sheets: { data: worksheet },
-      SheetNames: ["excelFileName"],
+      Sheets: { 'data': worksheet },
+      SheetNames: ['data'],
     };
     const excelBuffer: any = XLSX.write(workbook, {
       bookType: "xlsx",
-      type: "array",
+      type: "array"
     });
 
     // llama al metodo
