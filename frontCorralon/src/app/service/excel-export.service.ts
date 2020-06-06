@@ -19,12 +19,12 @@ export class ExcelExportService {
     console.log(json);
 
     const workbook: XLSX.WorkBook = {
-      Sheets: { 'data': worksheet },
-      SheetNames: ['data'],
+      Sheets: { data: worksheet },
+      SheetNames: ["data"],
     };
     const excelBuffer: any = XLSX.write(workbook, {
       bookType: "xlsx",
-      type: "array"
+      type: "array",
     });
 
     // llama al metodo
@@ -34,7 +34,19 @@ export class ExcelExportService {
     const data: Blob = new Blob([buffer], { type: EXCEL_TYPE });
     FileSaver.saveAs(
       data,
-      fileName + "_export_" + new Date().getTime() + EXCEL_EXT
+      fileName +
+        "_" +
+        new Date().getDay() +
+        "-" +
+        new Date().getMonth() +
+        "-" +
+        new Date().getFullYear() +
+        "_" +
+        new Date().getHours() +
+        "-" +
+        new Date().getMinutes() +
+        EXCEL_EXT
+      // fileName + "_export_" + new Date().getTime() + EXCEL_EXT
     );
   }
 }

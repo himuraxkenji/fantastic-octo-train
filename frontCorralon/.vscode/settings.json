@@ -2,5 +2,9 @@
     "git.ignoreLimitWarning": true,
     "editor.formatOnSave": true,
     "html.format.endWithNewline": true,
-    "html.format.extraLiners": ""
+    "html.format.extraLiners": "",
+    "extensions.confirmedUriHandlerExtensionIds": [
+    
+    ],
+    "prettier.useEditorConfig": false
 }

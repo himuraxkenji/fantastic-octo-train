@@ -5,7 +5,8 @@ import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import { ExcelExportService } from "../../service/excel-export.service";
-import { ArticuloExcel } from '../../modelo/ArticuloExcel';
+import { ArticuloExcel } from "../../modelo/ArticuloExcel";
+import { async } from "@angular/core/testing";
 
 @Component({
   selector: "app-listar-articulos",
@@ -13,11 +14,14 @@ import { ArticuloExcel } from '../../modelo/ArticuloExcel';
   styleUrls: ["./listar-articulos.component.css"],
 })
 export class ListarArticulosComponent implements OnInit {
-  // articulo: Articulo = null;
   @ViewChild("listArt", { static: false }) content: ElementRef;
 
   articulos: Articulo[] = [];
   articulosFilter: Articulo[] = [];
+
+  articulosExcel: ArticuloExcel[] = [];
+
+  articuloExcel: ArticuloExcel;
 
   busqueda: string = null;
   busquedaRubro: string = null;
@@ -117,22 +121,46 @@ export class ListarArticulosComponent implements OnInit {
     window.history.back();
   }
   exportarPDF() {
-    this.export = false;
-    const doc = new jsPDF();
-    doc.autoTable({ html: "#listArt" });
-    doc.save("table.pdf");
-    this.export = true;
+    const promesa = new Promise((resp, error) => {
+      this.export = true;
+      console.log("LOG 1");
+
+      resp();
+    })
+      .then(async (resp) => {
+        console.log("LOG 2");
+
+        const doc = new jsPDF();
+        doc.autoTable({ html: "#listArt" });
+        await doc.save("table.pdf");
+      })
+      .then(() => {
+        console.log("LOG 3");
+
+        this.export = false;
+      });
   }
   exportarExcel(): void {
-    const articulosExcel = [];
+    console.warn("arreglo--");
 
-    // for (let index = 0; index < this.articulosFilter.length; index++) {
-    //     articulosExcel[index].codigoArt = this.articulosFilter[index].codigoArt;      
-    //     articulosExcel[index].nombre = this.articulosFilter[index].nombre;      
-    //     articulosExcel[index].stockMin = this.articulosFilter[index].stockMin;      
-    //     articulosExcel[index].stockMax = this.articulosFilter[index].stockMax;      
-    // }
+    console.log(this.articulosFilter);
 
-    this.excelService.exportToExcel(this.articulosFilter, "articulos");
+    for (let index = 0; index < this.articulosFilter.length; index++) {
+      this.articuloExcel = new ArticuloExcel("", "", 0, 0);
+      console.warn("----------------------");
+      console.log(this.articulosFilter[index]);
+
+      if (this.articulosFilter[index] != null) {
+        console.warn("ENTRO");
+
+        this.articuloExcel.codigoArt = this.articulosFilter[index].codigoArt;
+        this.articuloExcel.nombre = this.articulosFilter[index].nombre;
+        this.articuloExcel.stockMin = this.articulosFilter[index].stockMin;
+        this.articuloExcel.stockMax = this.articulosFilter[index].stockMax;
+      }
+      this.articulosExcel.push(this.articuloExcel);
+    }
+
+    this.excelService.exportToExcel(this.articulosExcel, "lista_articulos");
   }
 }
