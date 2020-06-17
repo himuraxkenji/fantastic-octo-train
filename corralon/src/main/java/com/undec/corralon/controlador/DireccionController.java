@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/direcciones")
@@ -27,6 +28,7 @@ public class DireccionController {
     }
 
     @PostMapping
+
     public ResponseEntity<Response> guardar(@Valid @RequestBody DireccionDTO direccionDTO) throws DireccionErrorToSaveException {
         Response response = direccionService.guardarDireccion(direccionDTO);
         return new ResponseEntity<>(response, HttpStatus.OK);
