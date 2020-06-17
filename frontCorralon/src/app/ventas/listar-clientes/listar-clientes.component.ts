@@ -2,11 +2,12 @@ import { VentasService } from "./../../service/ventas.service";
 import { Router } from "@angular/router";
 import { Cliente } from "../../modelo/Cliente";
 import { Component, OnInit } from "@angular/core";
+// import { MatDialogModule } from "@angular/material";
 
 @Component({
   selector: "app-listar-clientes",
   templateUrl: "./listar-clientes.component.html",
-  styleUrls: ["./listar-clientes.component.css"]
+  styleUrls: ["./listar-clientes.component.css"],
 })
 export class ListarClientesComponent implements OnInit {
   clientes: Cliente[] = null;
@@ -19,7 +20,7 @@ export class ListarClientesComponent implements OnInit {
 
   constructor(private service: VentasService, private router: Router) {}
   ngOnInit() {
-    this.service.listarClientesTodos().subscribe(data => {
+    this.service.listarClientesTodos().subscribe((data) => {
       this.clientes = data.data;
       this.clientesFilter = data.data;
     });
@@ -31,14 +32,14 @@ export class ListarClientesComponent implements OnInit {
     let resultado: boolean;
     resultado = confirm("¿DESEA ELIMINAR CLIENTE?");
     if (resultado === true) {
-      this.service.deshabilitarCliente(cliente.id).subscribe(data => {
+      this.service.deshabilitarCliente(cliente.id).subscribe((data) => {
         window.location.reload();
       });
     }
   }
   filtrarClienteNombre(event: any) {
     if (this.busquedaNombre !== null) {
-      this.clientesFilter = this.clientes.filter(item => {
+      this.clientesFilter = this.clientes.filter((item) => {
         if (
           item.nombre.toUpperCase().includes(this.busquedaNombre.toUpperCase())
         ) {
@@ -51,7 +52,7 @@ export class ListarClientesComponent implements OnInit {
   }
   filtrarClienteApellido(event: any) {
     if (this.busquedaApellido !== null) {
-      this.clientesFilter = this.clientes.filter(item => {
+      this.clientesFilter = this.clientes.filter((item) => {
         if (
           item.apellido
             .toUpperCase()
@@ -67,7 +68,7 @@ export class ListarClientesComponent implements OnInit {
 
   filtrarClienteDNI(event: any) {
     if (this.busquedaDNI !== null) {
-      this.clientesFilter = this.clientes.filter(item => {
+      this.clientesFilter = this.clientes.filter((item) => {
         if (item.dni.includes(this.busquedaDNI)) {
           return item;
         }
@@ -76,7 +77,8 @@ export class ListarClientesComponent implements OnInit {
       this.clientesFilter = this.clientes;
     }
   }
-  backPage(){
+  backPage() {
     window.history.back();
   }
+  consultaCliente() {}
 }
