@@ -14,9 +14,7 @@ export class ListarClientesComponent implements OnInit {
   cliente: Cliente = null;
   clientesFilter: Cliente[] = null;
 
-  busquedaNombre: string = null;
-  busquedaApellido: string = null;
-  busquedaDNI: string = null;
+  busqueda: string = null;
 
   constructor(private service: VentasService, private router: Router) {}
   ngOnInit() {
@@ -37,48 +35,27 @@ export class ListarClientesComponent implements OnInit {
       });
     }
   }
-  filtrarClienteNombre(event: any) {
-    if (this.busquedaNombre !== null) {
+  filtrarCliente() {
+    console.log(this.busqueda);
+
+    this.busqueda = this.busqueda.toLowerCase();
+    this.clientesFilter = this.clientes;
+
+    if (this.busqueda !== null) {
       this.clientesFilter = this.clientes.filter((item) => {
-        if (
-          item.nombre.toUpperCase().includes(this.busquedaNombre.toUpperCase())
-        ) {
-          return item;
-        }
+        const inName = item.nombre.toLowerCase().indexOf(this.busqueda) !== -1;
+        const inLastName =
+          item.apellido.toLowerCase().indexOf(this.busqueda) !== -1;
+        const inDocument = item.dni.toLowerCase().indexOf(this.busqueda) !== -1;
+        return inName || inLastName || inDocument;
       });
-    } else {
-      this.clientesFilter = this.clientes;
-    }
-  }
-  filtrarClienteApellido(event: any) {
-    if (this.busquedaApellido !== null) {
-      this.clientesFilter = this.clientes.filter((item) => {
-        if (
-          item.apellido
-            .toUpperCase()
-            .includes(this.busquedaApellido.toUpperCase())
-        ) {
-          return item;
-        }
-      });
-    } else {
-      this.clientesFilter = this.clientes;
     }
   }
 
-  filtrarClienteDNI(event: any) {
-    if (this.busquedaDNI !== null) {
-      this.clientesFilter = this.clientes.filter((item) => {
-        if (item.dni.includes(this.busquedaDNI)) {
-          return item;
-        }
-      });
-    } else {
-      this.clientesFilter = this.clientes;
-    }
-  }
   backPage() {
     window.history.back();
   }
   consultaCliente() {}
+  exportarExcel() {}
+  exportarPDF() {}
 }

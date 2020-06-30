@@ -1,21 +1,17 @@
-import {ActivatedRoute, Router} from '@angular/router';
-import {Component, OnInit, Input} from '@angular/core';
-import {Pedido} from 'src/app/modelo/Pedido';
-import {Articulo} from 'src/app/modelo/Articulo';
-import {MovimientoArticuloDTO} from 'src/app/modelo/MovimientoArticuloDTO';
-import {ComprasService} from 'src/app/service/compras.service';
-import {Proveedor} from 'src/app/modelo/Proveedor';
-
-
-
+import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit, Input } from "@angular/core";
+import { Pedido } from "src/app/modelo/Pedido";
+import { Articulo } from "src/app/modelo/Articulo";
+import { MovimientoArticuloDTO } from "src/app/modelo/MovimientoArticuloDTO";
+import { ComprasService } from "src/app/service/compras.service";
+import { Proveedor } from "src/app/modelo/Proveedor";
 
 @Component({
-  selector: 'app-pedidos',
-  templateUrl: './pedidos.component.html',
-  styleUrls: ['./pedidos.component.css']
+  selector: "app-pedidos",
+  templateUrl: "./pedidos.component.html",
+  styleUrls: ["./pedidos.component.css"],
 })
 export class PedidosComponent implements OnInit {
-
   @Input() consultar: boolean;
 
   pedido: Pedido = new Pedido();
@@ -28,25 +24,29 @@ export class PedidosComponent implements OnInit {
   articulosFilter: Articulo[] = null;
   stockArticulo: number[] = [];
   proveedores: Proveedor[] = [];
-  razonSocial: string = ' ';
+  razonSocial: String = " ";
   movimientoFilter: MovimientoArticuloDTO[] = [];
-  movimientosPrevios : StockArticulo[] =[]
-  stockArticuloPorPedido : StockArticulo[] = [];
+  movimientosPrevios: StockArticulo[] = [];
+  stockArticuloPorPedido: StockArticulo[] = [];
 
-  articulosStockMovimiento: any[] =[];
-  articulosStockMovimientoFilter: any[] =[];
+  articulosStockMovimiento: any[] = [];
+  articulosStockMovimientoFilter: any[] = [];
 
-  constructor(private comprasService: ComprasService,
-              private route: Router,
-              private active: ActivatedRoute) {
-  }
+  constructor(
+    private comprasService: ComprasService,
+    private route: Router,
+    private active: ActivatedRoute
+  ) {}
 
   async ngOnInit() {
-    if (this.route.url === '/compras/agregar-pedido') {
-      console.log('agregar');
+    if (this.route.url === "/compras/agregar-pedido") {
+      console.log("agregar");
     } else {
-      const idPedido = Number(this.active.snapshot.paramMap.get('id'));
-      await this.comprasService.listarPedidoId(idPedido).toPromise().then(data => this.pedido = data.data);
+      const idPedido = Number(this.active.snapshot.paramMap.get("id"));
+      await this.comprasService
+        .listarPedidoId(idPedido)
+        .toPromise()
+        .then((data) => (this.pedido = data.data));
     }
 
     await this.getArticulos().then(() => {
@@ -59,7 +59,7 @@ export class PedidosComponent implements OnInit {
     });
 
     this.getMovimientos().then(() => {
-      this.getStock()
+      this.getStock();
     });
 
     this.listaProveedor();
@@ -74,7 +74,7 @@ export class PedidosComponent implements OnInit {
     this.pedido.fecha = pedido.fecha;
     this.pedido.descripcion = pedido.descripcion.toUpperCase();
 
-    this.comprasService.guardarPedidos(this.pedido).then(data => {
+    this.comprasService.guardarPedidos(this.pedido).then((data) => {
       console.log(data);
 
       this.pedido = data.data;
@@ -84,17 +84,17 @@ export class PedidosComponent implements OnInit {
           this.movimientoArticuloDTO.id = null;
           this.movimientoArticuloDTO.fecha = pedido.fecha;
           this.movimientoArticuloDTO.articuloId = artStockMov.articulo.id; // this.articulos[index].id;
-          this.movimientoArticuloDTO.movimiento = artStockMov.movimiento.movimiento; // this.movimientoArticulosDTO[index].movimiento;
+          this.movimientoArticuloDTO.movimiento =
+            artStockMov.movimiento.movimiento; // this.movimientoArticulosDTO[index].movimiento;
           this.movimientoArticuloDTO.pedidoId = data.data.id;
 
           this.comprasService
             .guardarMovimiento(this.movimientoArticuloDTO)
-            .subscribe(resp => {
+            .subscribe((resp) => {
               console.log("entre :V");
             });
         }
       });
-
     });
 
     alert("SE GUARDO UN NUEVO PEDIDO");
@@ -102,10 +102,11 @@ export class PedidosComponent implements OnInit {
   }
 
   listaProveedor() {
-    this.comprasService.listarProveedoresHabilitados().subscribe(data => {
+    this.comprasService.listarProveedoresHabilitados().subscribe((data) => {
       this.proveedores = data.data;
-      this.proveedores.sort((a, b) => a.razonSocial.length - b.razonSocial.length)
-
+      this.proveedores.sort(
+        (a, b) => a.razonSocial.length - b.razonSocial.length
+      );
     });
   }
 
@@ -113,7 +114,7 @@ export class PedidosComponent implements OnInit {
     return this.comprasService
       .listarArticuloHabilitados()
       .toPromise()
-      .then(data => {
+      .then((data) => {
         this.articulos = data.data;
         this.articulosFilter = this.articulos;
       });
@@ -124,17 +125,17 @@ export class PedidosComponent implements OnInit {
       return this.comprasService
         .getMovimientosPrevios(this.pedido.id)
         .toPromise()
-        .then(data => {
-          console.log('getMovimientosPrevios');
+        .then((data) => {
+          console.log("getMovimientosPrevios");
           let keys = Object.keys(data.data);
           let value = Object.values(data.data);
-          let movimientosPrev  = [];
+          let movimientosPrev = [];
           value.forEach((v, index) => {
             let stock = new StockArticulo(Number(keys[index]), Number(v));
             movimientosPrev.push(stock);
           });
-          console.log('movimivneto previo-------')
-          console.log(movimientosPrev)
+          console.log("movimivneto previo-------");
+          console.log(movimientosPrev);
           // movimientosPrev = movimientosPrev.filter( m => m.stock !== 0);
 
           this.movimientosPrevios = movimientosPrev;
@@ -142,27 +143,31 @@ export class PedidosComponent implements OnInit {
           this.articulos.forEach((a, index) => {
             this.stockArticulo.push(data.data.id);
           });
-          this.movimientosPrevios.forEach(mov => this.stockArticulo.push(mov.stock))
+          this.movimientosPrevios.forEach((mov) =>
+            this.stockArticulo.push(mov.stock)
+          );
         });
     } else {
       return this.comprasService
         .listarStockArticulo()
         .toPromise()
-        .then(data => {
-          console.log('lista');
-
+        .then((data) => {
+          console.log("lista");
 
           this.articulos.forEach((a, index) => {
             this.stockArticulo.push(data.data[index]);
-            this.articulosStockMovimiento.push({'articulo': a, 'stock': data.data[index], 'movimiento': this.movimientoFilter[index] });
+            this.articulosStockMovimiento.push({
+              articulo: a,
+              stock: data.data[index],
+              movimiento: this.movimientoFilter[index],
+            });
             this.articulosStockMovimientoFilter = this.articulosStockMovimiento;
           });
 
           console.log(this.articulosStockMovimiento);
 
-          console.log(this.stockArticulo)
+          console.log(this.stockArticulo);
         });
-
     }
   }
 
@@ -172,14 +177,15 @@ export class PedidosComponent implements OnInit {
 
   async listarFiltro() {
     this.articulosStockMovimientoFilter = [];
-    if (this.razonSocial === ' ') {
+    if (this.razonSocial === " ") {
       this.articulosStockMovimientoFilter = this.articulosStockMovimiento;
     } else {
-      await this.articulosStockMovimiento.forEach( artStockMov=> {
-          (artStockMov.articulo.proveedorId.razonSocial === this.razonSocial) ? this.articulosStockMovimientoFilter.push(artStockMov) : false ;
+      await this.articulosStockMovimiento.forEach((artStockMov) => {
+        artStockMov.articulo.proveedorId.razonSocial === this.razonSocial
+          ? this.articulosStockMovimientoFilter.push(artStockMov)
+          : false;
       });
     }
-
   }
 
   actualizarStockFiltro(articulosFilter: Articulo[]) {
@@ -187,17 +193,15 @@ export class PedidosComponent implements OnInit {
     return this.comprasService
       .listarStockArticulo()
       .toPromise()
-      .then(data => {
+      .then((data) => {
         articulosFilter.forEach((a, index) => {
           this.stockArticulo.push(data.data[a.id]);
         });
-      
-      
       });
   }
 
   guardarCarga() {
-    console.log('Entre');
+    console.log("Entre");
   }
 
   getStock() {
@@ -205,34 +209,46 @@ export class PedidosComponent implements OnInit {
       return this.comprasService
         .getMovimientosStock(this.pedido.id)
         .toPromise()
-        .then(data => {
-          let keys = Object.keys( data.data );
+        .then((data) => {
+          let keys = Object.keys(data.data);
           let value = Object.values(data.data);
-          keys.forEach( (k, index) => this.stockArticuloPorPedido.push(new StockArticulo(Number(k), Number(value[index]) )));
+          keys.forEach((k, index) =>
+            this.stockArticuloPorPedido.push(
+              new StockArticulo(Number(k), Number(value[index]))
+            )
+          );
           this.movimientoFilter = [];
-          keys.forEach( (k, index) => {
+          keys.forEach((k, index) => {
             let mov = new MovimientoArticuloDTO();
             mov.articuloId = Number(k);
             mov.movimiento = Number(value[index]);
-            this.movimientoFilter.push(mov)
+            this.movimientoFilter.push(mov);
           });
 
           let indexMovpre = [];
-          this.movimientoFilter.forEach(p=> indexMovpre.push(p.articuloId));
-          this.movimientosPrevios = this.movimientosPrevios.filter(m => indexMovpre.includes(m.idArticulo));
+          this.movimientoFilter.forEach((p) => indexMovpre.push(p.articuloId));
+          this.movimientosPrevios = this.movimientosPrevios.filter((m) =>
+            indexMovpre.includes(m.idArticulo)
+          );
           this.stockArticulo.splice(0, this.stockArticulo.length);
-          this.movimientosPrevios.forEach(m => this.stockArticulo.push(m.stock));
+          this.movimientosPrevios.forEach((m) =>
+            this.stockArticulo.push(m.stock)
+          );
 
-          this.articulosFilter = this.articulosFilter.filter( a => keys.includes(String(a.id)));
+          this.articulosFilter = this.articulosFilter.filter((a) =>
+            keys.includes(String(a.id))
+          );
           this.articulosFilter.forEach((a, index) => {
-            this.articulosStockMovimiento.push({'articulo': a, 'stock': this.stockArticulo[index], 'movimiento': this.movimientoFilter[index]});
+            this.articulosStockMovimiento.push({
+              articulo: a,
+              stock: this.stockArticulo[index],
+              movimiento: this.movimientoFilter[index],
+            });
             this.articulosStockMovimientoFilter = this.articulosStockMovimiento;
           });
           console.error(this.articulosStockMovimiento);
-          console.error('Soy un fucking error ');
-
+          console.error("Soy un fucking error ");
         });
-
     }
   }
 }
@@ -244,6 +260,4 @@ export class StockArticulo {
     this.idArticulo = idArticulo;
     this.stock = stock;
   }
-
-
 }

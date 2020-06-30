@@ -71,51 +71,68 @@ export class ListarArticulosComponent implements OnInit {
       });
     }
   }
-  filtrarArticuloNombre(event: any) {
+  filtrarArticulo() {
+    console.log(this.busqueda);
+
+    this.busqueda = this.busqueda.toLowerCase();
+    this.articulosFilter = this.articulos;
+
     if (this.busqueda !== null) {
       this.articulosFilter = this.articulos.filter((item) => {
-        if (item.nombre.toUpperCase().includes(this.busqueda.toUpperCase())) {
-          return item;
-        }
+        const inName = item.nombre.toLowerCase().indexOf(this.busqueda) !== -1;
+        const inLastName =
+          item.codigoArt.toLowerCase().indexOf(this.busqueda) !== -1;
+        const inDocument =
+          item.rubroId.nombre.toLowerCase().indexOf(this.busqueda) !== -1;
+        return inName || inLastName || inDocument;
       });
-    } else {
-      this.articulosFilter = this.articulos;
     }
   }
-  filtrarArticuloCodigo(event: any) {
-    if (this.busquedaCodigo !== null) {
-      this.articulosFilter = this.articulos.filter((item) => {
-        if (
-          item.codigoArt
-            .toUpperCase()
-            .includes(this.busquedaCodigo.toUpperCase())
-        ) {
-          return item;
-        }
-      });
-    } else {
-      this.articulosFilter = this.articulos;
-    }
-  }
-  filtrarArticuloRubro(event: any) {
-    console.log("================ENTRO================");
+  // filtrarArticuloNombre(event: any) {
+  //   if (this.busqueda !== null) {
+  //     this.articulosFilter = this.articulos.filter((item) => {
+  //       if (item.nombre.toUpperCase().includes(this.busqueda.toUpperCase())) {
+  //         return item;
+  //       }
+  //     });
+  //   } else {
+  //     this.articulosFilter = this.articulos;
+  //   }
+  // }
+  // filtrarArticuloCodigo(event: any) {
+  //   if (this.busquedaCodigo !== null) {
+  //     this.articulosFilter = this.articulos.filter((item) => {
+  //       if (
+  //         item.codigoArt
+  //           .toUpperCase()
+  //           .includes(this.busquedaCodigo.toUpperCase())
+  //       ) {
+  //         return item;
+  //       }
+  //     });
+  //   } else {
+  //     this.articulosFilter = this.articulos;
+  //   }
+  // }
+  // filtrarArticuloRubro(event: any) {
+  //   console.log("================ENTRO================");
 
-    if (this.busquedaRubro !== null) {
-      this.articulosFilter = this.articulos.filter((item) => {
-        if (item.rubroId !== null) {
-          if (
-            item.rubroId.nombre
-              .toUpperCase()
-              .includes(this.busquedaRubro.toUpperCase())
-          ) {
-            return item;
-          }
-        }
-      });
-    } else {
-      this.articulosFilter = this.articulos;
-    }
-  }
+  //   if (this.busquedaRubro !== null) {
+  //     this.articulosFilter = this.articulos.filter((item) => {
+  //       if (item.rubroId !== null) {
+  //         if (
+  //           item.rubroId.nombre
+  //             .toUpperCase()
+  //             .includes(this.busquedaRubro.toUpperCase())
+  //         ) {
+  //           return item;
+  //         }
+  //       }
+  //     });
+  //   } else {
+  //     this.articulosFilter = this.articulos;
+  //   }
+  // }
 
   backPage() {
     window.history.back();
