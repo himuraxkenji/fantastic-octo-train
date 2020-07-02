@@ -1,24 +1,51 @@
-import { LogoutComponent } from './logout/logout.component';
-import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from "./logout/logout.component";
+import { LoginComponent } from "./login/login.component";
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { AuthGaurdService } from './service/auth-gaurd.service';
+import { AuthGaurdService } from "./service/auth-gaurd.service";
 
 const routes: Routes = [
-  { path: "ventas", loadChildren: "./ventas/ventas.module#VentasModule", canActivate:[AuthGaurdService]},
-  { path: "compras", loadChildren: "./compras/compras.module#ComprasModule", canActivate:[AuthGaurdService] },
-  { path: "abm-ventas", loadChildren: "./abm-ventas/abm-ventas.module#AbmVentasModule", canActivate:[AuthGaurdService]},
-  { path: "abm-compras", loadChildren: "./abm-compras/abm-compras.module#AbmComprasModule",  canActivate:[AuthGaurdService]},
-  {path: "seguridad", loadChildren:"./seguridad/seguridad.module#SeguridadModule",canActivate:[AuthGaurdService]},
-  { path: 'login', component: LoginComponent},
-  { path: 'logout', component: LogoutComponent, canActivate:[AuthGaurdService]},
-  { path: "**",pathMatch:'full', redirectTo: "ventas"}
-
-
+  {
+    path: "ventas",
+    loadChildren: "./ventas/ventas.module#VentasModule",
+    canActivate: [AuthGaurdService],
+  },
+  {
+    path: "compras",
+    loadChildren: "./compras/compras.module#ComprasModule",
+    canActivate: [AuthGaurdService],
+  },
+  {
+    path: "abm-ventas",
+    loadChildren: "./abm-ventas/abm-ventas.module#AbmVentasModule",
+    canActivate: [AuthGaurdService],
+  },
+  {
+    path: "abm-compras",
+    loadChildren: "./abm-compras/abm-compras.module#AbmComprasModule",
+    canActivate: [AuthGaurdService],
+  },
+  {
+    path: "seguridad",
+    loadChildren: "./seguridad/seguridad.module#SeguridadModule",
+    canActivate: [AuthGaurdService],
+  },
+  {
+    path: "logistica",
+    loadChildren: "./logistica/logistica.module#LogisticaModule",
+    canActivate: [AuthGaurdService],
+  },
+  { path: "login", component: LoginComponent },
+  {
+    path: "logout",
+    component: LogoutComponent,
+    canActivate: [AuthGaurdService],
+  },
+  { path: "**", pathMatch: "full", redirectTo: "ventas" },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}
