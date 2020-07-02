@@ -14,7 +14,7 @@ import { async } from "@angular/core/testing";
   styleUrls: ["./listar-articulos.component.css"],
 })
 export class ListarArticulosComponent implements OnInit {
-  @ViewChild("listArt", { static: false }) content: ElementRef;
+  @ViewChild("listArt") content: ElementRef;
 
   articulos: Articulo[] = [];
   articulosFilter: Articulo[] = [];
