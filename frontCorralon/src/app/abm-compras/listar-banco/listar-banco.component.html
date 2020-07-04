@@ -23,13 +23,13 @@
                                 <button class="btn btn-default ">NOMBRE </button>
                             </td>
                             <td>
-                                <input type="text " [(ngModel)]="busqueda " class="form-control " placeholder="ingrese nombre " (keyup)="filtrarBancoNombre(event) ">
+                                <input type="text " [(ngModel)]="busqueda " class="form-control " placeholder="ingrese nombre " (keyup)="filtrarBancoNombre($event) ">
                             </td>
                             <td>
                                 <button class="btn btn-default ">ABREVIATURA </button>
                             </td>
                             <td>
-                                <input type="text " [(ngModel)]="busquedaNombre " class="form-control " placeholder="ingrese abreviatura " (keyup)="filtrarBancoAbreviatura(event) ">
+                                <input type="text " [(ngModel)]="busquedaNombre " class="form-control " placeholder="ingrese abreviatura " (keyup)="filtrarBancoAbreviatura($event) ">
 
                             </td>
                             <td>

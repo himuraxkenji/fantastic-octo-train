@@ -7,32 +7,32 @@ import { AuthGaurdService } from "./service/auth-gaurd.service";
 const routes: Routes = [
   {
     path: "ventas",
-    loadChildren: "./ventas/ventas.module#VentasModule",
+    loadChildren: () => import('./ventas/ventas.module').then(m => m.VentasModule),
     canActivate: [AuthGaurdService],
   },
   {
     path: "compras",
-    loadChildren: "./compras/compras.module#ComprasModule",
+    loadChildren: () => import('./compras/compras.module').then(m => m.ComprasModule),
     canActivate: [AuthGaurdService],
   },
   {
     path: "abm-ventas",
-    loadChildren: "./abm-ventas/abm-ventas.module#AbmVentasModule",
+    loadChildren: () => import('./abm-ventas/abm-ventas.module').then(m => m.AbmVentasModule),
     canActivate: [AuthGaurdService],
   },
   {
     path: "abm-compras",
-    loadChildren: "./abm-compras/abm-compras.module#AbmComprasModule",
+    loadChildren: () => import('./abm-compras/abm-compras.module').then(m => m.AbmComprasModule),
     canActivate: [AuthGaurdService],
   },
   {
     path: "seguridad",
-    loadChildren: "./seguridad/seguridad.module#SeguridadModule",
+    loadChildren: () => import('./seguridad/seguridad.module').then(m => m.SeguridadModule),
     canActivate: [AuthGaurdService],
   },
   {
     path: "logistica",
-    loadChildren: "./logistica/logistica.module#LogisticaModule",
+    loadChildren: () => import('./logistica/logistica.module').then(m => m.LogisticaModule),
     canActivate: [AuthGaurdService],
   },
   { path: "login", component: LoginComponent },
