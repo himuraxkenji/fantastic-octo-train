@@ -3,12 +3,14 @@ package com.undec.corralon.controlador;
 import com.undec.corralon.DTO.Response;
 import com.undec.corralon.modelo.Banco;
 import com.undec.corralon.service.BancoService;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.FileNotFoundException;
 
 
 @CrossOrigin("*")
@@ -25,10 +27,17 @@ public class BancoController {
         Response response = bancoService.listarTodos();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
-    @GetMapping("habilitados")
+
+    @GetMapping("/habilitados")
     public ResponseEntity <Response> listarTodosHabilitados() throws Exception {
         Response response= bancoService.listarTodosHabilitados();
         return  new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/export/{format}")
+    public ResponseEntity <Response> exportReport( @PathVariable String format) {
+        Response response = bancoService.exportReport(format);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @PostMapping
     public ResponseEntity<Response> guardar(@Valid @RequestBody Banco banco) throws Exception {

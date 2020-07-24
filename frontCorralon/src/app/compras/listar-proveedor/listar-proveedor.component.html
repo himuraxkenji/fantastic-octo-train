@@ -1,5 +1,5 @@
-<div class="container" ng-controller="Tipo Direccion">
-  <div class="card m-1">
+<div class="container" ng-controller="Proveedores">
+  <div class="card">
     <button
       class="btn btn-default"
       style="margin-right: 100%;"
@@ -26,17 +26,17 @@
         height="40"
         viewBox="0 0 32 32"
       >
-        <title>PROVEEDOR</title>
+        <title>proveedor</title>
         <path
           d="M10 6c0-3.314 2.686-6 6-6s6 2.686 6 6c0 3.314-2.686 6-6 6s-6-2.686-6-6zM24.002 14h-1.107l-6.222 12.633 2.327-11.633-3-3-3 3 2.327 11.633-6.222-12.633h-1.107c-3.998 0-3.998 2.687-3.998 6v10h24v-10c0-3.313 0-6-3.998-6z"
         ></path>
       </svg>
-      LISTA DE PROVEEDORES
+      Lista de Proveedores
     </h1>
 
-    <div class="card-body">
-      <div class="row">
-        <table class="table">
+    <div class="row card-body">
+      <div class="container">
+        <!-- <table class="table">
           <thead class="thead-dark">
             <tr>
               <td>
@@ -100,7 +100,23 @@
               </td>
             </tr>
           </thead>
-        </table>
+        </table> -->
+        <div class="row col-12 d-flex justify-content-start">
+          <label class="col-5 m-0 p-0">
+            <h3>Busqueda:</h3>
+          </label>
+
+          <div class="col-12 m-0 p-0 aligth">
+            <input
+              class="col-12 position-relative has-icon-right searchDiv"
+              type="text"
+              [(ngModel)]="busqueda"
+              class="form-control searchText"
+              placeholder="ingrese busqueda"
+              (keyup)="filtrarProveedorRazonSocial($event)"
+            />
+          </div>
+        </div>
       </div>
     </div>
 

@@ -33,7 +33,7 @@ export class ListarArticulosComponent implements OnInit {
     private serviceCompra: ComprasService,
     private router: Router,
     private excelService: ExcelExportService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.fetchEvent().then(() => {
@@ -51,11 +51,11 @@ export class ListarArticulosComponent implements OnInit {
         // subscribe(data => {
         this.articulos = data.data;
         this.articulosFilter = this.articulos;
-        console.info("Articulos");
-        console.info(data.data);
-        console.info("ArticulosFilter");
+        // console.info("Articulos");
+        // console.info(data.data);
+        // console.info("ArticulosFilter");
 
-        console.info(this.articulosFilter);
+        // console.info(this.articulosFilter);
       });
   }
 

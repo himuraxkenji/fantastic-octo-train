@@ -10,7 +10,7 @@ const EXCEL_EXT = ".xlsx";
   providedIn: "root",
 })
 export class ExcelExportService {
-  constructor() {}
+  constructor() { }
 
   exportToExcel(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
@@ -35,17 +35,17 @@ export class ExcelExportService {
     FileSaver.saveAs(
       data,
       fileName +
-        "_" +
-        new Date().getDay() +
-        "-" +
-        new Date().getMonth() +
-        "-" +
-        new Date().getFullYear() +
-        "_" +
-        new Date().getHours() +
-        "-" +
-        new Date().getMinutes() +
-        EXCEL_EXT
+      "_" +
+      new Date().getDay() +
+      "-" +
+      new Date().getMonth() +
+      "-" +
+      new Date().getFullYear() +
+      "_" +
+      new Date().getHours() +
+      "-" +
+      new Date().getMinutes() +
+      EXCEL_EXT
       // fileName + "_export_" + new Date().getTime() + EXCEL_EXT
     );
   }

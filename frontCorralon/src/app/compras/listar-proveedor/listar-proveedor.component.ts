@@ -4,9 +4,9 @@ import { Router } from "@angular/router";
 import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: "app-listar-proveedor",
-  templateUrl: "./listar-proveedor.component.html",
-  styleUrls: ["./listar-proveedor.component.css"]
+  selector: 'app-listar-proveedor',
+  templateUrl: './listar-proveedor.component.html',
+  styleUrls: ['./listar-proveedor.component.css']
 })
 export class ListarProveedorComponent implements OnInit {
   proveedor: Proveedor = null;
@@ -16,7 +16,7 @@ export class ListarProveedorComponent implements OnInit {
   busqueda: string = null;
   busquedaMail: string = null;
 
-  constructor(private router: Router, private serviceCompras: ComprasService) {}
+  constructor(private router: Router, private serviceCompras: ComprasService) { }
 
   ngOnInit() {
     this.serviceCompras.listarProveedoresTodos().subscribe(prov => {
@@ -37,34 +37,34 @@ export class ListarProveedorComponent implements OnInit {
       this.proveedoresFilter = this.proveedores;
     }
   }
-  filtrarProveedorTelefono(event: any) {
-    if (this.busquedaTelefono !== null) {
-      this.proveedoresFilter = this.proveedores.filter(item => {
-        if (
-          item.telefono
-            .toUpperCase()
-            .includes(this.busquedaTelefono.toUpperCase())
-        ) {
-          return item;
-        }
-      });
-    } else {
-      this.proveedoresFilter = this.proveedores;
-    }
-  }
-  filtrarProveedorMail(event: any) {
-    if (this.busquedaMail !== null) {
-      this.proveedoresFilter = this.proveedores.filter(item => {
-        if (item.mail.toUpperCase().includes(this.busquedaMail.toUpperCase())) {
-          return item;
-        }
-      });
-    } else {
-      this.proveedoresFilter = this.proveedores;
-    }
-  }
-  modificarProveedor() {}
-  deshabilitarProveedor() {}
+  // filtrarProveedorTelefono(event: any) {
+  //   if (this.busquedaTelefono !== null) {
+  //     this.proveedoresFilter = this.proveedores.filter(item => {
+  //       if (
+  //         item.telefono
+  //           .toUpperCase()
+  //           .includes(this.busquedaTelefono.toUpperCase())
+  //       ) {
+  //         return item;
+  //       }
+  //     });
+  //   } else {
+  //     this.proveedoresFilter = this.proveedores;
+  //   }
+  // }
+  // filtrarProveedorMail(event: any) {
+  //   if (this.busquedaMail !== null) {
+  //     this.proveedoresFilter = this.proveedores.filter(item => {
+  //       if (item.mail.toUpperCase().includes(this.busquedaMail.toUpperCase())) {
+  //         return item;
+  //       }
+  //     });
+  //   } else {
+  //     this.proveedoresFilter = this.proveedores;
+  //   }
+  // }
+  modificarProveedor() { }
+  deshabilitarProveedor() { }
   backPage() {
     window.history.back();
   }
