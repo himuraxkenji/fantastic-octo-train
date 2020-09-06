@@ -5,15 +5,15 @@ import com.undec.corralon.util.RoleEnum;
 import javax.persistence.*;
 
 @Entity
-public class Role {
+public class Roles {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private long id;
 
     @Enumerated(EnumType.STRING)
     @Column
-    private RoleEnum role;
+    private RoleEnum name;
 
     @Column
     private String description;
@@ -26,6 +26,13 @@ public class Role {
         this.id = id;
     }
 
+    public RoleEnum getName() {
+        return name;
+    }
+
+    public void setName(RoleEnum name) {
+        this.name = name;
+    }
 
     public String getDescription() {
         return description;
