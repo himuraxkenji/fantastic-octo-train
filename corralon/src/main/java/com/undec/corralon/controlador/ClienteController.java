@@ -8,6 +8,7 @@ import com.undec.corralon.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -25,16 +26,19 @@ public class ClienteController {
     ClienteService clienteService;
 
     @GetMapping(produces = "application/json")
+    //@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Response> listarTodos() throws Exception {
         Response response = clienteService.listarTodos();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     @GetMapping("habilitados")
+    @PreAuthorize("hasRole('USER') or hasRole('EDITOR') or hasRole('ADMIN')")
     public ResponseEntity<Response>listarTodosHabilitados() throws Exception {
         Response response= clienteService.listarTodosHabilitados();
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
     @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Response> listarPorId(@PathVariable("id") Integer id) throws Exception {
         Response response = clienteService.listarPorId(id);
         return new ResponseEntity<>(response, HttpStatus.OK);

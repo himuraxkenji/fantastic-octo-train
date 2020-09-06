@@ -1,7 +1,13 @@
 package com.undec.corralon.modelo;
 
-public class JwtRequest {
-    private String nombreUsuario;
+import java.io.Serializable;
+
+public class JwtRequest implements Serializable {
+
+
+    private static final long serialVersionUID = -1523295662902337172L;
+
+    private String userName;
     private String password;
 
     //need default constructor for JSON Parsing
@@ -10,17 +16,17 @@ public class JwtRequest {
 
     }
 
-    public JwtRequest(String nombreUsuario, String password) {
-        this.setUsername(nombreUsuario);
+    public JwtRequest(String userName, String password) {
+        this.setUsername(userName);
         this.setPassword(password);
     }
 
     public String getUsername() {
-        return this.nombreUsuario;
+        return this.userName;
     }
 
-    public void setUsername(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setUsername(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
